@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using RiptideNetworking;
 
 public class UIChangeRaffleType : MonoBehaviour
 {
@@ -89,7 +88,6 @@ public class UIChangeRaffleType : MonoBehaviour
         btRaffleSpin.onClick.AddListener(SetRaffleSpin);
         btRaffleSpin.onClick.AddListener(GameManager.instance.WriteInfosGlobe);
         btVisibilityRaffle.onClick.AddListener(SetStateHasRaffleVisibility);
-        btVisibilityRaffle.onClick.AddListener(SendInfosRaffle);
         btVisibilityRaffle.onClick.AddListener(GameManager.instance.WriteInfosGlobe);
     }
 
@@ -106,19 +104,16 @@ public class UIChangeRaffleType : MonoBehaviour
         SelectPanelForActivate(1);
         LotteryController lotteryController = FindObjectOfType<LotteryController>();
         lotteryController.ResetNumberRaffle();
-        SendMessageToClientChangeRaffle("SceneLottery");
     }
 
     public void SetRaffleGlobe()
     {
         SelectPanelForActivate(2);
-        SendMessageToClientChangeRaffle("SceneGlobe");
 
     }
     public void SetRaffleSpin()
     {
         SelectPanelForActivate(3);
-        SendMessageToClientChangeRaffle("SceneSpin");
     }
 
     public void SelectPanelForActivate(int index)
@@ -306,130 +301,4 @@ public class UIChangeRaffleType : MonoBehaviour
     }
     #endregion
 
-    #region MESSAGES
-    public void SendMessageVisibilityRaffle()
-    {
-        TcpNetworkManager.instance.Server.SendToAll(GetMessageVisibilityRaffle(Message.Create(MessageSendMode.unreliable, ServerToClientId.messageVisibilityRaffle), GameManager.instance.isVisibleRaffle, GameManager.instance.sceneId));
-
-    }
-    public void SendInfosRaffle()
-    {
-
-        if (panelRaffleLottery.activeSelf == true)
-        {
-            SendMessageLotteryInfos(
-       GameManager.instance.editionScriptable.edicaoInfos[GameManager.instance.EditionIndex].numero,
-       GameManager.instance.lotteryScriptable.resultadoLoteriaFederalNumeroConcurso,
-       GameManager.instance.editionScriptable.edicaoInfos[GameManager.instance.EditionIndex].dataRealizacao,
-       GameManager.instance.lotteryScriptable.resultadoLoteriaFederalDataConcurso,
-       GameManager.instance.lotteryScriptable.sorteioOrdem,
-       GameManager.instance.lotteryScriptable.sorteioDescricao,
-       GameManager.instance.lotteryScriptable.sorteioValor);
-        }
-        else if (panelRaffleGlobe.activeSelf == true)
-        {
-            SendMessageGlobeInfos(
-       GameManager.instance.editionScriptable.edicaoInfos[GameManager.instance.EditionIndex].nome,
-       GameManager.instance.editionScriptable.edicaoInfos[GameManager.instance.EditionIndex].numero,
-       GameManager.instance.editionScriptable.edicaoInfos[GameManager.instance.EditionIndex].dataRealizacao,
-       GameManager.instance.globeScriptable.GetGlobeOrder(),
-       GameManager.instance.globeScriptable.GetGlobeDescription(),
-       GameManager.instance.globeScriptable.GetGlobeValue());
-        }
-        else if (panelRaffleSpin.activeSelf == true)
-        {
-            SendMessageSpinInfos(
-       GameManager.instance.editionScriptable.edicaoInfos[GameManager.instance.EditionIndex].nome,
-       GameManager.instance.editionScriptable.edicaoInfos[GameManager.instance.EditionIndex].numero,
-       GameManager.instance.editionScriptable.edicaoInfos[GameManager.instance.EditionIndex].dataRealizacao,
-       GameManager.instance.spinScriptable.sorteioOrdem,
-       GameManager.instance.spinScriptable.sorteioDescricao,
-       GameManager.instance.spinScriptable.sorteioValor);
-        }
-        SendMessageVisibilityRaffle();
-    }
-    private Message GetMessageVisibilityRaffle(Message message, bool isActive, int typeRaffle)
-    {
-        message.AddBool(isActive);
-        message.AddInt(typeRaffle);
-        return message;
-    }
-    public void SendMessageToClientGetActiveScene()
-    {
-        if (!GameManager.instance.isBackup)
-        {
-            TcpNetworkManager.instance.Server.SendToAll(GetMessage(Message.Create(MessageSendMode.reliable, ServerToClientId.messageCheckSceneActive)));
-        }
-    }
-    public void SendMessageToClientChangeRaffle(string _messageString)
-    {
-        if (!GameManager.instance.isBackup)
-        {
-            TcpNetworkManager.instance.Server.SendToAll(GetMessageString(Message.Create(MessageSendMode.reliable, ServerToClientId.messageTypeRaffle), _messageString));
-        }
-    }
-    public void SendMessageLotteryInfos(string _editionNumber, string __competitionNumber, string _dateRaffle, string _dateCompetition, int _ordem, string _description, float _value)
-    {
-        if (!GameManager.instance.isBackup)
-        {
-            TcpNetworkManager.instance.Server.SendToAll(GetMessageLotteryInfos(Message.Create(MessageSendMode.reliable, ServerToClientId.messageInfosLottery), _editionNumber, __competitionNumber, _dateRaffle, _dateCompetition, _ordem, _description, _value));
-        }
-    }
-    public void SendMessageGlobeInfos(string _editionName, string _editionNumber, string _date, int _ordem, string _description, float _value)
-    {
-        if (!GameManager.instance.isBackup)
-            TcpNetworkManager.instance.Server.SendToAll(GetMessageGlobeInfos(Message.Create(MessageSendMode.reliable, ServerToClientId.messageInfosGlobe), _editionName, _editionNumber, _date, _ordem, _description, _value));
-    }
-    public void SendMessageSpinInfos(string _editionName, string _editionNumber, string _date, int _ordem, string _description, float _value)
-    {
-        if (!GameManager.instance.isBackup)
-            TcpNetworkManager.instance.Server.SendToAll(GetMessageSpinInfos(Message.Create(MessageSendMode.reliable, ServerToClientId.messageInfosSpin), _editionName, _editionNumber, _date, _ordem, _description, _value));
-    }
-    private Message GetMessageString(Message message, string _textMessage)
-    {
-        message.AddString(_textMessage);
-
-        return message;
-    }
-    private Message GetMessage(Message message)
-    {
-        return message;
-    }
-
-    private Message GetMessageLotteryInfos(Message message, string _editionNumber, string __competitionNumber, string _dateRaffle, string _dateCompetition, int _ordem, string _description, float _value)
-    {
-        message.AddString(_editionNumber);
-        message.AddString(__competitionNumber);
-        message.AddString(_dateRaffle);
-        message.AddString(_dateCompetition);
-        message.AddInt(_ordem);
-        message.AddString(_description);
-        message.AddFloat(_value);
-
-        return message;
-    }
-    private Message GetMessageGlobeInfos(Message message, string _editionName, string _editionNumber, string _date, int _ordem, string _description, float _value)
-    {
-        message.AddString(_editionName);
-        message.AddString(_editionNumber);
-        message.AddString(_date);
-        message.AddInt(_ordem);
-        message.AddString(_description);
-        message.AddFloat(_value);
-
-        return message;
-    }
-
-    private Message GetMessageSpinInfos(Message message, string _editionName, string _editionNumber, string _date, int _ordem, string _description, float _value)
-    {
-        message.AddString(_editionName);
-        message.AddString(_editionNumber);
-        message.AddString(_date);
-        message.AddInt(_ordem);
-        message.AddString(_description);
-        message.AddFloat(_value);
-
-        return message;
-    }
-    #endregion
 }

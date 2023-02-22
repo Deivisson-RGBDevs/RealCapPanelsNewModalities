@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using RiptideNetworking;
 using System.Collections;
 using System.Linq;
 
@@ -226,14 +225,12 @@ public class GlobeController : MonoBehaviour
     public void SendBallsRaffledToScreen()
     {
         UpdateScreen();
-        if (hasRevoked)
-        {
-            SendMessageBallRevoked();
-        }
-        else
-        {
-            SendMessageBallsRaffled();
-        }
+        //if (hasRevoked)
+        //{
+        //}
+        //else
+        //{
+        //}
 
     }
     #region BALLS RAFFLED
@@ -395,7 +392,6 @@ public class GlobeController : MonoBehaviour
         GameManager.instance.globeScriptable.SetGlobeOrder(GameManager.instance.globeScriptable.GetGlobeOrder() + 1);
         GameManager.instance.ResetScreenGlobe();
         yield return new WaitForSeconds(1);
-        SendMesageNextRaffle();
         DisableHasRevokedAll();
         if (possiblesWinners.Length > 0)
         {
@@ -408,13 +404,6 @@ public class GlobeController : MonoBehaviour
         RestNetworkManager.instance.CallInfosGlobe();
         yield return new WaitForSeconds(0.2f);
         UpdateScreen();
-        uIChangeRaffle.SendMessageGlobeInfos(
-           GameManager.instance.editionScriptable.edicaoInfos[GameManager.instance.EditionIndex].nome,
-           GameManager.instance.editionScriptable.edicaoInfos[GameManager.instance.EditionIndex].numero,
-           GameManager.instance.editionScriptable.edicaoInfos[GameManager.instance.EditionIndex].dataRealizacao,
-           GameManager.instance.globeScriptable.GetGlobeOrder(),
-           GameManager.instance.globeScriptable.GetGlobeDescription(),
-           GameManager.instance.globeScriptable.GetGlobeValue());
 
         CheckBtNextRaffle();
         RestNetworkManager.instance.SendBallsRaffledFromServer();
@@ -501,48 +490,5 @@ public class GlobeController : MonoBehaviour
         }
     }
 
-    #region MESSAGES
-    public void SendMessageBallsRaffled()
-    {
-        if (!GameManager.instance.isBackup)
-            TcpNetworkManager.instance.Server.SendToAll(GetMessageString(Message.Create(MessageSendMode.reliable, ServerToClientId.messageBall), GameManager.instance.GetBallsRaffled().ToArray(), GameManager.instance.globeRaffleScriptable.porUmaBolas.Count, GameManager.instance.globeRaffleScriptable.ganhadorContemplado.Length, GameManager.instance.globeRaffleScriptable.valorPremio));
-    }
-    public void SendMessageBallRevoked()
-    {
-        if (!GameManager.instance.isBackup)
-            TcpNetworkManager.instance.Server.SendToAll(GetMessageBallRevoked(Message.Create(MessageSendMode.reliable, ServerToClientId.messageBallRevoked), GameManager.instance.GetBallsRaffled().ToArray(), GameManager.instance.globeRaffleScriptable.porUmaBolas.Count, GameManager.instance.globeRaffleScriptable.ganhadorContemplado.Length, GameManager.instance.globeRaffleScriptable.valorPremio));
-    }
-
-    public void SendMesageNextRaffle()
-    {
-        if (!GameManager.instance.isBackup)
-            TcpNetworkManager.instance.Server.SendToAll(GetMessage(Message.Create(MessageSendMode.reliable, ServerToClientId.messageNextRaffleGlobe)));
-    }
-
-    private Message GetMessageString(Message message, string[] _ballsRaffled, int _forOneBall, int _winnersCount, float _prizeValue)
-    {
-        message.AddStrings(_ballsRaffled);
-        message.AddInt(_forOneBall);
-        message.AddInt(_winnersCount);
-        message.AddFloat(_prizeValue);
-        return message;
-    }
-
-    private Message GetMessageBallRevoked(Message message, string[] _ballsRaffled, int _forOneBall, int _winnersCount, float _prizeValue)
-    {
-        message.AddStrings(_ballsRaffled);
-        message.AddInt(_forOneBall);
-        message.AddInt(_winnersCount);
-        message.AddFloat(_prizeValue);
-
-        return message;
-    }
-
-    private Message GetMessage(Message message)
-    {
-        return message;
-    }
-
-    #endregion
 }
 

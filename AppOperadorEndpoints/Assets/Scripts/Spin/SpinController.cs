@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using RiptideNetworking;
 
 public class SpinController : MonoBehaviour
 {
@@ -112,8 +111,6 @@ public class SpinController : MonoBehaviour
     }
     private IEnumerator RaffleNumberLuckySpin()
     {
-        SendMessageToClientSpinNumber(GameManager.instance.spinResultScriptable.numeroSorteado);
-
         currentNumberRaffled = GameManager.instance.spinResultScriptable.numeroSorteado;
         GameManager.instance.technicalScriptable.UpdateSpinConfig(currentNumberRaffled, GameManager.instance.spinResultScriptable.ganhadorContemplado);
         GameManager.instance.spinScriptable.sorteioOrdem = GameManager.instance.technicalScriptable.spinIndex;
@@ -121,8 +118,6 @@ public class SpinController : MonoBehaviour
         indexSpin = GameManager.instance.spinScriptable.sorteioOrdem;
 
         UpdateFieldScreen();
-        SendMessageRoundID(GameManager.instance.spinScriptable.sorteioOrdem);
-
 
         //currentNumberRaffled = string.Empty;
         foreach (var item in NumberRaffle)
@@ -236,28 +231,5 @@ public class SpinController : MonoBehaviour
             false,
             3);
     }
-    public void SendMessageRoundID(int _roundID)
-    {
-        TcpNetworkManager.instance.Server.SendToAll(GetMessageInt(Message.Create(MessageSendMode.reliable, ServerToClientId.messageSpinRoundID), _roundID));
-    }
-    public void SendMessageToClientSpinNumber(string _number)
-    {
-        TcpNetworkManager.instance.Server.SendToAll(GetMessageString(Message.Create(MessageSendMode.reliable, ServerToClientId.messageSpinNumber), _number));
-    }
-    private Message GetMessageInt(Message message, int _roundID)
-    {
-        message.AddInt(_roundID);
-        return message;
-    }
-    private Message GetMessageString(Message message, string _number)
-    {
-        message.AddString(_number);
-        return message;
-    }
-
-    //private void FixedUpdate()
-    //{
-    //    txtSpinID.text = $"{ GameManager.instance.spinScriptable.sorteioOrdem}º GIRO";
-    //}
 
 }

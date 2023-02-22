@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using RiptideNetworking;
 
 public class LotteryController : MonoBehaviour
 {
@@ -97,37 +96,29 @@ public class LotteryController : MonoBehaviour
         btThirdRaffle.onClick.AddListener(SetLotteryThirdRaffle);
         btFourthRaffle.onClick.AddListener(SetLotteryFourthRaffle);
         btFifthRaffle.onClick.AddListener(SetLotteryFifithRaffle);
-        btLotteryNumberRaffle.onClick.AddListener(SendLotteryNumberRaffle);
         btRaffleLuckyNumber.onClick.AddListener(RaffleLuckyNumber);
-        btVisibilityPanelLotteryRaffle.onClick.AddListener(SendMessageToAllClientsVisibilityLotteryPanelRaffle);
     }
 
     private void SetLotteryFirstRaffle()
     {
         string lotteryNumber = inputFirstRaffle.text;
-        SendMessageToClient(1, lotteryNumber);
     }
     private void SetLotterySecondRaffle()
     {
         string lotteryNumber = inputSecondRaffle.text;
-
-        SendMessageToClient(2, lotteryNumber);
     }
     private void SetLotteryThirdRaffle()
     {
         string lotteryNumber = inputThirdRaffle.text;
-        SendMessageToClient(3, lotteryNumber);
 
     }
     private void SetLotteryFourthRaffle()
     {
         string lotteryNumber = inputFourthRaffle.text;
-        SendMessageToClient(4, lotteryNumber);
     }
     private void SetLotteryFifithRaffle()
     {
         string lotteryNumber = inputFifthRaffle.text;
-        SendMessageToClient(5, lotteryNumber);
 
     }
     private void RaffleLuckyNumber()
@@ -141,10 +132,7 @@ public class LotteryController : MonoBehaviour
         txtSixthRaffle.text = numberRaffle[5].ToString();
 
     }
-    private void SendLotteryNumberRaffle()
-    {
-        SendMessageToClientLotteryRaffleNumber(numberRaffle);
-    }
+  
     private void ActiveOrDesactiveRafflesButtons()
     {
         btFirstRaffle.interactable = inputFirstRaffle.text.Length == numberUnlock ? true : false;
@@ -185,36 +173,6 @@ public class LotteryController : MonoBehaviour
             GameManager.instance.lotteryResultScriptable.ganhadorContemplado.numeroCartela,
             GameManager.instance.lotteryResultScriptable.ganhadorContemplado.numeroSorte);
     }
-    #region SendMessages
-    public void SendMessageToClient(int _index, string _number)
-    {
-        TcpNetworkManager.instance.Server.SendToAll(GetMessageStrings(Message.Create(MessageSendMode.reliable, ServerToClientId.messageLotteryNumber), _index, _number));
-    }
-    public void SendMessageToClientLotteryRaffleNumber(string _numberRaffle)
-    {
-        TcpNetworkManager.instance.Server.SendToAll(GetMessageString(Message.Create(MessageSendMode.reliable, ServerToClientId.messageLotteryNumberRaffle), _numberRaffle));
-    }
-    public void SendMessageToAllClientsVisibilityLotteryPanelRaffle()
-    {
-        TcpNetworkManager.instance.Server.SendToAll(GetMessage(Message.Create(MessageSendMode.reliable, ServerToClientId.messageVisibilityPanelLotteryRaffle)));
-    }
-    private Message GetMessageStrings(Message message, int index, string _number)
-    {
-        message.AddInt(index);
-        message.AddString(_number);
-        return message;
-    }
-    private Message GetMessageString(Message message, string _number)
-    {
-        message.AddString(_number);
-        return message;
-    }
-    private Message GetMessage(Message message)
-    {
-        //message.AddBool(_isActive);
-        return message;
-    }
-    #endregion
     private void Update()
     {
         ActiveOrDesactiveRafflesButtons();
