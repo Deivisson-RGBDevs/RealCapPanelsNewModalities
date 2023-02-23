@@ -102,7 +102,7 @@ public class SpinController : MonoBehaviour
     }
     private void SpawnNewLuckyNumber()
     {
-        RestNetworkManager.instance.SetPostResultSpin(GameManager.instance.spinScriptable.sorteioOrdem);
+        NetworkManager.instance.SetPostResultSpin(GameManager.instance.spinScriptable.sorteioOrdem);
 
         btGenerateLuckyNumber.interactable = false;
     }
@@ -223,7 +223,7 @@ public class SpinController : MonoBehaviour
             GameManager.instance.spinResultScriptable.ganhadorContemplado.municipio,
             GameManager.instance.spinResultScriptable.ganhadorContemplado.estado,
             GameManager.instance.spinResultScriptable.ganhadorContemplado.dataSorteio,
-            GameManager.instance.editionScriptable.edicaoInfos[GameManager.instance.EditionIndex].numero,
+            GameManager.instance.userSettings.edicaoInfos[GameManager.instance.EditionIndex].numero,
             GameManager.instance.spinResultScriptable.ganhadorContemplado.valor,
             GameManager.instance.spinResultScriptable.ganhadorContemplado.PDV,
             GameManager.instance.spinResultScriptable.ganhadorContemplado.bairoPDV,

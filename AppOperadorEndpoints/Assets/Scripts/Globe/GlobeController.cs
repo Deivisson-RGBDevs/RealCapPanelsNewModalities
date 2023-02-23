@@ -405,19 +405,19 @@ public class GlobeController : MonoBehaviour
             }
         }
         possiblesWinners = new PossibleWinners[0];
-        RestNetworkManager.instance.CallInfosGlobe();
+        NetworkManager.instance.CallInfosGlobe();
         yield return new WaitForSeconds(0.2f);
         UpdateScreen();
         uIChangeRaffle.SendMessageGlobeInfos(
-           GameManager.instance.editionScriptable.edicaoInfos[GameManager.instance.EditionIndex].nome,
-           GameManager.instance.editionScriptable.edicaoInfos[GameManager.instance.EditionIndex].numero,
-           GameManager.instance.editionScriptable.edicaoInfos[GameManager.instance.EditionIndex].dataRealizacao,
+           GameManager.instance.userSettings.edicaoInfos[GameManager.instance.EditionIndex].nome,
+           GameManager.instance.userSettings.edicaoInfos[GameManager.instance.EditionIndex].numero,
+           GameManager.instance.userSettings.edicaoInfos[GameManager.instance.EditionIndex].dataRealizacao,
            GameManager.instance.globeScriptable.GetGlobeOrder(),
            GameManager.instance.globeScriptable.GetGlobeDescription(),
            GameManager.instance.globeScriptable.GetGlobeValue());
 
         CheckBtNextRaffle();
-        RestNetworkManager.instance.SendBallsRaffledFromServer();
+        NetworkManager.instance.SendBallsRaffledFromServer();
     }
 
     public void CheckWinnerButtonState(List<bool> _ticketsShown, int index)
@@ -468,7 +468,7 @@ public class GlobeController : MonoBehaviour
            GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].municipio,
            GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].estado,
            GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].dataSorteio,
-           GameManager.instance.editionScriptable.edicaoInfos[GameManager.instance.EditionIndex].numero,
+           GameManager.instance.userSettings.edicaoInfos[GameManager.instance.EditionIndex].numero,
            GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].valor,
            GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].PDV,
            GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].bairoPDV,

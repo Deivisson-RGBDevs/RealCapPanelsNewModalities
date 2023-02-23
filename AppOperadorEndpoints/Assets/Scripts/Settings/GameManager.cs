@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     public RecoveryScriptable recoveryScriptable;
     [Space]
-    public EditionInfosScriptable editionScriptable;
+    public UserSettingsScriptable userSettings;
     public TechnicalScriptable technicalScriptable;
     [Space]
     public LotteryScriptable lotteryScriptable;
@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
         if (!globeRaffleScriptable.bolasSorteadas.Contains(newBall))
         {
             globeRaffleScriptable.SetNewBall(newBall);
-            RestNetworkManager.instance.SendBallsRaffledFromServer();
+            NetworkManager.instance.SendBallsRaffledFromServer();
         }
     }
     public List<String> GetBallsRaffled()
@@ -151,7 +151,7 @@ public class GameManager : MonoBehaviour
         if (globeRaffleScriptable.bolasSorteadas.Contains(newBall))
         {
             globeRaffleScriptable.RevokeBall(newBall);
-            RestNetworkManager.instance.SendBallsRaffledFromServer();
+            NetworkManager.instance.SendBallsRaffledFromServer();
         }
     }
     public void PopulateListOfVisibleTicket()

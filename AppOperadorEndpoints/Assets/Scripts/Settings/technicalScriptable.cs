@@ -59,7 +59,7 @@ public class TechnicalScriptable : ScriptableObject
             currentGlobeDesc = GameManager.instance.globeScriptable.GetGlobeDescription();
             currentGlobeValue = GameManager.instance.globeScriptable.GetGlobeValue();
 
-            RestNetworkManager.instance.CallWriteMemory();
+            NetworkManager.instance.CallWriteMemory();
         }
     }
     public void UpdateSpinConfig(string _spinNumber, TicketInfos _ticketSpin)
@@ -68,7 +68,7 @@ public class TechnicalScriptable : ScriptableObject
         if (!spinNumbers.Contains(_spinNumber))
             spinNumbers.Add(_spinNumber);
         spinIndex = spinNumbers.Count;
-        RestNetworkManager.instance.CallWriteMemory();
+        NetworkManager.instance.CallWriteMemory();
 
     }
     public void PopulateConfig()

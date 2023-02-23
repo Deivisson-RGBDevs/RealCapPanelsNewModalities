@@ -94,7 +94,7 @@ public class TicketController : MonoBehaviour
     public void CheckStateVisibility()
     {
         if (!GameManager.instance.isBackup)
-            RestNetworkManager.instance.CallGetInfoServer();
+            NetworkManager.instance.CallGetInfoServer();
 
         if (GameManager.instance.isTicketVisible)
         {
