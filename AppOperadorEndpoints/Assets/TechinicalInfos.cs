@@ -2,14 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 public class TechinicalInfos : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI txtName;
-    [SerializeField] TextMeshProUGUI txtCPF;
+    [SerializeField] private TextMeshProUGUI txtName;
+    [SerializeField] private TextMeshProUGUI txtCPF;
+    [SerializeField] private Button btSelectEdition;
+    [SerializeField] private Button btVisibilityDrawn;
 
     private void Awake()
     {
         DontDestroyOnLoad(this);
+    }
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += CheckStateButtons;
+    } private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= CheckStateButtons;
     }
     void Start()
     {
@@ -26,5 +38,22 @@ public class TechinicalInfos : MonoBehaviour
     {
         txtName.text = string.Empty;
         txtCPF.text = string.Empty;
+    }
+
+    void CheckStateButtons(Scene scene, LoadSceneMode mode)
+    {   
+        if(!GameManager.instance.isBackup)
+        {
+            if(scene.name!="Globe"|| scene.name != "Spin"|| scene.name != "Lottery")
+            {
+                btSelectEdition.interactable = false;
+                btVisibilityDrawn.interactable = false;
+            }
+            else
+            {
+                btSelectEdition.interactable = true;
+                btVisibilityDrawn.interactable = true;
+            }
+        }
     }
 }

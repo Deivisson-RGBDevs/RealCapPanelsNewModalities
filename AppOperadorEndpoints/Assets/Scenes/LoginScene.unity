@@ -972,6 +972,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 92b84489f176fc142a78faf3d4e743f3, type: 2}
     - target: {fileID: 7804240743405866441, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: editionSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: c7fefe5c549a56645bb8004874284146, type: 2}
+    - target: {fileID: 7804240743405866441, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
       propertyPath: configScriptable
       value: 
       objectReference: {fileID: 0}

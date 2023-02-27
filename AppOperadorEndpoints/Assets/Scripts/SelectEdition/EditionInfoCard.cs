@@ -8,7 +8,7 @@ public class EditionInfoCard : MonoBehaviour
     [SerializeField] private string info;
     void Start()
     {
-        SetInfo(info);
+        SetInfo(" ");
     }
 
     public void SetInfo(string _info)

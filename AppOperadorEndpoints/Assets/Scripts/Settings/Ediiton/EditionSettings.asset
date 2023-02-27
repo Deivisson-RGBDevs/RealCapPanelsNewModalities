@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222a5bfb468170b449b689f2852231a6, type: 3}
+  m_Name: EditionSettings
+  m_EditorClassIdentifier: 
+  allEditions:
+  - nome: "Edi\xE7\xE3o 5 - M\xEAs do Trabalhador"
+    iD: 8
+    numero: 5
+    dataRealizacao: 10/05/2023 - 16:00
+    nomePlano: VIACAP FILP-PU 397-0103
+    processoSUSEP: 15414.615495/2022-03
+    denominacaoComercial: REAL X PREMIADO V.07
+    tipoTamanhoSerie: 200
+    modalidades: 2
+    globoTipo: 20x60
+    tipoQuantidadeChances: 3
+    valor: 1.5
+  - nome: "Edi\xE7\xE3o 6 - Pr\xEAmios rapido"
+    iD: 9
+    numero: 6
+    dataRealizacao: 20/04/2023 - 16:00
+    nomePlano: VIACAP FILP-PU 397-0542
+    processoSUSEP: 15414.615495/2022-04
+    denominacaoComercial: REAL X PREMIADO V.08
+    tipoTamanhoSerie: 100
+    modalidades: 2
+    globoTipo: 15x30
+    tipoQuantidadeChances: 3
+    valor: 0.5
+  currentEdition:
+    nome: 
+    iD: 0
+    numero: 
+    dataRealizacao: 
+    nomePlano: 
+    processoSUSEP: 
+    denominacaoComercial: 
+    tipoTamanhoSerie: 0
+    modalidades: 0
+    globoTipo: 
+    tipoQuantidadeChances: 
+    valor: 0
+  allEditionsTest:
+  - nome: "Edi\xE7\xE3o 5: M\xEAs do Trabalhador"
+    iD: 8
+    numero: 5
+    dataRealizacao: 10/05/2023 - 16:00
+    nomePlano: VIACAP FILP-PU 397-0103
+    processoSUSEP: 15414.615495/2022-03
+    denominacaoComercial: REAL X PREMIADO V.07
+    tipoTamanhoSerie: 200
+    modalidades: 2
+    globoTipo: 20x60
+    tipoQuantidadeChances: 3
+    valor: 1.5
+  - nome: "Edi\xE7\xE3o 6: Pr\xEAmios rapido"
+    iD: 9
+    numero: 6
+    dataRealizacao: 20/04/2023 - 16:00
+    nomePlano: VIACAP FILP-PU 397-0542
+    processoSUSEP: 15414.615495/2022-04
+    denominacaoComercial: REAL X PREMIADO V.08
+    tipoTamanhoSerie: 100
+    modalidades: 2
+    globoTipo: 15x30
+    tipoQuantidadeChances: 3
+    valor: 0.5

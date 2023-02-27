@@ -38,10 +38,7 @@ public class NetworkManager : MonoBehaviour
         {
             instance = this;
         }
-        if (isTest == true)
-        {
-            baseUrl1 = baseTest;
-        }
+
         DontDestroyOnLoad(gameObject);
     }
     [Header("BASE URL")]
@@ -65,20 +62,30 @@ public class NetworkManager : MonoBehaviour
     public string urlSpin;
     public string urlResultSpin;
 
+    private void Start()
+    {
 
-    #region Login
+        string json = JsonUtility.ToJson(GameManager.instance.globeScriptable);
+
+
+        if (isTest == true)
+        {
+            baseUrl1 = baseTest;
+        }
+    }
+    #region LOGIN
 
     public static event Action<bool> OnLogin;
     public void RequestLogin(string _user, string _password)
-    {   
-        if(isTest)
+    {
+        if (isTest)
         {
             GameManager.instance.userSettings.SetInfosSettings(_user, "XXX.XXX.XXX-XX");
             OnLogin?.Invoke(true);
         }
         else
         {
-          StartCoroutine(PostLogin(baseUrl1 + payloadLogin, _user, _password));
+            StartCoroutine(PostLogin(baseUrl1 + payloadLogin, _user, _password));
         }
     }
     private IEnumerator PostLogin(string _uri, string _user, string _password)
@@ -88,7 +95,7 @@ public class NetworkManager : MonoBehaviour
         form.AddField("password", _password);
 
         string json = JsonUtility.ToJson(form);
-        using (UnityWebRequest webRequest = UnityWebRequest.Get(_uri))
+        using (UnityWebRequest webRequest = UnityWebRequest.Post(_uri, json))
         {
             byte[] jsonToSend = new System.Text.UTF8Encoding().GetBytes(json);
             webRequest.uploadHandler = new UploadHandlerRaw(jsonToSend);
@@ -123,14 +130,60 @@ public class NetworkManager : MonoBehaviour
     }
     #endregion
 
-    #region REQUESTS
 
+    #region EDITION
 
-    private void Start()
+    public static event Action OnAllEditions;
+
+    public void RequestAllEditions()
     {
-        string json = JsonUtility.ToJson(GameManager.instance.globeScriptable);
-
+        if (isTest)
+        {
+            GameManager.instance.editionSettings.PopulateTestInfos();
+            OnAllEditions?.Invoke();
+        }
+        else
+        {
+            StartCoroutine(GetAllEditions(baseUrl1 + payloadAllEditions));
+        }
     }
+    private IEnumerator GetAllEditions(string _uri)
+    {
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(_uri))
+        {
+            yield return webRequest.SendWebRequest();
+
+            string[] pages = _uri.Split('/');
+            int page = pages.Length - 1;
+
+            switch (webRequest.result)
+            {
+                case UnityWebRequest.Result.ConnectionError:
+                case UnityWebRequest.Result.DataProcessingError:
+                    Debug.LogError(pages[page] + ": Connection Error : " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.ProtocolError:
+                    Debug.LogError(pages[page] + ": HTTP Protocol Error: " + webRequest.error);
+                    break;
+                case UnityWebRequest.Result.Success:
+                    {
+                        Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
+                        string response = webRequest.downloadHandler.text;
+                        JsonUtility.FromJsonOverwrite(response, GameManager.instance.editionSettings);
+                        OnAllEditions?.Invoke();
+                    }
+                    break;
+            }
+        }
+    }
+    #endregion
+
+
+
+
+
+
+    #region REQUESTS
     private void OnEnable()
     {
         GameManager.OnPopulateRaffles += GetRaffleInfos;

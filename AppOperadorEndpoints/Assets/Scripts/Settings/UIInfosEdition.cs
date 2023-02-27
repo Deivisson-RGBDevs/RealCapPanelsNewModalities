@@ -27,7 +27,7 @@ public class UIInfosEdition : MonoBehaviour
         technicalName.text = $"Tecnico:{_technicalName}";
         technicalCPF.text = $"CPF: {_technicalCPF}";
     }
-    public void ShowEditionInfos(string _nome, string _numero,string _dataRealizacao ,string _nomePlano, string _processoSUSEP, string _denominacaoComercial, int _tipoTamanhoSerie, int _modalidades, string _tipoQuantidadeChances, float _valor)
+    public void ShowEditionInfos(string _nome, string _numero,string _dataRealizacao ,string _nomePlano, string _processoSUSEP, string _denominacaoComercial, float _tipoTamanhoSerie, int _modalidades, string _tipoQuantidadeChances, float _valor)
     {
         editionName.text =$"Nome da edição\n\n {_nome}";
         editionNumber.text = $"Número \n\n {_numero}";
@@ -35,7 +35,7 @@ public class UIInfosEdition : MonoBehaviour
         editionNamePlan.text= $"Nome do Plano\n\n {_nomePlano}";
         editionProcessSUSEP.text= $"Processo SUSEP\n\n {_processoSUSEP}";
         editionTradeName.text= $"Denominação Comercial\n\n{_denominacaoComercial}";
-        editionTypeSizeSerie.text= $"Tamanho Serie\n\n {_tipoTamanhoSerie}";
+        editionTypeSizeSerie.text= $"Tamanho Serie\n\n {_tipoTamanhoSerie.ToString(".000")}";
         editionModalities.text= $"Modalidades\n\n {_modalidades}";
         editionTypeAmountChances.text = $"chances\n\n {_tipoQuantidadeChances}";
         editionValue.text = $"Valor\n{GameManager.instance.FormatMoneyInfo(_valor, 2)}";

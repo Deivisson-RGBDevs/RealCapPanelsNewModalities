@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     public RecoveryScriptable recoveryScriptable;
     [Space]
     public UserSettingsScriptable userSettings;
+    public EditionSettingsScriptable editionSettings;
     public TechnicalScriptable technicalScriptable;
     [Space]
     public LotteryScriptable lotteryScriptable;
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
     public void SetEditionIndex(int value)
     {
         EditionIndex = value;
+        print(EditionIndex);
     }
     public int sceneId;
     void Start()
