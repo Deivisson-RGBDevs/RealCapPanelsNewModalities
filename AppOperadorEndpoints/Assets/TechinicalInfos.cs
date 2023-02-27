@@ -10,7 +10,8 @@ public class TechinicalInfos : MonoBehaviour
     [SerializeField] private TextMeshProUGUI txtName;
     [SerializeField] private TextMeshProUGUI txtCPF;
     [SerializeField] private Button btSelectEdition;
-    [SerializeField] private Button btVisibilityDrawn;
+    [SerializeField] private Button btSelectDraw;
+    [SerializeField] private Button btVisibilityDraw;
 
     private void Awake()
     {
@@ -47,12 +48,14 @@ public class TechinicalInfos : MonoBehaviour
             if(scene.name!="Globe"|| scene.name != "Spin"|| scene.name != "Lottery")
             {
                 btSelectEdition.interactable = false;
-                btVisibilityDrawn.interactable = false;
+                btVisibilityDraw.interactable = false;
+                btSelectDraw.interactable = false;
             }
             else
             {
                 btSelectEdition.interactable = true;
-                btVisibilityDrawn.interactable = true;
+                btVisibilityDraw.interactable = true;
+                btSelectDraw.interactable = true;
             }
         }
     }

@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SelectEdition.unity
     guid: a18cf2391e446884ab6e4f52a05fb106
   - enabled: 1
+    path: Assets/Scenes/SelectDraw.unity
+    guid: 817681d02db1f744aa2247b6af631cff
+  - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 21216047c30e17f4b8bc291a06591320
   m_configObjects: {}
