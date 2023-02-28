@@ -4,22 +4,18 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class UiSelectEditionManager : MonoBehaviour
+public class SelectEditionController : MonoBehaviour
 {
     [SerializeField] private FadeController fade;
     [Space]
     [SerializeField] private TMP_Dropdown dropdownEditions;
-    [SerializeField] private Button btSearch;
     [SerializeField] private Button btConfirm;
     [SerializeField] private List<EditionInfoCard> editionInfoCards;
     void Start()
     {
-        btSearch.onClick.AddListener(GetInfosSelectedEdition);
         btConfirm.onClick.AddListener(ConfirmSelectedEdition);
 
         fade = FindObjectOfType<FadeController>();
-        btConfirm.interactable = false;
-
     }
     private void OnEnable()
     {
@@ -51,13 +47,16 @@ public class UiSelectEditionManager : MonoBehaviour
             newOptions.Add(option);
         }
         dropdownEditions.AddOptions(newOptions);
+        GetInfosEdition();
+
     }
 
-    public void GetEditionIndex()
+    public void GetInfosEdition()
     {
         GameManager.instance.SetEditionIndex(dropdownEditions.value);
+        PopulateFieldsEdition();
     }
-    private void GetInfosSelectedEdition()
+    private void PopulateFieldsEdition()
     {
         int index = GameManager.instance.EditionIndex;
         GameManager.instance.editionSettings.currentEdition = GameManager.instance.editionSettings.allEditions[index];

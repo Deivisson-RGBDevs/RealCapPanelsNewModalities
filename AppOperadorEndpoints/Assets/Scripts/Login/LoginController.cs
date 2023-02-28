@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Networking;
 using UnityEngine.UI;
-public class UiLoginManager : MonoBehaviour
+public class LoginController : MonoBehaviour
 {
     [Header("GERAL REFERENCES")]
     [SerializeField] private FadeController fadeController;

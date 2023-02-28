@@ -1319,7 +1319,7 @@ GameObject:
   - component: {fileID: 476076499}
   - component: {fileID: 476076498}
   m_Layer: 0
-  m_Name: UiLoginManager
+  m_Name: LoginManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

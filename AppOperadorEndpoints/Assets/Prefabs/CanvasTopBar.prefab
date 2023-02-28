@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 5979222582857691660}
   - component: {fileID: 5979222582857691656}
   m_Layer: 5
-  m_Name: CanvasTopTecnicoInfos
+  m_Name: CanvasTopBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

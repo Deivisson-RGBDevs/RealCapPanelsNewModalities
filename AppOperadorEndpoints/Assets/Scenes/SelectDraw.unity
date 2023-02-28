@@ -611,6 +611,7 @@ GameObject:
   - component: {fileID: 382618914}
   - component: {fileID: 382618913}
   - component: {fileID: 382618912}
+  - component: {fileID: 382618916}
   m_Layer: 5
   m_Name: PanelGlobe
   m_TagString: Untagged
@@ -632,7 +633,7 @@ RectTransform:
   - {fileID: 875311357}
   - {fileID: 981142780}
   m_Father: {fileID: 1972710272}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -723,6 +724,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 382618910}
   m_CullTransparentMesh: 1
+--- !u!225 &382618916
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 382618910}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &419201385
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,7 +969,7 @@ GameObject:
   - component: {fileID: 476076499}
   - component: {fileID: 476076498}
   m_Layer: 0
-  m_Name: UiLoginManager
+  m_Name: SelectDrawController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -971,17 +984,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 476076497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c56d4417037ddf84299837be1d9fea29, type: 3}
+  m_Script: {fileID: 11500000, guid: e4373bd53a6485f4e8a2d4d8ae1c927a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeController: {fileID: 947864392}
-  inputUsername: {fileID: 0}
-  inputPassword: {fileID: 0}
-  inputIPAddress: {fileID: 0}
-  txtMessage: {fileID: 0}
-  btSelectBackup: {fileID: 0}
-  btConfirm: {fileID: 981142782}
-  isBackup: 0
+  fade: {fileID: 0}
+  CanvasSelectLottery: {fileID: 1633427265}
+  CanvasSelectGlobe: {fileID: 382618916}
+  CanvasSelectSpin: {fileID: 783792335}
 --- !u!4 &476076499
 Transform:
   m_ObjectHideFlags: 0
@@ -1650,6 +1659,7 @@ GameObject:
   - component: {fileID: 783792333}
   - component: {fileID: 783792332}
   - component: {fileID: 783792331}
+  - component: {fileID: 783792335}
   m_Layer: 5
   m_Name: PanelSpin
   m_TagString: Untagged
@@ -1671,7 +1681,7 @@ RectTransform:
   - {fileID: 419201386}
   - {fileID: 2058045657}
   m_Father: {fileID: 1972710272}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1762,6 +1772,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 783792329}
   m_CullTransparentMesh: 1
+--- !u!225 &783792335
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 783792329}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &875311356
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,17 +1909,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875311356}
   m_CullTransparentMesh: 1
---- !u!114 &947864392 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1164761179500235844, guid: 9874caef0008a0e488fa4afd55253c74, type: 3}
-  m_PrefabInstance: {fileID: 1943431278}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d085be629cdcbe40afcc6374888e7d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &981142779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1912,7 +1923,7 @@ GameObject:
   - component: {fileID: 981142782}
   - component: {fileID: 981142781}
   m_Layer: 5
-  m_Name: BtConfirm
+  m_Name: BtConfirmGlobe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2002,7 +2013,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 476076498}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UiLoginManager, Assembly-CSharp
         m_MethodName: Login
         m_Mode: 1
@@ -2200,7 +2211,7 @@ GameObject:
   - component: {fileID: 1006472994}
   - component: {fileID: 1006472993}
   m_Layer: 5
-  m_Name: BtConfirm
+  m_Name: BtConfirmLottery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2290,7 +2301,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 476076498}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UiLoginManager, Assembly-CSharp
         m_MethodName: Login
         m_Mode: 1
@@ -3332,6 +3343,7 @@ GameObject:
   - component: {fileID: 1633427263}
   - component: {fileID: 1633427262}
   - component: {fileID: 1633427261}
+  - component: {fileID: 1633427265}
   m_Layer: 5
   m_Name: PanelLottery
   m_TagString: Untagged
@@ -3353,7 +3365,7 @@ RectTransform:
   - {fileID: 69674341}
   - {fileID: 1006472992}
   m_Father: {fileID: 1972710272}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3444,6 +3456,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1633427259}
   m_CullTransparentMesh: 1
+--- !u!225 &1633427265
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633427259}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1636090083
 GameObject:
   m_ObjectHideFlags: 0
@@ -3825,11 +3849,11 @@ RectTransform:
   m_Children:
   - {fileID: 556909199}
   - {fileID: 120994218}
-  - {fileID: 382618911}
-  - {fileID: 2111161086}
-  - {fileID: 783792330}
-  - {fileID: 82765516}
   - {fileID: 1633427260}
+  - {fileID: 2111161086}
+  - {fileID: 382618911}
+  - {fileID: 82765516}
+  - {fileID: 783792330}
   m_Father: {fileID: 1179775624}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3916,7 +3940,7 @@ GameObject:
   - component: {fileID: 2058045659}
   - component: {fileID: 2058045658}
   m_Layer: 5
-  m_Name: BtConfirm
+  m_Name: BtConfirmSpin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4006,7 +4030,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 476076498}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: UiLoginManager, Assembly-CSharp
         m_MethodName: Login
         m_Mode: 1

@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class TopBarController : MonoBehaviour
 {
+    [SerializeField] private FadeController fade;
+
     [SerializeField] private TextMeshProUGUI txtName;
     [SerializeField] private TextMeshProUGUI txtCPF;
     [SerializeField] private Button btSelectEdition;
@@ -28,8 +30,9 @@ public class TopBarController : MonoBehaviour
     void Start()
     {
         SetInfo(GameManager.instance.userSettings.tecnicoNome, GameManager.instance.userSettings.tecnicoCPF);
+        btSelectEdition.onClick.AddListener(GoToSceneSelectEdition);
+        btSelectDraw.onClick.AddListener(GoToSceneSelectDraw);
     }
-
     public void SetInfo(string _name, string _cpf)
     {
         txtName.text = $"Tecnico: {_name}";
@@ -63,6 +66,7 @@ public class TopBarController : MonoBehaviour
                 case "SelectDraw":
                     {
                         btEditionData.interactable = true;
+                        btSelectEdition.interactable = true;
                         break;
                     }
                 case "Globe":
@@ -91,5 +95,18 @@ public class TopBarController : MonoBehaviour
                     }
             }
         }
+    }
+
+    private void GoToSceneSelectEdition()
+    {
+        fade = FindObjectOfType<FadeController>();
+        fade.SetStateFadeOUT();
+        GameManager.instance.LoadSceneGame("SelectEdition");
+    }
+    private void GoToSceneSelectDraw()
+    {
+        fade = FindObjectOfType<FadeController>();
+        fade.SetStateFadeOUT();
+        GameManager.instance.LoadSceneGame("SelectDraw");
     }
 }

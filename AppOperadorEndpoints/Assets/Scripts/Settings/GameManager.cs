@@ -52,7 +52,6 @@ public class GameManager : MonoBehaviour
     public void SetEditionIndex(int value)
     {
         EditionIndex = value;
-        print(EditionIndex);
     }
     public int sceneId;
     void Start()
