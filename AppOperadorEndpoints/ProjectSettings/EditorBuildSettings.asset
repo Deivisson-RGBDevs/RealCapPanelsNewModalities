@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lottery.unity
     guid: c9624f128e1487b459ec836af3e85e0c
+  - enabled: 1
+    path: Assets/Scenes/Globe.unity
+    guid: b59352fdfdf485d45bcaade15311e4ae
+  - enabled: 1
+    path: Assets/Scenes/Spin.unity
+    guid: 22e6d15434bee9a43b151afce24bce90
   m_configObjects: {}

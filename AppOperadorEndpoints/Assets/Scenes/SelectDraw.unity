@@ -987,10 +987,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4373bd53a6485f4e8a2d4d8ae1c927a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fade: {fileID: 0}
-  CanvasSelectLottery: {fileID: 1633427265}
-  CanvasSelectGlobe: {fileID: 382618916}
-  CanvasSelectSpin: {fileID: 783792335}
+  fade: {fileID: 1943431279}
+  canvasSelectLottery: {fileID: 1633427265}
+  canvasSelectGlobe: {fileID: 382618916}
+  canvasSelectSpin: {fileID: 783792335}
+  btSelectLottery: {fileID: 1006472994}
+  btSelectGlobe: {fileID: 981142782}
+  btSelectSpin: {fileID: 2058045659}
 --- !u!4 &476076499
 Transform:
   m_ObjectHideFlags: 0
@@ -3817,6 +3820,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9874caef0008a0e488fa4afd55253c74, type: 3}
+--- !u!114 &1943431279 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1164761179500235844, guid: 9874caef0008a0e488fa4afd55253c74, type: 3}
+  m_PrefabInstance: {fileID: 1943431278}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d085be629cdcbe40afcc6374888e7d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1972710271
 GameObject:
   m_ObjectHideFlags: 0
