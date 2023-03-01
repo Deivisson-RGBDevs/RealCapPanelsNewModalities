@@ -33,7 +33,7 @@ public class PossibleWinners : MonoBehaviour
     }
     public void SelectWinner()
     {
-        GlobeController globe = FindObjectOfType<GlobeController>();
+        GlobeOldController globe = FindObjectOfType<GlobeOldController>();
         globe.ResetPossiblesWinners();
         globe.UpdateStateVisibilityButtonsTicket(true);
         GameManager.instance.ticketWinnerIndex = index;

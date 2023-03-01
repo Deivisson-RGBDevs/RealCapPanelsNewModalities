@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public class Ball : MonoBehaviour
+public class BallDrawn : MonoBehaviour
 {
     [Header("UI COMPONENTS")]
     [SerializeField] private int numberBall;
@@ -37,7 +37,7 @@ public class Ball : MonoBehaviour
     }
     public void SetActionButton()
     {
-        GlobeController globeController = FindObjectOfType<GlobeController>();
+        GlobeOldController globeController = FindObjectOfType<GlobeOldController>();
         globeController.OpenPanelBall(numberBall);
     }
     public void SetStateButton(bool _isActive)

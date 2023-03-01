@@ -6,7 +6,7 @@ using RiptideNetworking;
 public class UIChangeRaffleType : MonoBehaviour
 {
     [Header("CONTROLLERS")]
-    [SerializeField] GlobeController globeController;
+    [SerializeField] GlobeOldController globeController;
 
     [Header("GERAL")]
     [SerializeField] private Button btRecovery;

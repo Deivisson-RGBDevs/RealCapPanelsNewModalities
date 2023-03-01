@@ -7,14 +7,23 @@ public class SelectDrawController : MonoBehaviour
 {
     [SerializeField] private FadeController fade;
 
-    [SerializeField] private CanvasGroup CanvasSelectLottery;
-    [SerializeField] private CanvasGroup CanvasSelectGlobe;
-    [SerializeField] private CanvasGroup CanvasSelectSpin;
+    [SerializeField] private CanvasGroup canvasSelectLottery;
+    [SerializeField] private CanvasGroup canvasSelectGlobe;
+    [SerializeField] private CanvasGroup canvasSelectSpin;
+    [Space]
+    [SerializeField] private Button btSelectLottery;
+    [SerializeField] private Button btSelectGlobe;
+    [SerializeField] private Button btSelectSpin;
+
 
     void Start()
     {
         fade = FindObjectOfType<FadeController>();
         CheckModalities(GameManager.instance.editionSettings.currentEdition.modalidades);
+        
+        btSelectLottery.onClick.AddListener(GoToSceneLottery);
+        btSelectGlobe.onClick.AddListener(GoToSceneGlobe);
+        btSelectSpin.onClick.AddListener(GoToSceneSpin);
     }
 
     private void CheckModalities(int modalitie)
@@ -23,23 +32,23 @@ public class SelectDrawController : MonoBehaviour
         {
             case 1:
                 {
-                    SetActiveCanvasGroup(CanvasSelectLottery, true);
-                    SetActiveCanvasGroup(CanvasSelectGlobe, false);
-                    SetActiveCanvasGroup(CanvasSelectSpin, false);
+                    SetActiveCanvasGroup(canvasSelectLottery, true);
+                    SetActiveCanvasGroup(canvasSelectGlobe, false);
+                    SetActiveCanvasGroup(canvasSelectSpin, false);
                     break;
                 }
             case 2:
                 {
-                    SetActiveCanvasGroup(CanvasSelectLottery, true);
-                    SetActiveCanvasGroup(CanvasSelectGlobe, true);
-                    SetActiveCanvasGroup(CanvasSelectSpin, true);
+                    SetActiveCanvasGroup(canvasSelectLottery, true);
+                    SetActiveCanvasGroup(canvasSelectGlobe, true);
+                    SetActiveCanvasGroup(canvasSelectSpin, true);
                     break;
                 }
             case 3:
                 {
-                    SetActiveCanvasGroup(CanvasSelectLottery, false);
-                    SetActiveCanvasGroup(CanvasSelectGlobe, true);
-                    SetActiveCanvasGroup(CanvasSelectSpin, true);
+                    SetActiveCanvasGroup(canvasSelectLottery, false);
+                    SetActiveCanvasGroup(canvasSelectGlobe, true);
+                    SetActiveCanvasGroup(canvasSelectSpin, true);
                     break;
                 }
         }
@@ -54,9 +63,19 @@ public class SelectDrawController : MonoBehaviour
             _canvasGroup.alpha = 0.5f;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void GoToSceneLottery()
     {
-
+        fade.SetStateFadeOUT();
+        GameManager.instance.LoadSceneGame("Lottery");
+    }
+    private void GoToSceneGlobe()
+    {
+        fade.SetStateFadeOUT();
+        GameManager.instance.LoadSceneGame("Globe");
+    }
+    private void GoToSceneSpin()
+    {
+        fade.SetStateFadeOUT();
+        GameManager.instance.LoadSceneGame("Spin");
     }
 }

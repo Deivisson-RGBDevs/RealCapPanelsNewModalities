@@ -456,7 +456,7 @@ public class NetworkManager : MonoBehaviour
                         Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
                         string jsonResponse = webRequest.downloadHandler.text;
 
-                        GlobeController globeController = FindObjectOfType<GlobeController>();
+                        GlobeOldController globeController = FindObjectOfType<GlobeOldController>();
 
                         JsonUtility.FromJsonOverwrite(jsonResponse, GameManager.instance.globeRaffleScriptable);
                         GameManager.instance.PopulateListOfVisibleTicket();

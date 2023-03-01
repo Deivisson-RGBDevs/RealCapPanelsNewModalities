@@ -6,22 +6,22 @@ using RiptideNetworking;
 using System.Collections;
 using System.Linq;
 
-public class GlobeController : MonoBehaviour
+public class GlobeOldController : MonoBehaviour
 {
     [SerializeField] public Button btNextRaffle;
     [Header("TICKET INFOS")]
     [SerializeField] private TicketController ticketController;
     [SerializeField] public Button btTicketVisibility;
     [Header("GRID BALLS")]
-    [SerializeField] private List<Ball> balls;
+    [SerializeField] private List<BallDrawn> balls;
     [SerializeField] private GameObject panelGridBalls;
     [SerializeField] private int indexBallSelected;
 
     [Header("GRID RAFFLED BALLS")]
-    [SerializeField] private Ball[] ballsRaffled;
-    [SerializeField] private Ball ballRaffledPrefab;
+    [SerializeField] private BallDrawn[] ballsRaffled;
+    [SerializeField] private BallDrawn ballRaffledPrefab;
     [SerializeField] private GameObject panelGridBallsRaffled;
-    [SerializeField] private Ball lastBallRaffled;
+    [SerializeField] private BallDrawn lastBallRaffled;
     [SerializeField] private List<int> indexBalls;
 
 
@@ -57,8 +57,8 @@ public class GlobeController : MonoBehaviour
 
     private void InitializeVariables()
     {
-        balls = new List<Ball>();
-        balls.AddRange(panelGridBalls.GetComponentsInChildren<Ball>());
+        balls = new List<BallDrawn>();
+        balls.AddRange(panelGridBalls.GetComponentsInChildren<BallDrawn>());
         ticketController = FindObjectOfType<TicketController>();
         PopulateBalls();
         btNextRaffle.interactable = false;
@@ -244,10 +244,10 @@ public class GlobeController : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
-        ballsRaffled = new Ball[_balls.Count];
+        ballsRaffled = new BallDrawn[_balls.Count];
         for (int i = 0; i < _balls.Count; i++)
         {
-            Ball inst = Instantiate(ballRaffledPrefab, transform.position, Quaternion.identity);
+            BallDrawn inst = Instantiate(ballRaffledPrefab, transform.position, Quaternion.identity);
             inst.transform.SetParent(panelGridBallsRaffled.transform);
             inst.SetNumberInText(_balls[i]);
             inst.transform.localScale = new Vector3(1, 1, 1);
