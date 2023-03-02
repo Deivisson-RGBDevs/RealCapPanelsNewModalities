@@ -33,8 +33,8 @@ public class GlobeOldController : MonoBehaviour
 
     [Header("WINNERS")]
     [SerializeField] private GameObject contentParent;
-    [SerializeField] private PossibleWinners[] possiblesWinners;
-    [SerializeField] private PossibleWinners possibleWinnerGO;
+    [SerializeField] private BtTicketList[] possiblesWinners;
+    [SerializeField] private BtTicketList possibleWinnerGO;
 
     [Header("COMPONENTS")]
     [SerializeField] private TextMeshProUGUI orderBalls;
@@ -280,7 +280,7 @@ public class GlobeOldController : MonoBehaviour
         txtInfosTitle.text = "GANHADOR";
         GameManager.instance.globeRaffleScriptable.porUmaBolas.Clear();
         _infos = GameManager.instance.GetWinners();
-        possiblesWinners = new PossibleWinners[_infos.Count];
+        possiblesWinners = new BtTicketList[_infos.Count];
         if (GameManager.instance.globeRaffleScriptable.ganhadorContemplado.Length > 1)
             txtInfosTitle.text = "GANHADORES";
         txtWinners.text = _infos.Count.ToString();
@@ -290,7 +290,7 @@ public class GlobeOldController : MonoBehaviour
 
         for (int i = 0; i < _infos.Count; i++)
         {
-            PossibleWinners inst = Instantiate(possibleWinnerGO);
+            BtTicketList inst = Instantiate(possibleWinnerGO);
             inst.PopulateInfos(_infos[i]);
             inst.SetIndex(i);
 
@@ -304,9 +304,9 @@ public class GlobeOldController : MonoBehaviour
     {
         UpdateStateVisibilityButtonsTicket(false);
 
-        possiblesWinners = new PossibleWinners[0];
+        possiblesWinners = new BtTicketList[0];
         _infos = GameManager.instance.GetForOneBalls();
-        possiblesWinners = new PossibleWinners[_infos.Count];
+        possiblesWinners = new BtTicketList[_infos.Count];
         txtForOneBall.text = _infos.Count.ToString();
         txtWinners.text = "0";
         if (_infos.Count > 0)
@@ -320,7 +320,7 @@ public class GlobeOldController : MonoBehaviour
 
         for (int i = 0; i < _infos.Count; i++)
         {
-            PossibleWinners inst = Instantiate(possibleWinnerGO);
+            BtTicketList inst = Instantiate(possibleWinnerGO);
             inst.PopulateInfos(_infos[i]);
             inst.SetIndex(i);
 
@@ -404,7 +404,7 @@ public class GlobeOldController : MonoBehaviour
                 Destroy(possiblesWinners[i].gameObject);
             }
         }
-        possiblesWinners = new PossibleWinners[0];
+        possiblesWinners = new BtTicketList[0];
         NetworkManager.instance.CallInfosGlobe();
         yield return new WaitForSeconds(0.2f);
         UpdateScreen();

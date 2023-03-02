@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     public LotteryResultScriptable lotteryResultScriptable;
     [Space]
     public GlobeScriptable globeScriptable;
-    public GlobeRaffleScriptable globeRaffleScriptable;
+    public GlobeDrawScriptable globeRaffleScriptable;
     [Space]
     public SpinScriptable spinScriptable;
     public SpinResultScriptable spinResultScriptable;

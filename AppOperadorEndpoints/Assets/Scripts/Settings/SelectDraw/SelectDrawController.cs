@@ -15,7 +15,6 @@ public class SelectDrawController : MonoBehaviour
     [SerializeField] private Button btSelectGlobe;
     [SerializeField] private Button btSelectSpin;
 
-
     void Start()
     {
         fade = FindObjectOfType<FadeController>();

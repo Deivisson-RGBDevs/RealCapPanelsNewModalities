@@ -5,18 +5,20 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 
-public class PossibleWinners : MonoBehaviour
+public class BtTicketList : MonoBehaviour
 {
-    [SerializeField] private string infos;
     private TextMeshProUGUI textInfo;
-    [SerializeField] private Button button;
+    private Button button;
+
+    [SerializeField] private bool isSelected = false;
+    [SerializeField] private bool isFinished = false;
+    [SerializeField] private int index;
+    [SerializeField] private string infos;
 
     [SerializeField] private Color selectedColor;
     [SerializeField] private Color normalColor;
     [SerializeField] private Color finishedColor;
-    [SerializeField] private bool isSelected = false;
-    [SerializeField] private bool isFinished = false;
-    [SerializeField] private int index;
+
     void Start()
     {
         InitializeVariables();

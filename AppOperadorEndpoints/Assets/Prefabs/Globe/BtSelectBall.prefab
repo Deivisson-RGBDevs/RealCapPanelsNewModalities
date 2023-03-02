@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6939323630036044676}
   - component: {fileID: 6939323630036044678}
   - component: {fileID: 6939323630036044679}
-  - component: {fileID: 1044049114679343436}
   - component: {fileID: 6447982676214619092}
+  - component: {fileID: 3754996947980934645}
   m_Layer: 5
-  m_Name: BgTextBall
+  m_Name: BtSelectBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,28 +78,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &1044049114679343436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6939323630036044677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c34fdab59dce57a439f6ccc713bd6282, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  numberBall: 0
-  txtBall: {fileID: 6939323630800762151}
-  btBall: {fileID: 0}
-  hasRaffled: 0
-  hasSelected: 0
-  hasCanRevoked: 0
-  normalColor: {r: 0.8078432, g: 0.9568628, b: 1, a: 1}
-  selectedColor: {r: 0.9811321, g: 0.4944265, b: 0, a: 1}
-  confirmedColor: {r: 0, g: 0.8584906, b: 0.18254723, a: 1}
-  revokebleColor: {r: 0.735849, g: 0, b: 0, a: 1}
 --- !u!114 &6447982676214619092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,6 +122,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3754996947980934645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6939323630036044677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85af6ed2a323c88438a9ef0da2f361e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6939323630800762149
 GameObject:
   m_ObjectHideFlags: 0

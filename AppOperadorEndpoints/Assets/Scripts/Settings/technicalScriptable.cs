@@ -13,7 +13,7 @@ public class TechnicalScriptable : ScriptableObject
     public int panelActive;
     public bool isVisibleRaffle;
     public int forTwoBalls;
-    public List<GlobeRaffleScriptable.porUmaBola> forOneBalls = new List<GlobeRaffleScriptable.porUmaBola>();
+    public List<GlobeDrawScriptable.porUmaBola> forOneBalls = new List<GlobeDrawScriptable.porUmaBola>();
     public List<TicketInfos> ticketInfos;
 
     public List<bool> ticketsShown;
@@ -39,7 +39,7 @@ public class TechnicalScriptable : ScriptableObject
         spinIndex = 1;
         spinNumbers.Clear();
     }
-    public void UpdateConfig(int sceneId, int _currentRaffle, bool raffleVisibility, int _forTwoBalls, List<GlobeRaffleScriptable.porUmaBola> _forOneBall,
+    public void UpdateConfig(int sceneId, int _currentRaffle, bool raffleVisibility, int _forTwoBalls, List<GlobeDrawScriptable.porUmaBola> _forOneBall,
         List<TicketInfos> _tickets, List<bool> _ticketsShown, int _currentTicketIndex, bool _isTicketVisible)
     {
         if (!GameManager.instance.isBackup)

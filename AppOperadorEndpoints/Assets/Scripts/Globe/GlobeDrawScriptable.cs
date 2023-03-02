@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "GlobeRaffleSettings", menuName = "Settings/GlobeRaffleSettings")]
-public class GlobeRaffleScriptable : ScriptableObject
+public class GlobeDrawScriptable : ScriptableObject
 {
     public List<string> bolasSorteadas;
     public int porDuasBolas;

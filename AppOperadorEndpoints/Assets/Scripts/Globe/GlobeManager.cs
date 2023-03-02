@@ -6,11 +6,12 @@ public class GlobeManager : MonoBehaviour
 {
     [SerializeField] private BallsDrawnController ballsDrawnController;
     [SerializeField] private SelectBallController selectBallController;
+    [SerializeField] private InfosCurrentDrawController infosCurrentDraw;
 
     [SerializeField] int max_balls = 60;
     void Start()
     {
-        
+        infosCurrentDraw.PopulateInfosCurrentDraw(1, "15 mil reais", 15000);
     }
 
     // Update is called once per frame

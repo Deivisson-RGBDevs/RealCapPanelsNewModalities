@@ -77,10 +77,4 @@ public class BallsDrawnController : MonoBehaviour
         }
         SpawnBgBalls(_maxBalls);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }

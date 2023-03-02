@@ -9,10 +9,10 @@ public class SelectBallController : MonoBehaviour
     [SerializeField] private GridLayoutGroup gridSelectBalls;
 
     [Header("COMPONENTS")]
-    [SerializeField] private BallDrawn ballDrawn;
+    [SerializeField] private SelectBall ballDrawn;
 
     [SerializeField] int maxBalls = 60;
-    [SerializeField] List<BallDrawn> ballsDrawn;
+    [SerializeField] List<SelectBall> ballsDrawn;
 
     void Start()
     {
@@ -23,7 +23,7 @@ public class SelectBallController : MonoBehaviour
         ballsDrawn.Clear();
         for (int i = 0; i < _amountBalls; i++)
         {
-            BallDrawn inst = Instantiate(ballDrawn, transform.position, Quaternion.identity);
+            SelectBall inst = Instantiate(ballDrawn, transform.position, Quaternion.identity);
             inst.transform.SetParent(gameObject.transform);
             int number = i + 1;
             inst.SetNumberInText(number.ToString("00"));
