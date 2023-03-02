@@ -1,21 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SelectBall : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private TextMeshProUGUI txtNumberBall;
+    [SerializeField] private int numberBall;
+
     void Start()
     {
         
     }
 
-    public void SetNumberInText(string _number)
+    public void SetNumberInText(int _number)
     {
-
-    }
-    void Update()
-    {
-        
+        numberBall = _number;
+        txtNumberBall.text = _number.ToString("00");
     }
 }

@@ -26,7 +26,7 @@ public class SelectBallController : MonoBehaviour
             SelectBall inst = Instantiate(ballDrawn, transform.position, Quaternion.identity);
             inst.transform.SetParent(gameObject.transform);
             int number = i + 1;
-            inst.SetNumberInText(number.ToString("00"));
+            inst.SetNumberInText(number);
             ballsDrawn.Add(inst);
         }
     }
@@ -61,17 +61,17 @@ public class SelectBallController : MonoBehaviour
                 }
             case 60:
                 {
-                    ConfigGridBalls(68, 68, 20, 50, 15);
+                    ConfigGridBalls(66, 66, 20, 50, 15);
                     break;
                 }
             case 75:
                 {
-                    ConfigGridBalls(68, 68, 20, 25, 15);
+                    ConfigGridBalls(66, 66, 20, 25, 15);
                     break;
                 }
             case 90:
                 {
-                    ConfigGridBalls(68, 54, 20, 24, 15);
+                    ConfigGridBalls(66, 52, 20, 24, 15);
                     break;
                 }
         }

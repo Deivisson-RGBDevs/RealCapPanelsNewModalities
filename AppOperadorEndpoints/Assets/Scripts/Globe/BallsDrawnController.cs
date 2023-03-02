@@ -51,7 +51,7 @@ public class BallsDrawnController : MonoBehaviour
         {
             case 30:
                 {
-                    ConfigGridBalls(80, 42, 20, 15);
+                    ConfigGridBalls(76, 50, 20, 15);
                     break;
                 }
             case 50:
@@ -66,12 +66,12 @@ public class BallsDrawnController : MonoBehaviour
                 }
             case 75:
                 {
-                    ConfigGridBalls(52, 22, 14, 25);
+                    ConfigGridBalls(44, 32, 14, 25);
                     break;
                 }
             case 90:
                 {
-                    ConfigGridBalls(52, 10, 14, 30);
+                    ConfigGridBalls(44, 18, 14, 30);
                     break;
                 }
         }
