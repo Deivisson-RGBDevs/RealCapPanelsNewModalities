@@ -8,7 +8,7 @@ public class GlobeManager : MonoBehaviour
     [SerializeField] private SelectBallController selectBallController;
     [SerializeField] private InfosCurrentDrawController infosCurrentDraw;
 
-    [SerializeField] int max_balls = 60;
+    [SerializeField] int maxBalls = 60;
     void Start()
     {
         infosCurrentDraw.PopulateInfosCurrentDraw(1, "15 mil reais", 15000);
@@ -21,31 +21,31 @@ public class GlobeManager : MonoBehaviour
         {
             ballsDrawnController.SetGridBalls(30);
             selectBallController.SetGridBalls(30);
-            max_balls = 30;
+            maxBalls = 30;
         }
         else if (Input.GetKeyUp(KeyCode.Alpha2))
         {
             ballsDrawnController.SetGridBalls(50);
             selectBallController.SetGridBalls(50);
-            max_balls = 50;
+            maxBalls = 50;
         }
         else if (Input.GetKeyUp(KeyCode.Alpha3))
         {
             ballsDrawnController.SetGridBalls(60);
             selectBallController.SetGridBalls(60);
-            max_balls = 60;
+            maxBalls = 60;
         }
         else if (Input.GetKeyUp(KeyCode.Alpha4))
         {
             ballsDrawnController.SetGridBalls(75);
             selectBallController.SetGridBalls(75);
-            max_balls = 75;
+            maxBalls = 75;
         }
         else if (Input.GetKeyUp(KeyCode.Alpha5))
         {
             ballsDrawnController.SetGridBalls(90);
             selectBallController.SetGridBalls(90);
-            max_balls = 90;
+            maxBalls = 90;
         }
     }
 }

@@ -17,10 +17,15 @@ public class PanelConfirmBall : MonoBehaviour
     [Header("<<<<<<<<<TESTE>>>>>>>>>>")]
     [SerializeField] private bool isConfirmPanel = false;
 
-    private void Start()
+    private void OnEnable()
     {
-        ShowPanelRevoke(10);
+        SelectBall.OnSelectedNumber += ShowPanel;
     }
+    private void OnDisable()
+    {
+        SelectBall.OnSelectedNumber -= ShowPanel;
+    }
+
     public void ShowPanelConfirm(int _number)
     {
         ShowBgBlack();
@@ -43,6 +48,13 @@ public class PanelConfirmBall : MonoBehaviour
         txtNumber.color = colorRevoke;
     }
 
+    private void ShowPanel(bool _revoked,int _number)
+    {
+        if (_revoked)
+            ShowPanelRevoke(_number);
+        else
+            ShowPanelConfirm(_number);
+    }
     public void HideBgBlack()
     {
         bgBlack.SetActive(false);
@@ -57,12 +69,5 @@ public class PanelConfirmBall : MonoBehaviour
     {
         //Chamar endpoint de sorteio do globo passando a array de bolas que já foram sorteadas com a inclusão da nova bola.
         HideBgBlack();
-    }
-    private void Update()
-    {
-        if(isConfirmPanel)
-            ShowPanelConfirm(10);
-        else
-            ShowPanelRevoke(10);
     }
 }
