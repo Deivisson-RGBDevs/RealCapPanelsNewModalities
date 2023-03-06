@@ -43,7 +43,7 @@ public class SelectEditionController : MonoBehaviour
 
         for (int i = 0; i < GameManager.instance.editionSettings.allEditions.Count; i++)
         {
-            string option = $"Edição {GameManager.instance.editionSettings.allEditions[i].numero} - {GameManager.instance.editionSettings.allEditions[i].nome}";
+            string option = $"Edição {GameManager.instance.editionSettings.allEditions[i].number} - {GameManager.instance.editionSettings.allEditions[i].name}";
             newOptions.Add(option);
         }
         dropdownEditions.AddOptions(newOptions);
@@ -60,13 +60,13 @@ public class SelectEditionController : MonoBehaviour
     {
         int index = GameManager.instance.EditionIndex;
         GameManager.instance.editionSettings.currentEdition = GameManager.instance.editionSettings.allEditions[index];
-        editionInfoCards[0].SetInfo(GameManager.instance.editionSettings.currentEdition.nome);
-        editionInfoCards[1].SetInfo(GameManager.instance.editionSettings.currentEdition.numero);
-        editionInfoCards[2].SetInfo(GameManager.instance.editionSettings.currentEdition.dataRealizacao);
-        editionInfoCards[3].SetInfo(GameManager.instance.editionSettings.currentEdition.tipoTamanhoSerie.ToString(".000"));
-        editionInfoCards[4].SetInfo(GameManager.instance.editionSettings.currentEdition.globoTipo);
-        editionInfoCards[5].SetInfo(GameManager.instance.editionSettings.currentEdition.tipoQuantidadeChances);
-        editionInfoCards[6].SetInfo(GameManager.instance.FormatMoneyInfo(GameManager.instance.editionSettings.currentEdition.valor));
+        editionInfoCards[0].SetInfo(GameManager.instance.editionSettings.currentEdition.name);
+        editionInfoCards[1].SetInfo(GameManager.instance.editionSettings.currentEdition.number.ToString());
+        editionInfoCards[2].SetInfo(GameManager.instance.editionSettings.currentEdition.date);
+        editionInfoCards[3].SetInfo(GameManager.instance.ConvertIntToDec(GameManager.instance.editionSettings.currentEdition.sizeSeries,3).ToString(".000"));
+        editionInfoCards[4].SetInfo(GameManager.instance.editionSettings.currentEdition.typeGlobe);
+        editionInfoCards[5].SetInfo(GameManager.instance.editionSettings.currentEdition.chances);
+        editionInfoCards[6].SetInfo(GameManager.instance.FormatMoneyInfo(GameManager.instance.editionSettings.currentEdition.value));
         btConfirm.interactable = true;
     }
 

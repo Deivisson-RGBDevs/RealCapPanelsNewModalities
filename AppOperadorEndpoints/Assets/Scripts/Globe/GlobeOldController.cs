@@ -409,9 +409,9 @@ public class GlobeOldController : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         UpdateScreen();
         uIChangeRaffle.SendMessageGlobeInfos(
-            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].nome,
-            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].numero,
-            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].dataRealizacao,
+            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].name,
+            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].number.ToString(),
+            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].date,
             GameManager.instance.globeScriptable.GetGlobeOrder(),
             GameManager.instance.globeScriptable.GetGlobeDescription(),
             GameManager.instance.globeScriptable.GetGlobeValue());
@@ -468,7 +468,7 @@ public class GlobeOldController : MonoBehaviour
            GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].municipio,
            GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].estado,
            GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].dataSorteio,
-           GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].numero,
+           GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].number,
            GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].valor,
            GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].PDV,
            GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].bairoPDV,

@@ -186,7 +186,7 @@ public class TicketController : MonoBehaviour
             return "SITE";
     }
     public void PopulateTicketInfos(string _nameWinner, string _cpf, string _birthDate, string _phone,
-        string _email, string _district, string _county, string _state, string _dateRaffle, string _editionName, float _value,
+        string _email, string _district, string _county, string _state, string _dateRaffle, int _editionName, float _value,
         string _PDV, string _districtPDV, string _dateBuy, string _hourBuy, string _ticketNumber, string _chance,
         List<int> _numbersCard, string _luckyNumber, bool _isCard = false, int _typeRaffle = 1)
     {
@@ -199,7 +199,7 @@ public class TicketController : MonoBehaviour
         county.text = $"{CheckIsNullInfo(_county)}";
         state.text = $"{CheckIsNullUF(_state)}";
         dateRaffle.text = $"{DateRaffle(_dateRaffle)}";
-        editionName.text = $"{CheckIsNullInfo(_editionName)}";
+        editionName.text = $"{_editionName}";
         value.text = $"{FormatMoneyInfo(_value)}";
         namePDV.text = $"{CheckPDV(_PDV)}";
         streetPDV.text = $"{CheckDistrictPDV(_districtPDV)}";
@@ -240,7 +240,7 @@ public class TicketController : MonoBehaviour
         _ticketInfos[6] = CheckIsNullInfo(_county);
         _ticketInfos[7] = CheckIsNullUF(_state);
         _ticketInfos[8] = RevertDate(_dateRaffle);
-        _ticketInfos[9] = CheckIsNullInfo(_editionName);
+        _ticketInfos[9] = CheckIsNullInfo(_editionName.ToString());
         _ticketInfos[10] = FormatMoneyInfo(_value);
         _ticketInfos[11] = CheckPDV(_PDV);
         _ticketInfos[12] = CheckDistrictPDV(_districtPDV);

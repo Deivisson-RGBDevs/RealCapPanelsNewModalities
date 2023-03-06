@@ -223,7 +223,7 @@ public class SpinController : MonoBehaviour
             GameManager.instance.spinResultScriptable.ganhadorContemplado.municipio,
             GameManager.instance.spinResultScriptable.ganhadorContemplado.estado,
             GameManager.instance.spinResultScriptable.ganhadorContemplado.dataSorteio,
-             GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].numero,
+             GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].number,
             GameManager.instance.spinResultScriptable.ganhadorContemplado.valor,
             GameManager.instance.spinResultScriptable.ganhadorContemplado.PDV,
             GameManager.instance.spinResultScriptable.ganhadorContemplado.bairoPDV,

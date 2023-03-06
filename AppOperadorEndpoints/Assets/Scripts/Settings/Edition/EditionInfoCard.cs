@@ -6,7 +6,6 @@ public class EditionInfoCard : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI txtInfo;
     [SerializeField] private string info;
-   
 
     public void SetInfo(string _info)
     {

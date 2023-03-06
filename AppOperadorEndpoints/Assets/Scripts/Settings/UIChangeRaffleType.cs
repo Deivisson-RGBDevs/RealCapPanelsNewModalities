@@ -49,7 +49,7 @@ public class UIChangeRaffleType : MonoBehaviour
 
     private void SetModality()
     {
-        switch (GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].modalidades)
+        switch (GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].modality)
         {
             case 1:
                 {
@@ -318,9 +318,9 @@ public class UIChangeRaffleType : MonoBehaviour
         if (panelRaffleLottery.activeSelf == true)
         {
             SendMessageLotteryInfos(
-       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].numero,
+       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].number.ToString(),
        GameManager.instance.lotteryScriptable.resultadoLoteriaFederalNumeroConcurso,
-       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].dataRealizacao,
+       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].date,
        GameManager.instance.lotteryScriptable.resultadoLoteriaFederalDataConcurso,
        GameManager.instance.lotteryScriptable.sorteioOrdem,
        GameManager.instance.lotteryScriptable.sorteioDescricao,
@@ -329,9 +329,9 @@ public class UIChangeRaffleType : MonoBehaviour
         else if (panelRaffleGlobe.activeSelf == true)
         {
             SendMessageGlobeInfos(
-       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].nome,
-       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].numero,
-       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].dataRealizacao,
+       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].name,
+       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].number.ToString(),
+       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].date,
        GameManager.instance.globeScriptable.GetGlobeOrder(),
        GameManager.instance.globeScriptable.GetGlobeDescription(),
        GameManager.instance.globeScriptable.GetGlobeValue());
@@ -339,9 +339,9 @@ public class UIChangeRaffleType : MonoBehaviour
         else if (panelRaffleSpin.activeSelf == true)
         {
             SendMessageSpinInfos(
-       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].nome,
-       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].numero,
-       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].dataRealizacao,
+       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].name,
+       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].number.ToString(),
+       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].date,
        GameManager.instance.spinScriptable.sorteioOrdem,
        GameManager.instance.spinScriptable.sorteioDescricao,
        GameManager.instance.spinScriptable.sorteioValor);

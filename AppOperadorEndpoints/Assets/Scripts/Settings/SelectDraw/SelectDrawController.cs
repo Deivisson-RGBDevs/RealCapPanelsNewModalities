@@ -18,7 +18,7 @@ public class SelectDrawController : MonoBehaviour
     void Start()
     {
         fade = FindObjectOfType<FadeController>();
-        CheckModalities(GameManager.instance.editionSettings.currentEdition.modalidades);
+        CheckModalities(GameManager.instance.editionSettings.currentEdition.modality);
         
         btSelectLottery.onClick.AddListener(GoToSceneLottery);
         btSelectGlobe.onClick.AddListener(GoToSceneGlobe);

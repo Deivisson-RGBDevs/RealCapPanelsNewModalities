@@ -128,6 +128,11 @@ public class GameManager : MonoBehaviour
         string prizeFormated = string.Format(CultureInfo.CurrentCulture, value.ToString($"C{decimalHouse}"));
         return prizeFormated;
     }
+
+    public decimal ConvertIntToDec(int _x, int _powBy)
+    {
+        return _x / (decimal)Math.Pow(10.00, _powBy);
+    }
     public void CallEventLogin()
     {
         isConnected = true;

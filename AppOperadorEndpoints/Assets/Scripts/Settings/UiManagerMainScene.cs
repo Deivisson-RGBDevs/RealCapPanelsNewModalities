@@ -31,16 +31,16 @@ public class UiManagerMainScene : MonoBehaviour
     private void PopulateEditionInfos()
     {
         uiInfosEdition.ShowEditionInfos(
-            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].nome,
-            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].numero,
-            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].dataRealizacao,
-            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].nomePlano,
-            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].processoSUSEP,
-            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].denominacaoComercial,
-            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].tipoTamanhoSerie,
-            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].modalidades,
-            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].tipoQuantidadeChances,
-            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].valor
+            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].name,
+            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].number.ToString(),
+            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].date,
+            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].namePlan,
+            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].processSUSEP,
+            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].commercialName,
+            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].sizeSeries,
+            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].modality,
+            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].chances,
+            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].value
             );
     }
 }
