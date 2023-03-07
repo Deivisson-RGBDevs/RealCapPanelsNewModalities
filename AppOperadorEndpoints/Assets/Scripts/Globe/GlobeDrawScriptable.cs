@@ -4,19 +4,19 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "GlobeRaffleSettings", menuName = "Settings/GlobeRaffleSettings")]
 public class GlobeDrawScriptable : ScriptableObject
 {
-    public List<string> bolasSorteadas;
+    public List<int> bolasSorteadas;
     public int porDuasBolas;
     public List<porUmaBola> porUmaBolas;
     public float valorPremio;
     [Header("Ticket Winner")]
     public TicketInfos[] ganhadorContemplado;
     public bool[] ticketListVisible;
-    public void SetNewBall(string ball)
+    public void SetNewBall(int ball)
     {
         bolasSorteadas.Add(ball);
     }
 
-    public void RevokeBall(string ball)
+    public void RevokeBall(int ball)
     {
         bolasSorteadas.Remove(ball);
     }

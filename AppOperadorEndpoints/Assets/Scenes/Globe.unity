@@ -171,7 +171,7 @@ MonoBehaviour:
   ballsDrawnController: {fileID: 464134050}
   selectBallController: {fileID: 7225811524113126548}
   infosCurrentDraw: {fileID: 1631781358}
-  max_balls: 60
+  maxBalls: 60
 --- !u!4 &476076499
 Transform:
   m_ObjectHideFlags: 0
@@ -186,6 +186,83 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &482670417
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7804240743405866441, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: userSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 92b84489f176fc142a78faf3d4e743f3, type: 2}
+    - target: {fileID: 7804240743405866441, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: editionSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: c7fefe5c549a56645bb8004874284146, type: 2}
+    - target: {fileID: 7804240743405866441, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: recoveryScriptable
+      value: 
+      objectReference: {fileID: 11400000, guid: 1325e216120bd09469615792793e5045, type: 2}
+    - target: {fileID: 7804240743405866441, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: technicalScriptable
+      value: 
+      objectReference: {fileID: 11400000, guid: c04fe8976b9cc6441a0729adba0b9db4, type: 2}
+    - target: {fileID: 7804240743405866441, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: globeDrawnScriptable
+      value: 
+      objectReference: {fileID: 11400000, guid: dcbb083204bf825439a4620a15a0e068, type: 2}
+    - target: {fileID: 7804240743405866446, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804240743405866446, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804240743405866446, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804240743405866446, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804240743405866446, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804240743405866446, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804240743405866446, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804240743405866446, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804240743405866446, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804240743405866446, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804240743405866446, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804240743405866447, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
 --- !u!1 &517336881
 GameObject:
   m_ObjectHideFlags: 0
@@ -2032,6 +2109,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 218074128885066801, guid: 34a5884d75bb43140bc09b2216bbdd99, type: 3}
       propertyPath: ballDrawn
+      value: 
+      objectReference: {fileID: 3754996947980934645, guid: 400af6bf683ef7448835325234474b25, type: 3}
+    - target: {fileID: 218074128885066801, guid: 34a5884d75bb43140bc09b2216bbdd99, type: 3}
+      propertyPath: selectBall
       value: 
       objectReference: {fileID: 3754996947980934645, guid: 400af6bf683ef7448835325234474b25, type: 3}
     - target: {fileID: 218074128885066801, guid: 34a5884d75bb43140bc09b2216bbdd99, type: 3}

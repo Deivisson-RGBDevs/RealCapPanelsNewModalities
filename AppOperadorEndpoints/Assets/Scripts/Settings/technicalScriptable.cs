@@ -82,18 +82,18 @@ public class TechnicalScriptable : ScriptableObject
         GameManager.instance.globeScriptable.SetGlobeDesc(currentGlobeDesc);
         GameManager.instance.globeScriptable.SetGlobeValue(currentGlobeValue);
         GameManager.instance.isVisibleRaffle = isVisibleRaffle;
-        GameManager.instance.globeRaffleScriptable.porDuasBolas = forTwoBalls;
-        GameManager.instance.globeRaffleScriptable.porUmaBolas.Clear();
-        GameManager.instance.globeRaffleScriptable.porUmaBolas.AddRange(forOneBalls);
-        GameManager.instance.globeRaffleScriptable.ganhadorContemplado = new TicketInfos[ticketInfos.Count];
-        GameManager.instance.globeRaffleScriptable.ticketListVisible = new bool[ticketInfos.Count];
+        GameManager.instance.globeDrawnScriptable.porDuasBolas = forTwoBalls;
+        GameManager.instance.globeDrawnScriptable.porUmaBolas.Clear();
+        GameManager.instance.globeDrawnScriptable.porUmaBolas.AddRange(forOneBalls);
+        GameManager.instance.globeDrawnScriptable.ganhadorContemplado = new TicketInfos[ticketInfos.Count];
+        GameManager.instance.globeDrawnScriptable.ticketListVisible = new bool[ticketInfos.Count];
         GameManager.instance.isTicketVisible = isTicketVisible;
         GameManager.instance.ticketWinnerIndex = currentTicketIndex;
 
         for (int i = 0; i < ticketInfos.Count; i++)
         {
-            GameManager.instance.globeRaffleScriptable.ganhadorContemplado[i] = ticketInfos[i];
-            GameManager.instance.globeRaffleScriptable.ticketListVisible[i] = ticketsShown[i];
+            GameManager.instance.globeDrawnScriptable.ganhadorContemplado[i] = ticketInfos[i];
+            GameManager.instance.globeDrawnScriptable.ticketListVisible[i] = ticketsShown[i];
         }
         GameManager.instance.spinScriptable.sorteioOrdem = spinIndex;
         GameManager.instance.spinResultScriptable.ganhadorContemplado = ticketSpin;

@@ -1,9 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 using TMPro;
 public class PanelConfirmBall : MonoBehaviour
 {
+    public static event Action<bool, int> OnConfirmSelection;
+
     [SerializeField] private TextMeshProUGUI txtTitle;
     [SerializeField] private TextMeshProUGUI txtNumber;
     [SerializeField] private Color colorConfirm;
@@ -14,8 +15,8 @@ public class PanelConfirmBall : MonoBehaviour
 
     [SerializeField] private GameObject bgBlack;
     [Space]
-    [Header("<<<<<<<<<TESTE>>>>>>>>>>")]
-    [SerializeField] private bool isConfirmPanel = false;
+    [SerializeField] private int selectedNumber;
+    [SerializeField] private bool isRevoked;
 
     private void OnEnable()
     {
@@ -48,12 +49,15 @@ public class PanelConfirmBall : MonoBehaviour
         txtNumber.color = colorRevoke;
     }
 
-    private void ShowPanel(bool _revoked,int _number)
+    private void ShowPanel(bool _isDrawn, int _number)
     {
-        if (_revoked)
+        if (_isDrawn)
             ShowPanelRevoke(_number);
         else
             ShowPanelConfirm(_number);
+
+        selectedNumber = _number;
+        isRevoked = _isDrawn;
     }
     public void HideBgBlack()
     {
@@ -67,7 +71,11 @@ public class PanelConfirmBall : MonoBehaviour
 
     public void ConfirmBall()
     {
+
+        OnConfirmSelection?.Invoke(isRevoked, selectedNumber);
+
         //Chamar endpoint de sorteio do globo passando a array de bolas que já foram sorteadas com a inclusão da nova bola.
+
         HideBgBlack();
     }
 }

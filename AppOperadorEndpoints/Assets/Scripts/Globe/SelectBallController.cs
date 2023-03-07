@@ -9,25 +9,61 @@ public class SelectBallController : MonoBehaviour
     [SerializeField] private GridLayoutGroup gridSelectBalls;
 
     [Header("COMPONENTS")]
-    [SerializeField] private SelectBall ballDrawn;
+    [SerializeField] private SelectBall selectBall;
 
     [SerializeField] int maxBalls = 60;
-    [SerializeField] List<SelectBall> ballsDrawn;
+    [SerializeField] List<SelectBall> selectBalls;
 
     void Start()
     {
         SetGridBalls(maxBalls);
     }
+
+    private void OnEnable()
+    {
+        GlobeManager.OnUpdateScreen += UpdateBtSelectBall;
+    }
+    private void OnDisable()
+    {
+        GlobeManager.OnUpdateScreen -= UpdateBtSelectBall;
+    }
+
+    private void UpdateBtSelectBall()
+    {
+        DisableAllHasDrawn();
+        ClearCanRevoked();
+        for (int i = 0; i < GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count; i++)
+        {   
+            selectBalls[GameManager.instance.globeDrawnScriptable.bolasSorteadas[i]-1].SetHasDrawn(true);
+            if (i == GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count - 1)
+                selectBalls[GameManager.instance.globeDrawnScriptable.bolasSorteadas[i] - 1].SetCanRevoked(true);
+        }
+    }
+
+    private void DisableAllHasDrawn()
+    {
+        for (int i = 0; i < selectBalls.Count; i++)
+        {
+            selectBalls[i].SetHasDrawn(false);
+        }
+    }
+    private void ClearCanRevoked()
+    {
+        for (int i = 0; i < selectBalls.Count; i++)
+        {
+            selectBalls[i].SetCanRevoked(false);
+        }
+    }
     private void SpawnBgBalls(int _amountBalls)
     {
-        ballsDrawn.Clear();
+        selectBalls.Clear();
         for (int i = 0; i < _amountBalls; i++)
         {
-            SelectBall inst = Instantiate(ballDrawn, transform.position, Quaternion.identity);
+            SelectBall inst = Instantiate(selectBall, transform.position, Quaternion.identity);
             inst.transform.SetParent(gameObject.transform);
             int number = i + 1;
             inst.SetNumberInText(number);
-            ballsDrawn.Add(inst);
+            selectBalls.Add(inst);
         }
     }
     private void ConfigGridBalls(int _cellSizeX, int _cellSizeY, int _spacingX, int _spacingY, int _constraintCount)
@@ -38,7 +74,7 @@ public class SelectBallController : MonoBehaviour
     }
     private void ResetGrid()
     {
-        for (int i = 0; i < ballsDrawn.Count; i++)
+        for (int i = 0; i < selectBalls.Count; i++)
         {
             Destroy(transform.GetChild(i).gameObject, 0.1f);
         }

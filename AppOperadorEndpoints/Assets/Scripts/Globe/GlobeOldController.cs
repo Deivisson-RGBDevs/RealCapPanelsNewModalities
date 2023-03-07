@@ -89,7 +89,7 @@ public class GlobeOldController : MonoBehaviour
         {
             int number = i + 1;
             balls[i].InitializeVariables();
-            balls[i].SetNumberInText(number.ToString());
+            balls[i].SetNumberInText(number);
         }
     }
     public void SetTxtViewBall(string _number)
@@ -110,7 +110,7 @@ public class GlobeOldController : MonoBehaviour
             balls[i].CheckState();
         }
 
-        if (GameManager.instance.globeRaffleScriptable.ganhadorContemplado.Length > 0)
+        if (GameManager.instance.globeDrawnScriptable.ganhadorContemplado.Length > 0)
         {
             SetDisableAllNotRevoke();
         }
@@ -172,19 +172,19 @@ public class GlobeOldController : MonoBehaviour
                 panelConfirmBall.SetActive(true);
             }
         }
-        SetTxtViewBall(balls[indexBallSelected].GetNumberBall());
+        //SetTxtViewBall(balls[indexBallSelected].GetNumberBall());
         CheckStateBalls();
     }
     public void ConfirmBallSelected()
     {
-        GameManager.instance.SetNewBall(balls[indexBallSelected].GetNumberBall());
+       // GameManager.instance.SetNewBall(balls[indexBallSelected].GetNumberBall());
         hasRevoked = false;
 
     }
     public void RevokeBallSelected()
     {
         indexBalls.Remove(indexBalls[indexBalls.Count - 1]);
-        GameManager.instance.SetRemoveBall(balls[indexBallSelected].GetNumberBall());
+        //GameManager.instance.SetRemoveBall(balls[indexBallSelected].GetNumberBall());
         lastBallRaffled.SetHasSelected(true);
         lastBallRaffled.SetHasRaffled(false);
         lastBallRaffled.SetHasCanRevoked(false);
@@ -210,11 +210,11 @@ public class GlobeOldController : MonoBehaviour
     {
         DisableHasRevokedAll();
         indexBalls.Clear();
-        for (int i = 0; i < GameManager.instance.globeRaffleScriptable.bolasSorteadas.Count; i++)
+        for (int i = 0; i < GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count; i++)
         {
-            indexBalls.Add(int.Parse(GameManager.instance.globeRaffleScriptable.bolasSorteadas[i]) - 1);
+            indexBalls.Add(GameManager.instance.globeDrawnScriptable.bolasSorteadas[i] - 1);
 
-            balls[int.Parse(GameManager.instance.globeRaffleScriptable.bolasSorteadas[i]) - 1].SetHasRaffled(true);
+            balls[GameManager.instance.globeDrawnScriptable.bolasSorteadas[i] - 1].SetHasRaffled(true);
         }
         CheckStateBalls();
         ValidateBall();
@@ -226,42 +226,33 @@ public class GlobeOldController : MonoBehaviour
     public void SendBallsRaffledToScreen()
     {
         UpdateScreen();
-        if (hasRevoked)
-        {
-            SendMessageBallRevoked();
-        }
-        else
-        {
-            SendMessageBallsRaffled();
-        }
-
     }
     #region BALLS RAFFLED
 
     private void SpawnBallRaffled(List<string> _balls)
     {
-        foreach (var item in ballsRaffled)
-        {
-            Destroy(item.gameObject);
-        }
-        ballsRaffled = new BallDrawn[_balls.Count];
-        for (int i = 0; i < _balls.Count; i++)
-        {
-            BallDrawn inst = Instantiate(ballRaffledPrefab, transform.position, Quaternion.identity);
-            inst.transform.SetParent(panelGridBallsRaffled.transform);
-            inst.SetNumberInText(_balls[i]);
-            inst.transform.localScale = new Vector3(1, 1, 1);
-            if (i == _balls.Count - 1)
-            {
-                inst.SetCanRevokebleColor();
-            }
-            else
-            {
-                inst.SetConfirmedColor();
-            }
-            ballsRaffled[i] = inst;
-        }
-        orderBalls.text = $"Dezenas Sorteadas: {ballsRaffled.Length}";
+        //foreach (var item in ballsRaffled)
+        //{
+        //    Destroy(item.gameObject);
+        //}
+        //ballsRaffled = new BallDrawn[_balls.Count];
+        //for (int i = 0; i < _balls.Count; i++)
+        //{
+        //    BallDrawn inst = Instantiate(ballRaffledPrefab, transform.position, Quaternion.identity);
+        //    inst.transform.SetParent(panelGridBallsRaffled.transform);
+        //    inst.SetNumberInText(_balls[i]);
+        //    inst.transform.localScale = new Vector3(1, 1, 1);
+        //    if (i == _balls.Count - 1)
+        //    {
+        //        inst.SetCanRevokebleColor();
+        //    }
+        //    else
+        //    {
+        //        inst.SetConfirmedColor();
+        //    }
+        //    ballsRaffled[i] = inst;
+        //}
+        //orderBalls.text = $"Dezenas Sorteadas: {ballsRaffled.Length}";
     }
     #endregion
 
@@ -278,10 +269,10 @@ public class GlobeOldController : MonoBehaviour
     public void PopulateWinners(List<string> _infos)
     {
         txtInfosTitle.text = "GANHADOR";
-        GameManager.instance.globeRaffleScriptable.porUmaBolas.Clear();
+        GameManager.instance.globeDrawnScriptable.porUmaBolas.Clear();
         _infos = GameManager.instance.GetWinners();
         possiblesWinners = new BtTicketList[_infos.Count];
-        if (GameManager.instance.globeRaffleScriptable.ganhadorContemplado.Length > 1)
+        if (GameManager.instance.globeDrawnScriptable.ganhadorContemplado.Length > 1)
             txtInfosTitle.text = "GANHADORES";
         txtWinners.text = _infos.Count.ToString();
         GameManager.instance.isWinner = true;
@@ -335,7 +326,7 @@ public class GlobeOldController : MonoBehaviour
         List<string> infos = new List<string>();
 
         ResetPanelPossibleWinners();
-        if (GameManager.instance.globeRaffleScriptable.ganhadorContemplado.Length > 0)
+        if (GameManager.instance.globeDrawnScriptable.ganhadorContemplado.Length > 0)
         {
             PopulateWinners(infos);
         }
@@ -382,7 +373,7 @@ public class GlobeOldController : MonoBehaviour
 
         CheckStateBalls();
 
-        SpawnBallRaffled(GameManager.instance.GetBallsRaffled());
+        //SpawnBallRaffled(GameManager.instance.GetBallsRaffled());
     }
     public void CallNextRaffle()
     {
@@ -395,7 +386,6 @@ public class GlobeOldController : MonoBehaviour
         GameManager.instance.globeScriptable.SetGlobeOrder(GameManager.instance.globeScriptable.GetGlobeOrder() + 1);
         GameManager.instance.ResetScreenGlobe();
         yield return new WaitForSeconds(1);
-        SendMesageNextRaffle();
         DisableHasRevokedAll();
         if (possiblesWinners.Length > 0)
         {
@@ -459,25 +449,25 @@ public class GlobeOldController : MonoBehaviour
     public void PopulateTicketGlobe()
     {
         ticketController.PopulateTicketInfos(
-           GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].nome,
-           GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].cpf,
-           GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].dataNascimento,
-           GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].telefone,
-           GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].email,
-           GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].bairro,
-           GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].municipio,
-           GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].estado,
-           GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].dataSorteio,
+           GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].nome,
+           GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].cpf,
+           GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].dataNascimento,
+           GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].telefone,
+           GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].email,
+           GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].bairro,
+           GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].municipio,
+           GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].estado,
+           GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].dataSorteio,
            GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].number,
-           GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].valor,
-           GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].PDV,
-           GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].bairoPDV,
-           GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].dataCompra,
-           GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].horaCompra,
-           GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].numeroTitulo,
-           GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].chance,
-           GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].numeroCartela,
-           GameManager.instance.globeRaffleScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].numeroSorte,
+           GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].valor,
+           GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].PDV,
+           GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].bairoPDV,
+           GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].dataCompra,
+           GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].horaCompra,
+           GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].numeroTitulo,
+           GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].chance,
+           GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].numeroCartela,
+           GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.ticketWinnerIndex].numeroSorte,
            true,
            2);
     }
@@ -500,49 +490,5 @@ public class GlobeOldController : MonoBehaviour
             }
         }
     }
-
-    #region MESSAGES
-    public void SendMessageBallsRaffled()
-    {
-        if (!GameManager.instance.isBackup)
-            TcpNetworkManager.instance.Server.SendToAll(GetMessageString(Message.Create(MessageSendMode.reliable, ServerToClientId.messageBall), GameManager.instance.GetBallsRaffled().ToArray(), GameManager.instance.globeRaffleScriptable.porUmaBolas.Count, GameManager.instance.globeRaffleScriptable.ganhadorContemplado.Length, GameManager.instance.globeRaffleScriptable.valorPremio));
-    }
-    public void SendMessageBallRevoked()
-    {
-        if (!GameManager.instance.isBackup)
-            TcpNetworkManager.instance.Server.SendToAll(GetMessageBallRevoked(Message.Create(MessageSendMode.reliable, ServerToClientId.messageBallRevoked), GameManager.instance.GetBallsRaffled().ToArray(), GameManager.instance.globeRaffleScriptable.porUmaBolas.Count, GameManager.instance.globeRaffleScriptable.ganhadorContemplado.Length, GameManager.instance.globeRaffleScriptable.valorPremio));
-    }
-
-    public void SendMesageNextRaffle()
-    {
-        if (!GameManager.instance.isBackup)
-            TcpNetworkManager.instance.Server.SendToAll(GetMessage(Message.Create(MessageSendMode.reliable, ServerToClientId.messageNextRaffleGlobe)));
-    }
-
-    private Message GetMessageString(Message message, string[] _ballsRaffled, int _forOneBall, int _winnersCount, float _prizeValue)
-    {
-        message.AddStrings(_ballsRaffled);
-        message.AddInt(_forOneBall);
-        message.AddInt(_winnersCount);
-        message.AddFloat(_prizeValue);
-        return message;
-    }
-
-    private Message GetMessageBallRevoked(Message message, string[] _ballsRaffled, int _forOneBall, int _winnersCount, float _prizeValue)
-    {
-        message.AddStrings(_ballsRaffled);
-        message.AddInt(_forOneBall);
-        message.AddInt(_winnersCount);
-        message.AddFloat(_prizeValue);
-
-        return message;
-    }
-
-    private Message GetMessage(Message message)
-    {
-        return message;
-    }
-
-    #endregion
 }
 

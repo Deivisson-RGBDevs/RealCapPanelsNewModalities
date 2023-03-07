@@ -25,15 +25,19 @@ public class BallDrawn : MonoBehaviour
         btBall = GetComponent<Button>();
         btBall.onClick.AddListener(SetActionButton);
     }
-    public void SetNumberInText(string _numberBall)
+    public void SetNumberInText(int _numberBall)
     {
-        txtBall.text = _numberBall;
-        numberBall = System.Convert.ToInt32(_numberBall);
+        txtBall.text = _numberBall.ToString("D2");
+        numberBall = _numberBall;
     }
-    public string GetNumberBall()
+    public void ClearCell()
     {
-        string numberTxt = numberBall.ToString();
-        return numberTxt;
+        txtBall.text = string.Empty;
+        numberBall = 0;
+    }
+    public int GetNumberBall()
+    {
+        return numberBall;
     }
     public void SetActionButton()
     {

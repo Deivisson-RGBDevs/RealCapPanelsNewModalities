@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class GlobeManager : MonoBehaviour
 {
+    public static event Action OnUpdateScreen;
     [SerializeField] private BallsDrawnController ballsDrawnController;
     [SerializeField] private SelectBallController selectBallController;
     [SerializeField] private InfosCurrentDrawController infosCurrentDraw;
@@ -14,6 +14,27 @@ public class GlobeManager : MonoBehaviour
         infosCurrentDraw.PopulateInfosCurrentDraw(1, "15 mil reais", 15000);
     }
 
+    private void OnEnable()
+    {
+        PanelConfirmBall.OnConfirmSelection += UpdateListBallsDrawn;
+    }
+    private void OnDisable()
+    {
+        PanelConfirmBall.OnConfirmSelection -= UpdateListBallsDrawn;
+    }
+
+    private void UpdateListBallsDrawn(bool _hasRevocable, int _number)
+    {
+        print(_hasRevocable);
+        if (_hasRevocable)
+        {
+            GameManager.instance.SetRemoveBall(_number);
+        }
+        else
+            GameManager.instance.SetNewBall(_number);
+
+        OnUpdateScreen?.Invoke();
+    }
     // Update is called once per frame
     void Update()
     {

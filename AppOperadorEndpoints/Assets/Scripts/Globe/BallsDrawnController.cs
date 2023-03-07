@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.UI;
 public class BallsDrawnController : MonoBehaviour
 {
@@ -12,11 +10,37 @@ public class BallsDrawnController : MonoBehaviour
     [SerializeField] private BallDrawn ballDrawn;
 
     [SerializeField] int maxBalls = 60;
-    [SerializeField] List<BallDrawn> ballsDrawn;
+    [SerializeField] private List<BallDrawn> ballsDrawn;
 
     void Start()
     {
         SetGridBalls(maxBalls);
+    }
+
+    private void OnEnable()
+    {
+        GlobeManager.OnUpdateScreen += UpdateDrawnBalls;
+    }
+    private void OnDisable()
+    {
+        GlobeManager.OnUpdateScreen -= UpdateDrawnBalls;
+    }
+
+    private void UpdateDrawnBalls()
+    {
+        ClearAllCells();
+        for (int i = 0; i < GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count; i++)
+        {
+            ballsDrawn[i].SetNumberInText(GameManager.instance.globeDrawnScriptable.bolasSorteadas[i]);
+        }
+    }
+
+    private void ClearAllCells()
+    {
+        for (int i = 0; i < ballsDrawn.Count; i++)
+        {
+            ballsDrawn[i].ClearCell();
+        }
     }
     private void ConfigGridBalls(int _cellSize, int _spacingX, int _spacingY, int _constraintCount)
     {
@@ -37,10 +61,10 @@ public class BallsDrawnController : MonoBehaviour
     }
 
     private void ResetGrid()
-    {   
+    {
         for (int i = 0; i < ballsDrawn.Count; i++)
         {
-            Destroy(transform.GetChild(i).gameObject,0.1f);
+            Destroy(transform.GetChild(i).gameObject, 0.1f);
         }
     }
     public void SetGridBalls(int _maxBalls)

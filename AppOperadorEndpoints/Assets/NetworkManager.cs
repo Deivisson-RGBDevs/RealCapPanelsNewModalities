@@ -419,9 +419,9 @@ public class NetworkManager : MonoBehaviour
     {
         GameManager.RequestBallsRaffled ballsRaffled = new GameManager.RequestBallsRaffled();
         ballsRaffled.balls = new List<int>();
-        for (int i = 0; i < GameManager.instance.globeRaffleScriptable.bolasSorteadas.Count; i++)
+        for (int i = 0; i < GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count; i++)
         {
-            ballsRaffled.balls.Add(int.Parse(GameManager.instance.globeRaffleScriptable.bolasSorteadas[i]));
+            ballsRaffled.balls.Add(GameManager.instance.globeDrawnScriptable.bolasSorteadas[i]);
         }
         ballsRaffled.sorteioOrdem = GameManager.instance.globeScriptable.GetGlobeOrder();
         string json = JsonUtility.ToJson(ballsRaffled);
@@ -458,7 +458,7 @@ public class NetworkManager : MonoBehaviour
 
                         GlobeOldController globeController = FindObjectOfType<GlobeOldController>();
 
-                        JsonUtility.FromJsonOverwrite(jsonResponse, GameManager.instance.globeRaffleScriptable);
+                        JsonUtility.FromJsonOverwrite(jsonResponse, GameManager.instance.globeDrawnScriptable);
                         GameManager.instance.PopulateListOfVisibleTicket();
                         if (globeController != null)
                         {
