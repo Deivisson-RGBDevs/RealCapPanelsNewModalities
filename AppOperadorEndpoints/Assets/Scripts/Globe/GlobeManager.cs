@@ -25,7 +25,6 @@ public class GlobeManager : MonoBehaviour
 
     private void UpdateListBallsDrawn(bool _hasRevocable, int _number)
     {
-        print(_hasRevocable);
         if (_hasRevocable)
         {
             GameManager.instance.SetRemoveBall(_number);

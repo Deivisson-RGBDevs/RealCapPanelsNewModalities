@@ -35,9 +35,9 @@ public class BtTicketList : MonoBehaviour
     }
     public void SelectWinner()
     {
-        GlobeOldController globe = FindObjectOfType<GlobeOldController>();
-        globe.ResetPossiblesWinners();
-        globe.UpdateStateVisibilityButtonsTicket(true);
+        //GlobeManager globe = FindObjectOfType<GlobeManager>();
+        //globe.ResetPossiblesWinners();
+        //globe.UpdateStateVisibilityButtonsTicket(true);
         GameManager.instance.ticketWinnerIndex = index;
         button.image.color = selectedColor;
         isSelected = true;

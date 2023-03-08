@@ -62,21 +62,21 @@ public class GameManager : MonoBehaviour
     }
     public void RecoveryGlobeScreen()
     {
-        GlobeOldController globeController = FindObjectOfType<GlobeOldController>();
-        if (globeController != null)
-        {
-            if (isBackup)
-            {
-                TicketController ticket = FindObjectOfType<TicketController>();
-                if (isWinner == true)
-                {
-                    globeController.PopulateTicketGlobe();
-                    ticket.CheckStateVisibility();
-                    globeController.UpdateStateVisibilityButtonsTicket(false);
-                }
-                globeController.UpdateScreen();
-            }
-        }
+        //GlobeOldController globeController = FindObjectOfType<GlobeOldController>();
+        //if (globeController != null)
+        //{
+        //    if (isBackup)
+        //    {
+        //        TicketController ticket = FindObjectOfType<TicketController>();
+        //        if (isWinner == true)
+        //        {
+        //            globeController.PopulateTicketGlobe();
+        //            ticket.CheckStateVisibility();
+        //            globeController.UpdateStateVisibilityButtonsTicket(false);
+        //        }
+        //        globeController.UpdateScreen();
+        //    }
+        //}
 
         UIChangeRaffleType uIChangeRaffleType = FindObjectOfType<UIChangeRaffleType>();
         if (uIChangeRaffleType != null)

@@ -456,15 +456,15 @@ public class NetworkManager : MonoBehaviour
                         Debug.Log(pages[page] + ":\nReceived: " + webRequest.downloadHandler.text);
                         string jsonResponse = webRequest.downloadHandler.text;
 
-                        GlobeOldController globeController = FindObjectOfType<GlobeOldController>();
+                        GlobeManager globeController = FindObjectOfType<GlobeManager>();
 
                         JsonUtility.FromJsonOverwrite(jsonResponse, GameManager.instance.globeDrawnScriptable);
                         GameManager.instance.PopulateListOfVisibleTicket();
-                        if (globeController != null)
-                        {
-                            globeController.CheckWinners();
-                            globeController.SendBallsRaffledToScreen();
-                        }
+                        //if (globeController != null)
+                        //{
+                        //    globeController.CheckWinners();
+                        //    globeController.SendBallsRaffledToScreen();
+                        //}
                         break;
                     }
             }

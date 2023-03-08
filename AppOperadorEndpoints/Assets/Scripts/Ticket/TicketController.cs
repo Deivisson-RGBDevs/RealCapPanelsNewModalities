@@ -78,7 +78,7 @@ public class TicketController : MonoBehaviour
                 if (uIChangeRaffle.panelRaffleGlobe.activeSelf == true)
                 {
                     uIChangeRaffle.SetStateHasRaffleVisibility();
-                    uIChangeRaffle.SendMessageVisibilityRaffle();
+                    //uIChangeRaffle.SendMessageVisibilityRaffle();
                 }
             }
         }

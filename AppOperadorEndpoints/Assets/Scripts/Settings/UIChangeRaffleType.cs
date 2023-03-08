@@ -6,7 +6,7 @@ using RiptideNetworking;
 public class UIChangeRaffleType : MonoBehaviour
 {
     [Header("CONTROLLERS")]
-    [SerializeField] GlobeOldController globeController;
+    [SerializeField] GlobeManager globeManager;
 
     [Header("GERAL")]
     [SerializeField] private Button btRecovery;
@@ -89,7 +89,6 @@ public class UIChangeRaffleType : MonoBehaviour
         btRaffleSpin.onClick.AddListener(SetRaffleSpin);
         btRaffleSpin.onClick.AddListener(GameManager.instance.WriteInfosGlobe);
         btVisibilityRaffle.onClick.AddListener(SetStateHasRaffleVisibility);
-        btVisibilityRaffle.onClick.AddListener(SendInfosRaffle);
         btVisibilityRaffle.onClick.AddListener(GameManager.instance.WriteInfosGlobe);
     }
 
@@ -223,7 +222,6 @@ public class UIChangeRaffleType : MonoBehaviour
             btRecovery.GetComponentInChildren<TextMeshProUGUI>().text = "Principal";
             btRecovery.GetComponentInChildren<TextMeshProUGUI>().color = Color.black;
             btRecovery.image.color = Color.green;
-            globeController.UpdateScreen();
 
             SpinController spinController = FindObjectOfType<SpinController>();
             if (spinController != null)
@@ -294,60 +292,19 @@ public class UIChangeRaffleType : MonoBehaviour
             btVisibilityRaffle.GetComponentInChildren<TextMeshProUGUI>().text = "OCULTAR SORTEIO";
             btVisibilityRaffle.image.color = selectedColor;
             SetStateButtonsRaffle(false);
-            globeController.SetEnableAll();
+            //globeManager.SetEnableAll();
         }
         else
         {
             btVisibilityRaffle.GetComponentInChildren<TextMeshProUGUI>().text = "MOSTRAR SORTEIO";
             btVisibilityRaffle.image.color = normalColor;
             SetStateButtonsRaffle(true);
-            globeController.SetDisableAll();
+            //globeManager.SetDisableAll();
         }
     }
     #endregion
 
-    #region MESSAGES
-    public void SendMessageVisibilityRaffle()
-    {
-        TcpNetworkManager.instance.Server.SendToAll(GetMessageVisibilityRaffle(Message.Create(MessageSendMode.unreliable, ServerToClientId.messageVisibilityRaffle), GameManager.instance.isVisibleRaffle, GameManager.instance.sceneId));
-
-    }
-    public void SendInfosRaffle()
-    {
-
-        if (panelRaffleLottery.activeSelf == true)
-        {
-            SendMessageLotteryInfos(
-       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].number.ToString(),
-       GameManager.instance.lotteryScriptable.resultadoLoteriaFederalNumeroConcurso,
-       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].date,
-       GameManager.instance.lotteryScriptable.resultadoLoteriaFederalDataConcurso,
-       GameManager.instance.lotteryScriptable.sorteioOrdem,
-       GameManager.instance.lotteryScriptable.sorteioDescricao,
-       GameManager.instance.lotteryScriptable.sorteioValor);
-        }
-        else if (panelRaffleGlobe.activeSelf == true)
-        {
-            SendMessageGlobeInfos(
-       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].name,
-       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].number.ToString(),
-       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].date,
-       GameManager.instance.globeScriptable.GetGlobeOrder(),
-       GameManager.instance.globeScriptable.GetGlobeDescription(),
-       GameManager.instance.globeScriptable.GetGlobeValue());
-        }
-        else if (panelRaffleSpin.activeSelf == true)
-        {
-            SendMessageSpinInfos(
-       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].name,
-       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].number.ToString(),
-       GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].date,
-       GameManager.instance.spinScriptable.sorteioOrdem,
-       GameManager.instance.spinScriptable.sorteioDescricao,
-       GameManager.instance.spinScriptable.sorteioValor);
-        }
-        SendMessageVisibilityRaffle();
-    }
+ 
     private Message GetMessageVisibilityRaffle(Message message, bool isActive, int typeRaffle)
     {
         message.AddBool(isActive);
@@ -431,5 +388,4 @@ public class UIChangeRaffleType : MonoBehaviour
 
         return message;
     }
-    #endregion
 }

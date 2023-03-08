@@ -6,21 +6,36 @@ public class SelectBall : MonoBehaviour
 {
     public static event Action<bool, int> OnSelectedNumber;
 
+    [SerializeField] private Button btNumber;
     [SerializeField] private TextMeshProUGUI txtNumberBall;
     [SerializeField] private int numberBall;
     [SerializeField] private bool hasDrawn = false;
     [SerializeField] private bool canRevocable = false;
 
-    [SerializeField] private Button btNumber;
+    [SerializeField] private Color normalColor;
+    [SerializeField] private Color drawnColor;
+    [SerializeField] private Color revocableColor;
+
+    [SerializeField] private Color startColorText;
     void Start()
     {
         btNumber = GetComponent<Button>();
         btNumber.onClick.AddListener(SelectNumber);
+        startColorText = txtNumberBall.color;
     }
     public void SetHasDrawn(bool _hasDrawn)
     {
         hasDrawn = _hasDrawn;
         SetInteractableButton(false);
+        if (_hasDrawn)
+        {
+            SetNewColor(drawnColor);
+            txtNumberBall.color = normalColor;
+        }
+        else
+        {
+            txtNumberBall.color = startColorText;
+        }
     }
     public void SetNumberInText(int _number)
     {
@@ -31,6 +46,18 @@ public class SelectBall : MonoBehaviour
     {
         canRevocable = _canRevoked;
         SetInteractableButton(true);
+        if (_canRevoked)
+        {
+            SetNewColor(revocableColor);
+            txtNumberBall.color = normalColor;
+        }
+        else
+        {
+            SetNewColor(normalColor);
+            txtNumberBall.color = startColorText;
+
+        }
+        
     }
     public int GetNumberBall()
     {
@@ -44,5 +71,10 @@ public class SelectBall : MonoBehaviour
     private void SetInteractableButton(bool _isActive)
     {
         btNumber.interactable = _isActive;
+    }
+
+    private void SetNewColor(Color _newColor)
+    {
+        btNumber.image.color = _newColor;
     }
 }

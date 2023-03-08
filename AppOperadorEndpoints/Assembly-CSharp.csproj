@@ -69,7 +69,6 @@
     <Compile Include="Assets\Scripts\Settings\FadeController.cs" />
     <Compile Include="Assets\Scripts\Globe\GlobeScriptable.cs" />
     <Compile Include="Assets\Scripts\Lottery\LotteryScriptable.cs" />
-    <Compile Include="Assets\Scripts\Globe\GlobeOldController.cs" />
     <Compile Include="Assets\Scripts\Lottery\LotteryController.cs" />
     <Compile Include="Assets\Scripts\Globe\GlobeDrawScriptable.cs" />
     <Compile Include="Assets\Scripts\Ticket\TicketInfos.cs" />

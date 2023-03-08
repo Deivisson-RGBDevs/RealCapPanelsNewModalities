@@ -32,6 +32,11 @@ public class BallsDrawnController : MonoBehaviour
         for (int i = 0; i < GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count; i++)
         {
             ballsDrawn[i].SetNumberInText(GameManager.instance.globeDrawnScriptable.bolasSorteadas[i]);
+            ballsDrawn[i].SetDrawnColor();
+            if(i== GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count-1)
+            {
+                ballsDrawn[i].SetRevocableColor();
+            }
         }
     }
 

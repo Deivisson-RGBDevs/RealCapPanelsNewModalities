@@ -134,8 +134,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85af6ed2a323c88438a9ef0da2f361e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  btNumber: {fileID: 0}
   txtNumberBall: {fileID: 6939323630800762151}
   numberBall: 0
+  hasDrawn: 0
+  canRevocable: 0
+  normalColor: {r: 1, g: 1, b: 1, a: 1}
+  drawnColor: {r: 0, g: 0.5754717, b: 0.048947085, a: 1}
+  revocableColor: {r: 0.5283019, g: 0.05233179, b: 0.05233179, a: 1}
 --- !u!1 &6939323630800762149
 GameObject:
   m_ObjectHideFlags: 0
