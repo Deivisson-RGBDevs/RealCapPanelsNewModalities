@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.Events;
+using System;
 
 public class BtTicketList : MonoBehaviour
 {
+    public static event Action<TicketInfos> OnShowticket;
     private TextMeshProUGUI textInfo;
     private Button button;
 
@@ -35,13 +34,10 @@ public class BtTicketList : MonoBehaviour
     }
     public void SelectWinner()
     {
-        //GlobeManager globe = FindObjectOfType<GlobeManager>();
-        //globe.ResetPossiblesWinners();
-        //globe.UpdateStateVisibilityButtonsTicket(true);
-        GameManager.instance.ticketWinnerIndex = index;
+        OnShowticket?.Invoke(GameManager.instance.globeDrawnScriptable.ganhadorContemplado[index]);
         button.image.color = selectedColor;
         isSelected = true;
-        GameManager.instance.WriteInfosGlobe();
+        //GameManager.instance.WriteInfosGlobe();
 
     }
     public void SetInteractableButton(bool _isActive)

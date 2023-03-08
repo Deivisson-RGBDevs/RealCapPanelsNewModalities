@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class ListTicketsController : MonoBehaviour
 {
     [SerializeField] private List<BtTicketList> btTickets;
@@ -9,20 +8,21 @@ public class ListTicketsController : MonoBehaviour
     [Space]
     [SerializeField] private GameObject content;
 
-    [SerializeField] List<string> testeInfos;
+    [SerializeField] public List<string> testeInfos;
     void Start()
     {
-        PopulateListTickets(testeInfos,true);
+        //PopulateListTickets(testeInfos,true);
     }
-
     public void PopulateListTickets(List<string> _infos, bool _hasWinner)
     {
-        btTickets.Clear();
+        ResetGrid();
+        
         for (int i = 0; i < _infos.Count; i++)
         {
             BtTicketList inst = Instantiate(btTicket, transform.position, Quaternion.identity);
             inst.transform.SetParent(content.transform);
             inst.PopulateInfos(_infos[i]);
+            inst.SetIndex(i);
             if (_hasWinner)
             {
                 inst.SetInteractableButton(true);
@@ -41,7 +41,9 @@ public class ListTicketsController : MonoBehaviour
         {
             Destroy(content.transform.GetChild(i).gameObject, 0.1f);
         }
+        btTickets.Clear();
     }
+
     // Update is called once per frame
     void Update()
     {

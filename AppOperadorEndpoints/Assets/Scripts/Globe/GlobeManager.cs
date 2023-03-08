@@ -12,6 +12,7 @@ public class GlobeManager : MonoBehaviour
     void Start()
     {
         infosCurrentDraw.PopulateInfosCurrentDraw(1, "15 mil reais", 15000);
+        SetupMaxBalls(GameManager.instance.editionSettings.currentEdition.typeGlobe);
     }
 
     private void OnEnable()
@@ -34,38 +35,45 @@ public class GlobeManager : MonoBehaviour
 
         OnUpdateScreen?.Invoke();
     }
-    // Update is called once per frame
-    void Update()
+    public void SetupMaxBalls(string type)
     {
-        if(Input.GetKeyUp(KeyCode.Alpha1))
+        switch(type)
         {
-            ballsDrawnController.SetGridBalls(30);
-            selectBallController.SetGridBalls(30);
-            maxBalls = 30;
-        }
-        else if (Input.GetKeyUp(KeyCode.Alpha2))
-        {
-            ballsDrawnController.SetGridBalls(50);
-            selectBallController.SetGridBalls(50);
-            maxBalls = 50;
-        }
-        else if (Input.GetKeyUp(KeyCode.Alpha3))
-        {
-            ballsDrawnController.SetGridBalls(60);
-            selectBallController.SetGridBalls(60);
-            maxBalls = 60;
-        }
-        else if (Input.GetKeyUp(KeyCode.Alpha4))
-        {
-            ballsDrawnController.SetGridBalls(75);
-            selectBallController.SetGridBalls(75);
-            maxBalls = 75;
-        }
-        else if (Input.GetKeyUp(KeyCode.Alpha5))
-        {
-            ballsDrawnController.SetGridBalls(90);
-            selectBallController.SetGridBalls(90);
-            maxBalls = 90;
+            case "15x30":
+                {
+                    ballsDrawnController.SetGridBalls(30);
+                    selectBallController.SetGridBalls(30);
+                    maxBalls = 30;
+                    break;
+                }
+            case "15x50":
+                {
+                    ballsDrawnController.SetGridBalls(50);
+                    selectBallController.SetGridBalls(50);
+                    maxBalls = 50;
+                    break;
+                }
+            case "20x60":
+                {
+                    ballsDrawnController.SetGridBalls(60);
+                    selectBallController.SetGridBalls(60);
+                    maxBalls = 60;
+                    break;
+                }
+            case "15x75":
+                {
+                    ballsDrawnController.SetGridBalls(75);
+                    selectBallController.SetGridBalls(75);
+                    maxBalls = 75;
+                    break;
+                }
+            case "15x90":
+                {
+                    ballsDrawnController.SetGridBalls(90);
+                    selectBallController.SetGridBalls(90);
+                    maxBalls = 90;
+                    break;
+                }
         }
     }
 }

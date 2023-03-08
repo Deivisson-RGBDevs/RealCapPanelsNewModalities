@@ -56,9 +56,9 @@ public class GameManager : MonoBehaviour
     public int sceneId;
     void Start()
     {
-        globeDrawnScriptable.ResetInfos();
-        technicalScriptable.ResetInfos();
-        recoveryScriptable.ResetInfos();
+        //globeDrawnScriptable.ResetInfos();
+        //technicalScriptable.ResetInfos();
+        //recoveryScriptable.ResetInfos();
     }
     public void RecoveryGlobeScreen()
     {

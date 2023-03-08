@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 public class BallsDrawnController : MonoBehaviour
@@ -8,14 +9,12 @@ public class BallsDrawnController : MonoBehaviour
 
     [Header("COMPONENTS")]
     [SerializeField] private BallDrawn ballDrawn;
+    [SerializeField] private TextMeshProUGUI txtBallsDrawnCount;
 
     [SerializeField] int maxBalls = 60;
     [SerializeField] private List<BallDrawn> ballsDrawn;
 
-    void Start()
-    {
-        SetGridBalls(maxBalls);
-    }
+  
 
     private void OnEnable()
     {
@@ -38,8 +37,13 @@ public class BallsDrawnController : MonoBehaviour
                 ballsDrawn[i].SetRevocableColor();
             }
         }
+        UpdateBallsDrawnCount();
     }
 
+    private void UpdateBallsDrawnCount()
+    {
+        txtBallsDrawnCount.text = $"Total: {GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count}";
+    }
     private void ClearAllCells()
     {
         for (int i = 0; i < ballsDrawn.Count; i++)
@@ -60,7 +64,7 @@ public class BallsDrawnController : MonoBehaviour
         for (int i = 0; i < _amountBalls; i++)
         {
             BallDrawn inst = Instantiate(ballDrawn, transform.position, Quaternion.identity);
-            inst.transform.SetParent(gameObject.transform);
+            inst.transform.SetParent(gridBallsDrawn.transform);
             ballsDrawn.Add(inst);
         }
     }

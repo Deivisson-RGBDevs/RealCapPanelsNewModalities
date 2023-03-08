@@ -6,10 +6,24 @@ using UnityEngine.Events;
 using RiptideNetworking;
 using System;
 using System.Globalization;
-using System.Linq;
 
 public class TicketController : MonoBehaviour
 {
+    public static TicketController instance { get; private set; }
+    private void Awake()
+    {
+        // If there is an instance, and it's not me, delete myself.
+
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+        DontDestroyOnLoad(gameObject);
+    }
     [Header("TICKET IMAGE")]
     [SerializeField] private Sprite bgticketGlobe;
     [SerializeField] private Sprite bgticketSpin;
@@ -38,7 +52,8 @@ public class TicketController : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private GameObject groupCard;
-    [SerializeField] private Button btBackTicket;
+    [SerializeField] private Button btBack;
+    [SerializeField] private Button btShow;
     [SerializeField] private GameObject bgTicket;
 
     [SerializeField] public bool canShowPrize = false;
@@ -51,21 +66,59 @@ public class TicketController : MonoBehaviour
     public void InitializeVariables()
     {
         bgTicket = transform.GetChild(0).gameObject;
-        btBackTicket = bgTicket.transform.GetComponentInChildren<Button>();
 
         bgTicket.SetActive(false);
     }
+    private void OnEnable()
+    {
+        BtTicketList.OnShowticket += ShowTicketGlobe;
+    }
+    private void OnDisable()
+    {
+        BtTicketList.OnShowticket -= ShowTicketGlobe;
+    }
+    private void ShowTicketGlobe(TicketInfos _ticket)
+    {
+        bgTicket.SetActive(true);
+
+        PopulateTicketInfos(
+           _ticket.nome,
+           _ticket.cpf,
+           _ticket.dataNascimento,
+           _ticket.telefone,
+           _ticket.email,
+           _ticket.bairro,
+           _ticket.municipio,
+           _ticket.estado,
+           _ticket.dataSorteio,
+            GameManager.instance.editionSettings.currentEdition.number,
+           _ticket.valor,
+           _ticket.PDV,
+           _ticket.bairoPDV,
+           _ticket.dataCompra,
+           _ticket.horaCompra,
+           _ticket.numeroTitulo,
+           _ticket.chance,
+           _ticket.numeroCartela,
+           _ticket.numeroSorte,
+           false,
+           3);
+    }
     public void SetButtonEvent(UnityAction action)
     {
-        btBackTicket.onClick.AddListener(action);
+        btBack.onClick.AddListener(action);
     }
 
+    public void HidePanelTicket()
+    {
+        bgTicket.SetActive(false);
+
+    }
     public void SetTicketVisibility()
     {
         if (GameManager.instance.isTicketVisible)
         {
             GameManager.instance.isTicketVisible = false;
-            SendMessageToClientHideTicket(GameManager.instance.isTicketVisible);
             int count = 0;
             for (int i = 0; i < GameManager.instance.globeDrawnScriptable.ticketListVisible.Length; i++)
             {
@@ -85,7 +138,6 @@ public class TicketController : MonoBehaviour
         else
         {
             GameManager.instance.isTicketVisible = true;
-            SendMessageToClientShowTicket(GameManager.instance.isTicketVisible, infosTicket.ticketInfos, infosTicket.numbersCard, infosTicket.isCard, infosTicket.typeRaffle);
         }
         CheckStateVisibility();
         GameManager.instance.WriteInfosGlobe();
@@ -267,34 +319,4 @@ public class TicketController : MonoBehaviour
         public int[] numbersCard;
         public int typeRaffle;
     }
-
-    #region Messages
-    public void SendMessageToClientShowTicket(bool _canShowTicket, string[] _ticketInfos, int[] _numbersCard, bool _isCard, int _typeRaffle)
-    {
-        TcpNetworkManager.instance.Server.SendToAll(GetMessageShowTicket(Message.Create(MessageSendMode.reliable, ServerToClientId.messageShowTicket), _canShowTicket, _ticketInfos, _numbersCard, _isCard, _typeRaffle));
-    }
-    private Message GetMessageShowTicket(Message message, bool _canShowTicket, string[] _ticketInfos, int[] _numbersCard, bool _isCard, int _typeRaffle)
-    {
-        message.AddBool(_canShowTicket);
-        message.AddStrings(_ticketInfos);
-        message.AddInts(_numbersCard);
-        message.AddBool(_isCard);
-        message.AddInt(_typeRaffle);
-        return message;
-    }
-    public void SendMessageToClientHideTicket(bool _canShowTicket)
-    {
-        TcpNetworkManager.instance.Server.SendToAll(GetMessageHideTicket(Message.Create(MessageSendMode.reliable, ServerToClientId.messageHideTicket), _canShowTicket));
-    }
-    private Message GetMessageHideTicket(Message message, bool _canShowTicket)
-    {
-        message.AddBool(_canShowTicket);
-        return message;
-    }
-
-    public void SendMessageToClientVisibilityPrize(bool _canShowPrize)
-    {
-        TcpNetworkManager.instance.Server.SendToAll(GetMessageHideTicket(Message.Create(MessageSendMode.reliable, ServerToClientId.messageVisibilityPrize), _canShowPrize));
-    }
-    #endregion
 }
