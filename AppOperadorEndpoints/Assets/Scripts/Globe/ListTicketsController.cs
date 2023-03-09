@@ -15,7 +15,7 @@ public class ListTicketsController : MonoBehaviour
     }
     public void PopulateListTickets(List<string> _infos, bool _hasWinner)
     {
-        ResetGrid();
+        //ResetGrid();
         
         for (int i = 0; i < _infos.Count; i++)
         {
@@ -35,7 +35,7 @@ public class ListTicketsController : MonoBehaviour
             btTickets.Add(inst);
         }
     }
-    private void ResetGrid()
+    public void ResetGrid()
     {
         for (int i = 0; i < btTickets.Count; i++)
         {
@@ -44,9 +44,5 @@ public class ListTicketsController : MonoBehaviour
         btTickets.Clear();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+   
 }

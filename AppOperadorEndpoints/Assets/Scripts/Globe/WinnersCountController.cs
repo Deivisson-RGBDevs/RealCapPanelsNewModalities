@@ -30,6 +30,7 @@ public class WinnersCountController : MonoBehaviour
 
     private void VerifyWithWinners()
     {
+        listTicketsController.ResetGrid();
         if (GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count > 5)
         {
             SetAmountWinners(2);
