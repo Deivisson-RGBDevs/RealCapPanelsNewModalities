@@ -56,9 +56,23 @@ public class GameManager : MonoBehaviour
     public int sceneId;
     void Start()
     {
-        //globeDrawnScriptable.ResetInfos();
+        globeDrawnScriptable.bolasSorteadas.Clear();
+
         //technicalScriptable.ResetInfos();
         //recoveryScriptable.ResetInfos();
+    }
+    private void OnEnable()
+    {
+        WinnersCountController.OnWinners += SetIsWinner;
+    }
+    private void OnDisable()
+    {
+        WinnersCountController.OnWinners -= SetIsWinner;
+    }
+
+    private void SetIsWinner(bool _isWinner)
+    {
+        isWinner = _isWinner;
     }
     public void RecoveryGlobeScreen()
     {
@@ -249,14 +263,14 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (globeDrawnScriptable.ganhadorContemplado.Length > 0)
-        {
-            isWinner = true;
-        }
-        else
-        {
-            isWinner = false;
-        }
+        //if (globeDrawnScriptable.ganhadorContemplado.Length > 0)
+        //{
+        //    isWinner = true;
+        //}
+        //else
+        //{
+        //    isWinner = false;
+        //}
 
     }
 

@@ -14,6 +14,8 @@ public class SelectBallController : MonoBehaviour
     [SerializeField] int maxBalls = 60;
     [SerializeField] List<SelectBall> selectBalls;
 
+    [SerializeField] private bool canActiveButtons = true;
+
     void Start()
     {
         SetGridBalls(maxBalls);
@@ -28,16 +30,31 @@ public class SelectBallController : MonoBehaviour
         GlobeManager.OnUpdateScreen -= UpdateBtSelectBall;
     }
 
+    private void DisableAllButtons(bool _isWinner)
+    {
+        if (_isWinner)
+        {
+            for (int i = 0; i < selectBalls.Count; i++)
+            {
+                selectBalls[i].SetInteractableButton(false);
+                if (selectBalls[i].GetCanRevocable() == true)
+                    selectBalls[i].SetInteractableButton(true);
+            }
+        }
+    }
     private void UpdateBtSelectBall()
     {
+
         DisableAllHasDrawn();
         ClearCanRevoked();
         for (int i = 0; i < GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count; i++)
-        {   
-            selectBalls[GameManager.instance.globeDrawnScriptable.bolasSorteadas[i]-1].SetHasDrawn(true);
+        {
+            selectBalls[GameManager.instance.globeDrawnScriptable.bolasSorteadas[i] - 1].SetHasDrawn(true);
             if (i == GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count - 1)
                 selectBalls[GameManager.instance.globeDrawnScriptable.bolasSorteadas[i] - 1].SetCanRevoked(true);
         }
+
+        DisableAllButtons(GameManager.instance.isWinner);
     }
 
     private void DisableAllHasDrawn()

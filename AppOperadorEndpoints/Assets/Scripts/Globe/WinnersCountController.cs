@@ -1,9 +1,11 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
+
 public class WinnersCountController : MonoBehaviour
 {
+    public static event Action<bool> OnWinners;
     [Header("COMPONENTS")]
     [SerializeField] private TextMeshProUGUI txtWinnersCount;
     [SerializeField] private TextMeshProUGUI txtOneBallCount;
@@ -15,18 +17,18 @@ public class WinnersCountController : MonoBehaviour
 
     void Start()
     {
-       
+
     }
     private void OnEnable()
     {
-        GlobeManager.OnUpdateScreen += UpdateDrawnBalls;
+        GlobeManager.OnUpdateScreen += VerifyWithWinners;
     }
     private void OnDisable()
     {
-        GlobeManager.OnUpdateScreen -= UpdateDrawnBalls;
+        GlobeManager.OnUpdateScreen -= VerifyWithWinners;
     }
 
-    private void UpdateDrawnBalls()
+    private void VerifyWithWinners()
     {
         if (GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count > 5)
         {
@@ -36,16 +38,18 @@ public class WinnersCountController : MonoBehaviour
 
             listTicketsController.testeInfos = new List<string> { "Bola 03 - 3° Chance - N° 432130", "Bola 45 - 2° Chance - N° 272180" };
             listTicketsController.PopulateListTickets(listTicketsController.testeInfos, true);
+            OnWinners?.Invoke(true);
         }
-        
-        else if (GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count >= 3 && GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count<=20)
-            {
-                SetAmountWinners(0);
-                SetAmountOneBall(3);
-                SetAmountTwoBalls(35);
 
-                listTicketsController.PopulateListTickets(listTicketsController.testeInfos, false);
-            }
+        else if (GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count >= 3 && GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count <= 20)
+        {
+            SetAmountWinners(0);
+            SetAmountOneBall(3);
+            SetAmountTwoBalls(35);
+
+            listTicketsController.PopulateListTickets(listTicketsController.testeInfos, false);
+            OnWinners?.Invoke(false);
+        }
 
     }
     public void SetAmountWinners(int _amount)

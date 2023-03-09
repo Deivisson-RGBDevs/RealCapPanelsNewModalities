@@ -31,6 +31,7 @@ public class SelectBall : MonoBehaviour
         {
             SetNewColor(drawnColor);
             txtNumberBall.color = normalColor;
+            btNumber.GetComponentInChildren<TextMeshProUGUI>().alpha = 0.5f;
         }
         else
         {
@@ -50,14 +51,19 @@ public class SelectBall : MonoBehaviour
         {
             SetNewColor(revocableColor);
             txtNumberBall.color = normalColor;
+
         }
         else
         {
             SetNewColor(normalColor);
             txtNumberBall.color = startColorText;
-
+            btNumber.GetComponentInChildren<TextMeshProUGUI>().alpha = 1;
         }
-        
+
+    }
+    public bool GetCanRevocable()
+    {
+        return canRevocable;
     }
     public int GetNumberBall()
     {
@@ -68,7 +74,7 @@ public class SelectBall : MonoBehaviour
         OnSelectedNumber?.Invoke(hasDrawn, numberBall);
     }
 
-    private void SetInteractableButton(bool _isActive)
+    public void SetInteractableButton(bool _isActive)
     {
         btNumber.interactable = _isActive;
     }

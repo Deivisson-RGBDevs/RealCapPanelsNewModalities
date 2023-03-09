@@ -11,6 +11,8 @@ public class GlobeDrawScriptable : ScriptableObject
     [Header("Ticket Winner")]
     public TicketInfos[] ganhadorContemplado;
     public bool[] ticketListVisible;
+
+
     public void SetNewBall(int ball)
     {
         bolasSorteadas.Add(ball);

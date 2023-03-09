@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7778f46e0283c8458b1ea9689352121, type: 3}
   m_Name: GlobeDrawScriptable
   m_EditorClassIdentifier: 
-  bolasSorteadas: 05000000100000001100000008000000130000001e000000
+  bolasSorteadas: 090000001800000027000000060000001b0000002b000000
   porDuasBolas: 0
   porUmaBolas: []
   valorPremio: 0

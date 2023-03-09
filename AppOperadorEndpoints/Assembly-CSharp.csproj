@@ -774,6 +774,15 @@
     <Reference Include="Unity.SysrootPackage.Editor">
       <HintPath>D:/RGB/RGTech/PROJETO REAL X PREMIADO/GITHUB/RealCapPanelsNewModalities/AppOperadorEndpoints/Library/ScriptAssemblies/Unity.SysrootPackage.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Recorder.Editor">
+      <HintPath>D:/RGB/RGTech/PROJETO REAL X PREMIADO/GITHUB/RealCapPanelsNewModalities/AppOperadorEndpoints/Library/ScriptAssemblies/Unity.Recorder.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder">
+      <HintPath>D:/RGB/RGTech/PROJETO REAL X PREMIADO/GITHUB/RealCapPanelsNewModalities/AppOperadorEndpoints/Library/ScriptAssemblies/Unity.Recorder.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder.Base">
+      <HintPath>D:/RGB/RGTech/PROJETO REAL X PREMIADO/GITHUB/RealCapPanelsNewModalities/AppOperadorEndpoints/Library/ScriptAssemblies/Unity.Recorder.Base.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="IngameDebugConsole.Editor.csproj">
