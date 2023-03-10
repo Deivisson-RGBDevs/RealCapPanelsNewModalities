@@ -68,27 +68,39 @@ MonoBehaviour:
       order: 5
       value: 1500
   currentEdition:
-    name: "Sele\xE7\xE3o de estrelas"
-    id: 9
-    number: 6
-    date: 25/04/2023 -16:00
-    namePlan: VIACAP FILP-PU 433-0101
-    processSUSEP: 15414.624386/2022-05
-    commercialName: ' REAL X PREMIADO V.06'
-    sizeSeries: 200000
+    name: "M\xEAs do trabalhador"
+    id: 8
+    number: 5
+    date: 10/05/2023 -20:00
+    namePlan: VIACAP FILP-PU 397-0103
+    processSUSEP: 15414.615495/2022-03
+    commercialName: ' REAL X PREMIADO V.07'
+    sizeSeries: 9400
     modality: 3
-    typeGlobe: 15x30
+    typeGlobe: 20x60
     chances: 3
-    value: 0.25
+    value: 1.5
     lotteryInfos: []
     globeInfos:
-    - description: R$ 2500,00 Reais
+    - description: R$ 15.000,00 Reais
       order: 1
-      value: 2500
+      value: 15000
     spinInfos:
-    - description: R$ 500,00 Reais
+    - description: R$ 1.500,00 Reais
       order: 1
-      value: 500
+      value: 1500
+    - description: R$ 1.500,00 Reais
+      order: 2
+      value: 1500
+    - description: R$ 1.500,00 Reais
+      order: 3
+      value: 1500
+    - description: R$ 1.500,00 Reais
+      order: 4
+      value: 1500
+    - description: R$ 1.500,00 Reais
+      order: 5
+      value: 1500
   allEditionsTest:
   - name: "Sele\xE7\xE3o de estrelas"
     id: 9

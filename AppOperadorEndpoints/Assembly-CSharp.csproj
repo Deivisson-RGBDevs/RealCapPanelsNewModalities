@@ -690,11 +690,17 @@
     <Reference Include="Unity.2D.Animation.Editor">
       <HintPath>D:/RGB/RGTech/PROJETO REAL X PREMIADO/GITHUB/RealCapPanelsNewModalities/AppOperadorEndpoints/Library/ScriptAssemblies/Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Recorder.Editor">
+      <HintPath>D:/RGB/RGTech/PROJETO REAL X PREMIADO/GITHUB/RealCapPanelsNewModalities/AppOperadorEndpoints/Library/ScriptAssemblies/Unity.Recorder.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.InternalAPIEngineBridge.001">
       <HintPath>D:/RGB/RGTech/PROJETO REAL X PREMIADO/GITHUB/RealCapPanelsNewModalities/AppOperadorEndpoints/Library/ScriptAssemblies/Unity.InternalAPIEngineBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.PixelPerfect">
       <HintPath>D:/RGB/RGTech/PROJETO REAL X PREMIADO/GITHUB/RealCapPanelsNewModalities/AppOperadorEndpoints/Library/ScriptAssemblies/Unity.2D.PixelPerfect.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Recorder.Base">
+      <HintPath>D:/RGB/RGTech/PROJETO REAL X PREMIADO/GITHUB/RealCapPanelsNewModalities/AppOperadorEndpoints/Library/ScriptAssemblies/Unity.Recorder.Base.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>D:/RGB/RGTech/PROJETO REAL X PREMIADO/GITHUB/RealCapPanelsNewModalities/AppOperadorEndpoints/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
@@ -774,14 +780,8 @@
     <Reference Include="Unity.SysrootPackage.Editor">
       <HintPath>D:/RGB/RGTech/PROJETO REAL X PREMIADO/GITHUB/RealCapPanelsNewModalities/AppOperadorEndpoints/Library/ScriptAssemblies/Unity.SysrootPackage.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Recorder.Editor">
-      <HintPath>D:/RGB/RGTech/PROJETO REAL X PREMIADO/GITHUB/RealCapPanelsNewModalities/AppOperadorEndpoints/Library/ScriptAssemblies/Unity.Recorder.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Recorder">
       <HintPath>D:/RGB/RGTech/PROJETO REAL X PREMIADO/GITHUB/RealCapPanelsNewModalities/AppOperadorEndpoints/Library/ScriptAssemblies/Unity.Recorder.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Recorder.Base">
-      <HintPath>D:/RGB/RGTech/PROJETO REAL X PREMIADO/GITHUB/RealCapPanelsNewModalities/AppOperadorEndpoints/Library/ScriptAssemblies/Unity.Recorder.Base.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
