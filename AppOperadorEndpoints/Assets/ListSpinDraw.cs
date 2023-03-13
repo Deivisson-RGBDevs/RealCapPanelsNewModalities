@@ -8,12 +8,6 @@ public class ListSpinDraw : MonoBehaviour
     [SerializeField] private SpinDraw spinDraw;
     [SerializeField] private GameObject content;
 
-
-    void Start()
-    {
-        PopulateListSpinDraw(GameManager.instance.editionSettings.currentEdition.spinInfos.Count);
-    }
-
     public void PopulateListSpinDraw(int _amountSpins)
     {
         spinsDraw.Clear();

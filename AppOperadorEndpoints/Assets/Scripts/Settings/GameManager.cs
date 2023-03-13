@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
     public bool isWinner = false;
     public bool isTicketVisible = false;
     public int ticketWinnerIndex = 0;
+    public int indexSpinDraw = 0;
+
     public int EditionIndex { get; private set; }
 
     public void SetEditionIndex(int value)
@@ -92,12 +94,12 @@ public class GameManager : MonoBehaviour
         //    }
         //}
 
-        UIChangeRaffleType uIChangeRaffleType = FindObjectOfType<UIChangeRaffleType>();
-        if (uIChangeRaffleType != null)
-        {
-            uIChangeRaffleType.CheckStateVisibilityRaffle();
-            uIChangeRaffleType.SelectPanelForActivate(technicalScriptable.panelActive);
-        }
+        //UIChangeRaffleType uIChangeRaffleType = FindObjectOfType<UIChangeRaffleType>();
+        //if (uIChangeRaffleType != null)
+        //{
+        //    uIChangeRaffleType.CheckStateVisibilityRaffle();
+        //    uIChangeRaffleType.SelectPanelForActivate(technicalScriptable.panelActive);
+        //}
     }
     public void RecoverySpinScreen()
     {
@@ -111,12 +113,12 @@ public class GameManager : MonoBehaviour
             spinController.ShowSpinOrder(technicalScriptable.spinIndex);
         }
 
-        UIChangeRaffleType uIChangeRaffleType = FindObjectOfType<UIChangeRaffleType>();
-        if (uIChangeRaffleType != null)
-        {
-            uIChangeRaffleType.CheckStateVisibilityRaffle();
-            uIChangeRaffleType.SelectPanelForActivate(technicalScriptable.panelActive);
-        }
+        //UIChangeRaffleType uIChangeRaffleType = FindObjectOfType<UIChangeRaffleType>();
+        //if (uIChangeRaffleType != null)
+        //{
+        //    uIChangeRaffleType.CheckStateVisibilityRaffle();
+        //    uIChangeRaffleType.SelectPanelForActivate(technicalScriptable.panelActive);
+        //}
     }
     public void LoadSceneGame(string map)
     {

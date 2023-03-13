@@ -6,17 +6,8 @@ public class UiManagerMainScene : MonoBehaviour
 {
     [Header("UI INFOS")]
     [SerializeField] private UIInfosEdition uiInfosEdition;
-    [SerializeField] private LotteryController lotteryController;
     void Start()
     {
-
-        lotteryController.PopulateLotteryFederalExtractions(
-            GameManager.instance.lotteryScriptable.resultadoLoteriaFederalPrimeiroSorteio,
-            GameManager.instance.lotteryScriptable.resultadoLoteriaFederalSegundoSorteio,
-            GameManager.instance.lotteryScriptable.resultadoLoteriaFederalTerceiroSorteio,
-            GameManager.instance.lotteryScriptable.resultadoLoteriaFederalQuartoSorteio,
-            GameManager.instance.lotteryScriptable.resultadoLoteriaFederalQuintoSorteio
-            );
         uiInfosEdition.ShowTechnicalInfos(GameManager.instance.userSettings.tecnicoNome, GameManager.instance.userSettings.tecnicoCPF);
 
     }

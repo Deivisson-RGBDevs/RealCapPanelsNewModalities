@@ -37,7 +37,6 @@ public class BtTicketList : MonoBehaviour
         OnShowticket?.Invoke(GameManager.instance.globeDrawnScriptable.ganhadorContemplado[index]);
         button.image.color = selectedColor;
         isSelected = true;
-        //GameManager.instance.WriteInfosGlobe();
 
     }
     public void SetInteractableButton(bool _isActive)

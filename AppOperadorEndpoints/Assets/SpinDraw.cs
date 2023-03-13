@@ -1,15 +1,23 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
+
 public class SpinDraw : MonoBehaviour
 {
+    public static event Action<TicketInfos> OnShowticket;
+
     [SerializeField] private TextMeshProUGUI txtTitle;
     [SerializeField] private TextMeshProUGUI txtSpinNumber;
     [SerializeField] private Button btDrawNumber;
     [SerializeField] private Button btShowTicket;
     [SerializeField] private CanvasGroup canvasGroup;
 
-
+    private void Start()
+    {
+        btDrawNumber.onClick.AddListener(SetSpinNumber);
+        btShowTicket.onClick.AddListener(ShowTicket);
+    }
     public void SetActive(bool _isActive)
     {
         canvasGroup.interactable = _isActive;
@@ -28,11 +36,15 @@ public class SpinDraw : MonoBehaviour
     {
         txtTitle.text = $"Sortear {_index}° Giro";
     }
-
     
-    public void SetSpinNumber(int _number)
+    public void SetSpinNumber()
     {
-        txtSpinNumber.text = _number.ToString();
+        txtSpinNumber.text = "042311";
     }
-  
+
+    public void ShowTicket()
+    {
+        OnShowticket?.Invoke(GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.indexSpinDraw]);
+    }
+
 }

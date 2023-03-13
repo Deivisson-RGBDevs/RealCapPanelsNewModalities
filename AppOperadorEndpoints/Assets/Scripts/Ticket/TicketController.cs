@@ -72,10 +72,12 @@ public class TicketController : MonoBehaviour
     private void OnEnable()
     {
         BtTicketList.OnShowticket += ShowTicketGlobe;
+        SpinDraw.OnShowticket += ShowTicketGlobe;
     }
     private void OnDisable()
     {
         BtTicketList.OnShowticket -= ShowTicketGlobe;
+        SpinDraw.OnShowticket -= ShowTicketGlobe;
     }
     private void ShowTicketGlobe(TicketInfos _ticket)
     {
@@ -127,12 +129,12 @@ public class TicketController : MonoBehaviour
             }
             if (count == GameManager.instance.globeDrawnScriptable.ticketListVisible.Length)
             {
-                UIChangeRaffleType uIChangeRaffle = FindObjectOfType<UIChangeRaffleType>();
-                if (uIChangeRaffle.panelRaffleGlobe.activeSelf == true)
-                {
-                    uIChangeRaffle.SetStateHasRaffleVisibility();
-                    //uIChangeRaffle.SendMessageVisibilityRaffle();
-                }
+                //UIChangeRaffleType uIChangeRaffle = FindObjectOfType<UIChangeRaffleType>();
+                //if (uIChangeRaffle.panelRaffleGlobe.activeSelf == true)
+                //{
+                //    uIChangeRaffle.SetStateHasRaffleVisibility();
+                //    //uIChangeRaffle.SendMessageVisibilityRaffle();
+                //}
             }
         }
         else
