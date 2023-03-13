@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7560313239795495587}
   - component: {fileID: 195059780130174346}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TxtGenerate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,6 +244,7 @@ GameObject:
   - component: {fileID: 2863953007598680404}
   - component: {fileID: 6411337268436772117}
   - component: {fileID: 732315294}
+  - component: {fileID: 6407515135933175274}
   m_Layer: 5
   m_Name: GenerateTicket
   m_TagString: Untagged
@@ -345,10 +346,27 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2863953007598680406}
   m_Enabled: 1
-  m_Alpha: 0.7
-  m_Interactable: 0
+  m_Alpha: 1
+  m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &6407515135933175274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2863953007598680406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a414d5efed6a15c45b8b6e81073346a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txtTitle: {fileID: 195059780130174346}
+  txtSpinNumber: {fileID: 2505720394053325389}
+  btDrawNumber: {fileID: 663001650936543147}
+  btShowTicket: {fileID: 3998991404993931723}
+  canvasGroup: {fileID: 732315294}
 --- !u!1 &4433912424464944725
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,7 +381,7 @@ GameObject:
   - component: {fileID: 663001650936543147}
   - component: {fileID: 1227690960494811387}
   m_Layer: 5
-  m_Name: BtGenerate
+  m_Name: BtSpinDraw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -503,7 +521,7 @@ GameObject:
   - component: {fileID: 7273982245021560674}
   - component: {fileID: 3058281765905446048}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TxtShowTicket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -637,7 +655,7 @@ GameObject:
   - component: {fileID: 6471818782525912688}
   - component: {fileID: 2505720394053325389}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: TxtSpinNumber
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -690,7 +708,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 124575
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -717,7 +735,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 119.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
