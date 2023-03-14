@@ -425,7 +425,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infosCurrentDraw: {fileID: 1631781358}
   listSpins: {fileID: 783792331}
-  indexDraw: 0
+  indexSpin: 0
 --- !u!4 &476076499
 Transform:
   m_ObjectHideFlags: 0
@@ -448,9 +448,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7804240743405866441, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: drawMode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7804240743405866441, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
       propertyPath: userSettings
       value: 
       objectReference: {fileID: 11400000, guid: 92b84489f176fc142a78faf3d4e743f3, type: 2}
+    - target: {fileID: 7804240743405866441, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
+      propertyPath: currentSpinDraw
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7804240743405866441, guid: d4c05a7adb4a3d4488268bfad5a041c0, type: 3}
       propertyPath: editionSettings
       value: 
@@ -1900,6 +1908,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3822545032327328226, guid: ee8edf60acca0eb46bce9ccac4c4d2cc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6660546321083300836, guid: ee8edf60acca0eb46bce9ccac4c4d2cc, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2362,7 +2374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8055962470911263890, guid: ee8edf60acca0eb46bce9ccac4c4d2cc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8055962470911263894, guid: ee8edf60acca0eb46bce9ccac4c4d2cc, type: 3}
       propertyPath: m_Pivot.x

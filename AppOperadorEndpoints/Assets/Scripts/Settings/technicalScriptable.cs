@@ -96,7 +96,7 @@ public class TechnicalScriptable : ScriptableObject
             GameManager.instance.globeDrawnScriptable.ticketListVisible[i] = ticketsShown[i];
         }
         GameManager.instance.spinScriptable.sorteioOrdem = spinIndex;
-        GameManager.instance.spinResultScriptable.ganhadorContemplado = ticketSpin;
+        //GameManager.instance.spinResultScriptable.ganhadorContemplado = ticketSpin;
 
         if (currentSceneID == 2)
         {

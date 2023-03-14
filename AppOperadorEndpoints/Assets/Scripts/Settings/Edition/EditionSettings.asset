@@ -141,18 +141,18 @@ MonoBehaviour:
       order: 1
       value: 15000
     spinInfos:
-    - description: R$ 1.500,00 Reais
+    - description: Um Notebook Novo
       order: 1
       value: 1500
-    - description: R$ 1.500,00 Reais
+    - description: Um Notebook Novo
       order: 2
       value: 1500
-    - description: R$ 1.500,00 Reais
+    - description: Um Notebook Novo
       order: 3
       value: 1500
-    - description: R$ 1.500,00 Reais
+    - description: Um Notebook Novo
       order: 4
       value: 1500
-    - description: R$ 1.500,00 Reais
+    - description: Um Notebook Novo
       order: 5
       value: 1500

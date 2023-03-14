@@ -8,24 +8,43 @@ public class ListSpinDraw : MonoBehaviour
     [SerializeField] private SpinDraw spinDraw;
     [SerializeField] private GameObject content;
 
+
     public void PopulateListSpinDraw(int _amountSpins)
     {
         spinsDraw.Clear();
 
-        for(int i = 0; i < _amountSpins; i++)
+        for (int i = 0; i < _amountSpins; i++)
         {
             SpinDraw inst = Instantiate(spinDraw, transform.position, Quaternion.identity);
             inst.transform.SetParent(content.transform);
+            inst.SetIndex(i);
             inst.SetActive(false);
-            inst.PopulateTitle(i+1);
+            inst.PopulateTitle(i + 1);
             spinsDraw.Add(inst);
         }
     }
-    public void ActiveCurrentDraw(int _index)
+    public void ActiveNewDraw(int _index)
     {
         spinsDraw[_index].SetActive(true);
     }
 
+    public void ActiveFirstDraw()
+    {
+        spinsDraw[0].SetActive(true);
+    }
+
+    public int CountFinishDraw()
+    {
+        int count = 0;
+        for (int i = 0; i < spinsDraw.Count; i++)
+        {
+            if (spinsDraw[i].hasDrawn == true)
+            {
+                count++;
+            }
+        }
+        return count;
+    }
     private void ResetGrid()
     {
         for (int i = 0; i < spinsDraw.Count; i++)
@@ -34,8 +53,4 @@ public class ListSpinDraw : MonoBehaviour
         }
     }
     // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

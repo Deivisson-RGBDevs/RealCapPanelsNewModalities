@@ -47,7 +47,32 @@ public class GameManager : MonoBehaviour
     public bool isWinner = false;
     public bool isTicketVisible = false;
     public int ticketWinnerIndex = 0;
-    public int indexSpinDraw = 0;
+    public int currentSpinDraw = 0;
+    public int sceneId;
+
+    public enum DrawMode
+    {
+        Await = 1,
+        Lottery = 2,
+        Globe = 3,
+        Spin = 4
+    }
+    [SerializeField] private DrawMode drawMode;
+
+    public void SetDrawMode(DrawMode _newDrawMode)
+    {
+        drawMode = _newDrawMode;
+    }
+
+    public DrawMode GetCurrentDrawMode()
+    {
+        return drawMode;
+    }
+
+    public bool CompareCurrentDrawMode(DrawMode _compareDrawMode)
+    {
+        return drawMode == _compareDrawMode ? true : false;
+    }
 
     public int EditionIndex { get; private set; }
 
@@ -55,14 +80,13 @@ public class GameManager : MonoBehaviour
     {
         EditionIndex = value;
     }
-    public int sceneId;
+
     void Start()
     {
         globeDrawnScriptable.bolasSorteadas.Clear();
-
-        //technicalScriptable.ResetInfos();
-        //recoveryScriptable.ResetInfos();
+        SetDrawMode(DrawMode.Await);
     }
+
     private void OnEnable()
     {
         WinnersCountController.OnWinners += SetIsWinner;

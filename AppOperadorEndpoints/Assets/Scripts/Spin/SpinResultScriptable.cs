@@ -6,9 +6,9 @@ using UnityEngine;
 public class SpinResultScriptable : ScriptableObject
 {
     public string numeroSorteado;
-    public int sorteioOrdem=1;
+    public int sorteioOrdem = 1;
     [Header("Ticket Winner")]
-    public TicketInfos ganhadorContemplado;
+    public List<TicketInfos> ganhadorContemplado;
 
     public void SetNewRaffleNumber()
     {
@@ -18,8 +18,6 @@ public class SpinResultScriptable : ScriptableObject
             int random = Random.Range(0, 9);
             numeroSorteado += random.ToString();
         }
-        ganhadorContemplado.numeroSorte = numeroSorteado;
-        ganhadorContemplado.numeroTitulo = $"0{numeroSorteado}";
 
     }
 

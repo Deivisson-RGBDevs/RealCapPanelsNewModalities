@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\NetworkManager.cs" />
     <Compile Include="Assets\Scripts\Globe\SelectBallController.cs" />
+    <Compile Include="Assets\ListSpinDraw.cs" />
     <Compile Include="Assets\Scripts\Settings\Edition\EditionCompleteInfos.cs" />
     <Compile Include="Assets\Scripts\Spin\SpinScriptable.cs" />
     <Compile Include="Assets\PanelConfirmBall.cs" />
@@ -79,6 +80,7 @@
     <Compile Include="Assets\Scripts\Login\LoginController.cs" />
     <Compile Include="Assets\Scripts\Spin\SpinResultScriptable.cs" />
     <Compile Include="Assets\Scripts\Spin\SpinController.cs" />
+    <Compile Include="Assets\SpinDraw.cs" />
     <Compile Include="Assets\Scripts\Settings\User\UserSettingsScriptable.cs" />
     <Compile Include="Assets\Scripts\Globe\BallDrawn.cs" />
     <Compile Include="Assets\Scripts\Settings\TopBarController.cs" />
@@ -93,8 +95,6 @@
     <Compile Include="Assets\Scripts\Settings\Edition\EditionSettingsScriptable.cs" />
     <Compile Include="Assets\Scripts\Settings\UiInfosRaffle.cs" />
     <Compile Include="Assets\Scripts\Spin\SpinManager.cs" />
-    <Compile Include="Assets\ListSpinDraw.cs" />
-    <Compile Include="Assets\SpinDraw.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

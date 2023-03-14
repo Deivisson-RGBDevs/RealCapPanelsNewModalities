@@ -12,11 +12,14 @@ public class SpinDraw : MonoBehaviour
     [SerializeField] private Button btDrawNumber;
     [SerializeField] private Button btShowTicket;
     [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private int index;
+    public bool hasDrawn = false;
 
     private void Start()
     {
         btDrawNumber.onClick.AddListener(SetSpinNumber);
         btShowTicket.onClick.AddListener(ShowTicket);
+        btShowTicket.interactable = false;
     }
     public void SetActive(bool _isActive)
     {
@@ -32,6 +35,10 @@ public class SpinDraw : MonoBehaviour
             txtSpinNumber.alpha = 0.5f;
         }
     }
+    public void SetIndex(int _index)
+    {
+        index = _index;
+    }
     public void PopulateTitle(int _index)
     {
         txtTitle.text = $"Sortear {_index}° Giro";
@@ -39,12 +46,14 @@ public class SpinDraw : MonoBehaviour
     
     public void SetSpinNumber()
     {
-        txtSpinNumber.text = "042311";
+        txtSpinNumber.text = GameManager.instance.spinResultScriptable.ganhadorContemplado[index].numeroSorte;
+        btShowTicket.interactable = true;
     }
 
     public void ShowTicket()
     {
-        OnShowticket?.Invoke(GameManager.instance.globeDrawnScriptable.ganhadorContemplado[GameManager.instance.indexSpinDraw]);
+        hasDrawn = true;
+        OnShowticket?.Invoke(GameManager.instance.spinResultScriptable.ganhadorContemplado[index]);
     }
 
 }

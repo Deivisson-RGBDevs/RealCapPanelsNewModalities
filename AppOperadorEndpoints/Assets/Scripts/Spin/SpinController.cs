@@ -113,7 +113,7 @@ public class SpinController : MonoBehaviour
     private IEnumerator RaffleNumberLuckySpin()
     {
         currentNumberRaffled = GameManager.instance.spinResultScriptable.numeroSorteado;
-        GameManager.instance.technicalScriptable.UpdateSpinConfig(currentNumberRaffled, GameManager.instance.spinResultScriptable.ganhadorContemplado);
+        //GameManager.instance.technicalScriptable.UpdateSpinConfig(currentNumberRaffled, GameManager.instance.spinResultScriptable.ganhadorContemplado);
         GameManager.instance.spinScriptable.sorteioOrdem = GameManager.instance.technicalScriptable.spinIndex;
         ShowSpinOrder(GameManager.instance.spinScriptable.sorteioOrdem);
         indexSpin = GameManager.instance.spinScriptable.sorteioOrdem;
@@ -210,28 +210,28 @@ public class SpinController : MonoBehaviour
     }
     public void PopulateTicketSpin()
     {
-        ticketController.PopulateTicketInfos(
-            GameManager.instance.spinResultScriptable.ganhadorContemplado.nome,
-            GameManager.instance.spinResultScriptable.ganhadorContemplado.cpf,
-            GameManager.instance.spinResultScriptable.ganhadorContemplado.dataNascimento,
-            GameManager.instance.spinResultScriptable.ganhadorContemplado.telefone,
-            GameManager.instance.spinResultScriptable.ganhadorContemplado.email,
-            GameManager.instance.spinResultScriptable.ganhadorContemplado.bairro,
-            GameManager.instance.spinResultScriptable.ganhadorContemplado.municipio,
-            GameManager.instance.spinResultScriptable.ganhadorContemplado.estado,
-            GameManager.instance.spinResultScriptable.ganhadorContemplado.dataSorteio,
-             GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].number,
-            GameManager.instance.spinResultScriptable.ganhadorContemplado.valor,
-            GameManager.instance.spinResultScriptable.ganhadorContemplado.PDV,
-            GameManager.instance.spinResultScriptable.ganhadorContemplado.bairoPDV,
-            GameManager.instance.spinResultScriptable.ganhadorContemplado.dataCompra,
-            GameManager.instance.spinResultScriptable.ganhadorContemplado.horaCompra,
-            GameManager.instance.spinResultScriptable.ganhadorContemplado.numeroTitulo,
-            GameManager.instance.spinResultScriptable.ganhadorContemplado.chance,
-            GameManager.instance.spinResultScriptable.ganhadorContemplado.numeroCartela,
-            GameManager.instance.spinResultScriptable.ganhadorContemplado.numeroSorte,
-            false,
-            3);
+        //ticketController.PopulateTicketInfos(
+        //    GameManager.instance.spinResultScriptable.ganhadorContemplado.nome,
+        //    GameManager.instance.spinResultScriptable.ganhadorContemplado.cpf,
+        //    GameManager.instance.spinResultScriptable.ganhadorContemplado.dataNascimento,
+        //    GameManager.instance.spinResultScriptable.ganhadorContemplado.telefone,
+        //    GameManager.instance.spinResultScriptable.ganhadorContemplado.email,
+        //    GameManager.instance.spinResultScriptable.ganhadorContemplado.bairro,
+        //    GameManager.instance.spinResultScriptable.ganhadorContemplado.municipio,
+        //    GameManager.instance.spinResultScriptable.ganhadorContemplado.estado,
+        //    GameManager.instance.spinResultScriptable.ganhadorContemplado.dataSorteio,
+        //     GameManager.instance.editionSettings.allEditions[GameManager.instance.EditionIndex].number,
+        //    GameManager.instance.spinResultScriptable.ganhadorContemplado.valor,
+        //    GameManager.instance.spinResultScriptable.ganhadorContemplado.PDV,
+        //    GameManager.instance.spinResultScriptable.ganhadorContemplado.bairoPDV,
+        //    GameManager.instance.spinResultScriptable.ganhadorContemplado.dataCompra,
+        //    GameManager.instance.spinResultScriptable.ganhadorContemplado.horaCompra,
+        //    GameManager.instance.spinResultScriptable.ganhadorContemplado.numeroTitulo,
+        //    GameManager.instance.spinResultScriptable.ganhadorContemplado.chance,
+        //    GameManager.instance.spinResultScriptable.ganhadorContemplado.numeroCartela,
+        //    GameManager.instance.spinResultScriptable.ganhadorContemplado.numeroSorte,
+        //    false,
+        //    3);
     }
 
     //private void FixedUpdate()
