@@ -43,13 +43,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 578178efee2f1104581b8b4021255e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globeOrderIndex: 1
-  spinOrderIndex: 1
-  globalScriptable: {fileID: 11400000, guid: a86d0443ef0906d41931e39e7f15d415, type: 2}
+  recoveryScriptable: {fileID: 11400000, guid: 1325e216120bd09469615792793e5045, type: 2}
+  userSettings: {fileID: 11400000, guid: 92b84489f176fc142a78faf3d4e743f3, type: 2}
+  editionSettings: {fileID: 11400000, guid: c7fefe5c549a56645bb8004874284146, type: 2}
+  technicalScriptable: {fileID: 11400000, guid: c04fe8976b9cc6441a0729adba0b9db4, type: 2}
   lotteryScriptable: {fileID: 11400000, guid: 6485ecbdc2e946248bc4a4d944995445, type: 2}
   lotteryResultScriptable: {fileID: 11400000, guid: be06d64e6f84b97488e2ba62112eb6f1, type: 2}
   globeScriptable: {fileID: 11400000, guid: f3acd21e666247143b50164a5c3c4483, type: 2}
-  globeRaffleScriptable: {fileID: 11400000, guid: dcbb083204bf825439a4620a15a0e068, type: 2}
+  globeDrawnScriptable: {fileID: 11400000, guid: dcbb083204bf825439a4620a15a0e068, type: 2}
   spinScriptable: {fileID: 11400000, guid: ed55f493aac965e4890fa3bf5ed2a5af, type: 2}
   spinResultScriptable: {fileID: 11400000, guid: 5c1fe950a5f58a344925d44243194dd2, type: 2}
+  isBackup: 0
   isConnected: 0
+  isVisibleRaffle: 0
+  isWinner: 0
+  isTicketVisible: 0
+  ticketWinnerIndex: 0
+  currentSpinDraw: 1
+  sceneId: 0
+  drawMode: 3

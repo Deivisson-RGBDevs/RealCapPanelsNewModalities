@@ -107,7 +107,6 @@ public class TicketController : MonoBehaviour
            _ticket.chance,
            _ticket.numeroCartela,
            _ticket.numeroSorte,
-           false,
            3);
     }
     public void SetButtonEvent(UnityAction action)
@@ -171,7 +170,7 @@ public class TicketController : MonoBehaviour
     public void PopulateTicketInfos(string _nameWinner, string _cpf, string _birthDate, string _phone,
        string _email, string _district, string _county, string _state, string _dateRaffle, int _editionName, float _value,
        string _PDV, string _districtPDV, string _dateBuy, string _hourBuy, string _ticketNumber, string _chance,
-       List<int> _numbersCard, string _luckyNumber, bool _isCard = false, int _typeRaffle = 1)
+       List<int> _numbersCard, string _luckyNumber, int _typeRaffle = 1)
     {
         nameWinner.text = $"{CheckIsNullInfo(_nameWinner)}";
         cpf.text = $"{HidePartCPF(_cpf)}";
@@ -190,7 +189,7 @@ public class TicketController : MonoBehaviour
         numberTicket.text = CheckIsNullInfo(_ticketNumber);
         Chance.text = $"{CheckIsNullInfo(_chance)}";
 
-        if (_isCard)
+        if (GameManager.instance.GetCurrentDrawMode()== GameManager.DrawMode.Globe)
         {
             groupCard.SetActive(true);
             luckyNumber.gameObject.SetActive(false);
@@ -235,7 +234,7 @@ public class TicketController : MonoBehaviour
 
         if (!GameManager.instance.isBackup)
         {
-            infosTicket.isCard = _isCard;
+            //infosTicket.isCard = _isCard;
             infosTicket.typeRaffle = _typeRaffle;
             infosTicket.ticketInfos = _ticketInfos;
             infosTicket.numbersCard = _numbersCard.ToArray();

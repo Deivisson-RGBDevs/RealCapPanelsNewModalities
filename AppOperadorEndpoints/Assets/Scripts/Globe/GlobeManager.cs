@@ -11,6 +11,8 @@ public class GlobeManager : MonoBehaviour
     [SerializeField] int maxBalls = 60;
     void Start()
     {
+        GameManager.instance.SetDrawMode(GameManager.DrawMode.Globe);
+
         infosCurrentDraw.PopulateInfosCurrentDraw(1, "15 mil reais", 15000);
         SetupMaxBalls(GameManager.instance.editionSettings.currentEdition.typeGlobe);
     }
