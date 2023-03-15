@@ -51,8 +51,9 @@ public class TicketController : MonoBehaviour
     [Header("RAFFLE INFOS")]
     [SerializeField] private TextMeshProUGUI numberTicket;
     [SerializeField] private TextMeshProUGUI Chance;
-    [SerializeField] private List<GameObject> numbersCard;
     [SerializeField] private TextMeshProUGUI luckyNumber;
+    [Header("CARDS")]
+    [SerializeField] private CardGridTicket cellGrid;
 
     [Header("Settings")]
     [SerializeField] private GameObject groupCard;
@@ -74,7 +75,7 @@ public class TicketController : MonoBehaviour
         bgTicket.SetActive(false);
     }
     private void OnEnable()
-    {
+    {   
         BtTicketList.OnShowticket += ShowTicket;
         SpinDraw.OnShowticket += ShowTicket;
     }
@@ -85,6 +86,7 @@ public class TicketController : MonoBehaviour
     }
     private void ShowTicket(TicketInfos _ticket)
     {
+        //cellGrid.PopulateGrid();
         bgTicket.SetActive(true);
 
         PopulateTicketInfos(
@@ -120,7 +122,6 @@ public class TicketController : MonoBehaviour
         {
             OnNextSpinDraw?.Invoke();
         }
-       
     }
     public void SetTicketVisibility()
     {
@@ -193,15 +194,15 @@ public class TicketController : MonoBehaviour
         {
             groupCard.SetActive(true);
             luckyNumber.gameObject.SetActive(false);
-            for (int i = 0; i < _numbersCard.Count; i++)
-            {
-                numbersCard[i].GetComponentInChildren<TextMeshProUGUI>().text = _numbersCard[i].ToString();
-                numbersCard[i].GetComponentInChildren<TextMeshProUGUI>().color = Color.blue;
-                if (_numbersCard[i] == GameManager.instance.globeDrawnScriptable.bolasSorteadas[GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count - 1])
-                {
-                    numbersCard[i].GetComponentInChildren<TextMeshProUGUI>().color = Color.red;
-                }
-            }
+            //for (int i = 0; i < _numbersCard.Count; i++)
+            //{
+            //    cellCards[i].GetComponentInChildren<TextMeshProUGUI>().text = _numbersCard[i].ToString();
+            //    cellCards[i].GetComponentInChildren<TextMeshProUGUI>().color = Color.blue;
+            //    if (_numbersCard[i] == GameManager.instance.globeDrawnScriptable.bolasSorteadas[GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count - 1])
+            //    {
+            //        cellCards[i].GetComponentInChildren<TextMeshProUGUI>().color = Color.red;
+            //    }
+            //}
             imgTicket.sprite = bgticketGlobe;
         }
         else
@@ -238,10 +239,9 @@ public class TicketController : MonoBehaviour
             infosTicket.typeRaffle = _typeRaffle;
             infosTicket.ticketInfos = _ticketInfos;
             infosTicket.numbersCard = _numbersCard.ToArray();
-
         }
     }
- 
+  
     #region FORMATTERS
 
     private string RevertDate(string date)

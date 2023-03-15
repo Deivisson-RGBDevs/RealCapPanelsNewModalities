@@ -44,7 +44,6 @@ public class SelectBallController : MonoBehaviour
     }
     private void UpdateBtSelectBall()
     {
-
         DisableAllHasDrawn();
         ClearCanRevoked();
         for (int i = 0; i < GameManager.instance.globeDrawnScriptable.bolasSorteadas.Count; i++)
