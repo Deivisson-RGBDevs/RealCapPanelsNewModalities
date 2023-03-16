@@ -60,8 +60,8 @@
     <Compile Include="Assets\_Core\Scripts\Globe\PossiblesWinners.cs" />
     <Compile Include="Assets\PrizeImageController.cs" />
     <Compile Include="Assets\_Core\ExternalAssets\Polygon Arsenal\Demo\Scripts\PolygonEffectCycler.cs" />
-    <Compile Include="Assets\_Core\Scripts\Globe\BigBall.cs" />
-    <Compile Include="Assets\_Core\Scripts\Globe\BallController.cs" />
+    <Compile Include="Assets\_Core\Scripts\Globe\Balls\BigBall.cs" />
+    <Compile Include="Assets\_Core\Scripts\Globe\Balls\BallController.cs" />
     <Compile Include="Assets\_Core\Scripts\Lottery\UiLotteryController.cs" />
     <Compile Include="Assets\_Core\Scripts\AudioManager\MixerControl.cs" />
     <Compile Include="Assets\_Core\Scripts\Global\StandyByScreen.cs" />
@@ -101,7 +101,7 @@
     <Compile Include="Assets\_Core\Scripts\Globe\TotalBallRaffle.cs" />
     <Compile Include="Assets\_Core\Scripts\Global\ConfetsController.cs" />
     <Compile Include="Assets\_Core\Scripts\AudioManager\SoundSFX.cs" />
-    <Compile Include="Assets\_Core\Scripts\Globe\Ball.cs" />
+    <Compile Include="Assets\_Core\Scripts\Globe\Balls\Ball.cs" />
     <Compile Include="Assets\_Core\Scripts\Globe\GlobeManager.cs" />
     <Compile Include="Assets\_Core\ExternalAssets\Polygon Arsenal\Scripts\PolygonRotation.cs" />
     <Compile Include="Assets\_Core\ExternalAssets\Polygon Arsenal\Demo\Scripts\PolygonBeamScript.cs" />
@@ -111,6 +111,7 @@
     <Compile Include="Assets\_Core\Scripts\Globe\GlobeInfos.cs" />
     <Compile Include="Assets\_Core\Scripts\AudioManager\AudioManager.cs" />
     <Compile Include="Assets\_Core\Scripts\LuckySpin\NumberSlot.cs" />
+    <Compile Include="Assets\_Core\Scripts\Globe\Balls\RecoveryBall.cs" />
     <None Include="Assets\_Core\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\_Core\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\_Core\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

@@ -1,8 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using System.Linq;
-using RiptideNetworking;
 
 public class GlobeManager : MonoBehaviour
 {
@@ -11,8 +8,7 @@ public class GlobeManager : MonoBehaviour
     [SerializeField] private TotalBallRaffle totalBallsCount;
     [SerializeField] private PossiblesWinners lastBallRaffle;
 
-    [Header("Variables")]
-
+    [Header("CONTROLLERS")]
     [SerializeField] private BallController ballController;
     [SerializeField] private WinnersScreen winnersScreen;
 
@@ -26,7 +22,6 @@ public class GlobeManager : MonoBehaviour
     public bool canRafleeBall = true;
     private bool isPlayWinnerSound = false;
 
-
     void Start()
     {
         InitializeVariables();
@@ -35,7 +30,7 @@ public class GlobeManager : MonoBehaviour
     {
         isWinner = false;
         winnersScreen = FindObjectOfType<WinnersScreen>();
-        ballController.GetLastIndexBallsRaffle(GameManager.instance.globeScriptable.numberBalls.Count, GameManager.instance.globeScriptable.numberBalls);
+        //ballController.GetLastIndexBallsRaffle(GameManager.instance.globeScriptable.ballsDrawn.Count, GameManager.instance.globeScriptable.ballsDrawn);
         totalBallsCount.SetInfoTotalBall((GameManager.instance.globeScriptable.ballRaffledCount).ToString());
         lastBallRaffle.SetTicketForOneBallInfo(GameManager.instance.globeScriptable.possiblesWinnersCount.ToString());
         if (GameManager.instance.globeScriptable.possiblesWinnersCount > 0)
@@ -52,14 +47,14 @@ public class GlobeManager : MonoBehaviour
     private void OnEnable()
     {
         BallController.OnBallRaffled += VerifyWinner;
-        BallController.OnBallRaffled += SetUpdateInfoScreen;
-        BallController.OnBallRaffled += PermissionCallNewBallBall;
+        BallController.OnBallDrawn += PermissionCallNewBallBall;
+        GameManager.OnNewBallRecieve += VerifyBalls;
     }
     private void OnDisable()
     {
-        BallController.OnBallRaffled -= VerifyWinner;
+        GameManager.OnNewBallRecieve -= VerifyBalls;
+        BallController.OnBallDrawn -= PermissionCallNewBallBall;
         BallController.OnBallRaffled -= SetUpdateInfoScreen;
-        BallController.OnBallRaffled -= PermissionCallNewBallBall;
     }
     public void PopulateInfosGlobe(string _editionName, string _editionNumber, string _date, int _order, string _description, float _value)
     {
@@ -78,18 +73,17 @@ public class GlobeManager : MonoBehaviour
     }
     public void UpdateScreenRaffle(string[] _ballsRaffled, int _forOneBall, int _winnersCount, float _prizeValue)
     {
-        if (GameManager.instance.globeScriptable.numberBalls.Count < _ballsRaffled.Length)
+        if (GameManager.instance.globeScriptable.ballsDrawn.Count < _ballsRaffled.Length)
         {
             VerifyBalls();
-            GameManager.instance.globeScriptable.numberBalls.Clear();
-            GameManager.instance.globeScriptable.numberBalls.AddRange(_ballsRaffled.ToList());
+            GameManager.instance.globeScriptable.ballsDrawn.Clear();
+            //GameManager.instance.globeScriptable.ballsDrawn.AddRange(_ballsRaffled.ToList());
 
         }
-        else if (GameManager.instance.globeScriptable.numberBalls.Count > _ballsRaffled.Length)
+        else if (GameManager.instance.globeScriptable.ballsDrawn.Count > _ballsRaffled.Length)
         {
             ballController.SetRevokedBall(_ballsRaffled);
             UpdateInfosScreen(_ballsRaffled.Length, _forOneBall);
-
         }
 
         if (_forOneBall > 0)
@@ -107,18 +101,17 @@ public class GlobeManager : MonoBehaviour
 
         GameManager.instance.globeScriptable.ballRaffledCount = _ballsRaffled.Length;
         GameManager.instance.globeScriptable.possiblesWinnersCount = _forOneBall;
-
     }
     public void VerifyBalls()
     {
-        if (GameManager.instance.globeScriptable.indexBalls < GameManager.instance.globeScriptable.numberBalls.Count)
-            if (timeToSpawn <= 0)
+        if (GameManager.instance.globeScriptable.indexBalls < GameManager.instance.globeScriptable.ballsDrawn.Count)
+            if (timeToSpawn <= 0.1f)
             {
                 if (canRafleeBall == true)
                 {
-                    if (GameManager.instance.globeScriptable.numberBalls.Count <= 60)
+                    if (GameManager.instance.globeScriptable.ballsDrawn.Count <= 60)
                     {
-                        StartCoroutine(ballController.ShowBigBall(GameManager.instance.globeScriptable.numberBalls[GameManager.instance.globeScriptable.indexBalls]));
+                        StartCoroutine(ballController.ShowBigBall(GameManager.instance.globeScriptable.ballsDrawn[GameManager.instance.globeScriptable.indexBalls]));
                         timeToSpawn = 1f;
                         canRafleeBall = false;
                     }
@@ -137,35 +130,23 @@ public class GlobeManager : MonoBehaviour
                 AudioManager.instance.PlaySFX("Winner");
                 isPlayWinnerSound = true;
             }
-
         }
     }
     public void SetUpdateInfoScreen()
     {
         UpdateInfosScreen(GameManager.instance.globeScriptable.ballRaffledCount, GameManager.instance.globeScriptable.possiblesWinnersCount);
-
     }
     private void UpdateInfosScreen(int _totalNumberBalls, int _forOneBalls)
     {
         totalBallsCount.SetInfoTotalBall(_totalNumberBalls.ToString());
         lastBallRaffle.SetTicketForOneBallInfo(_forOneBalls.ToString());
     }
-    #region SEND MESSAGES
-
-   
-
-
     private void FixedUpdate()
     {
         if (timeToSpawn > 0)
         {
             timeToSpawn -= Time.deltaTime;
         }
-
-
-
     }
-    #endregion
-
 }
 

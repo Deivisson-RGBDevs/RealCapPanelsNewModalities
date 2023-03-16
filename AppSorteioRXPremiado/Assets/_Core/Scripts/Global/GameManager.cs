@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-using UnityEngine;
-using RiptideNetworking;
+﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
-using System.Reflection;
 using System.Globalization;
-
+using System;
 public class GameManager : MonoBehaviour
 {
 
@@ -29,6 +25,8 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+
+    public static event Action OnNewBallRecieve;
     public GlobeScriptable globeScriptable;
     public LuckySpinScriptable luckySpinScriptable;
 
@@ -43,6 +41,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         InitializeVariables();
+        CallChangeSceneRaffle("Globe");
     }
     public string FormatMoneyInfo(float value, int decimalHouse = 2)
     {
@@ -54,8 +53,8 @@ public class GameManager : MonoBehaviour
         Invoke("ConnectServer", 1f);
         Application.targetFrameRate = 60;
         globeScriptable.ResetRaffle();
-        WinnersScreen.instance.SetWinnersScreenVisibility(false, 0.1f);
-        TicketScreen.instance.SetTicketVisibility(false, 0.1f);
+        //WinnersScreen.instance.SetWinnersScreenVisibility(false, 0.1f);
+        //TicketScreen.instance.SetTicketVisibility(false, 0.1f);
     }
     public void ConnectServer()
     {
@@ -110,6 +109,18 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.D))
             {
                 Application.Quit();
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            int number = 0;
+            number = UnityEngine.Random.Range(1, 61);
+            if (!globeScriptable.ballsDrawn.Contains(number))
+            {
+                print(number.ToString("00"));
+                globeScriptable.AddNewBall(number);
+                OnNewBallRecieve?.Invoke();
             }
         }
     }

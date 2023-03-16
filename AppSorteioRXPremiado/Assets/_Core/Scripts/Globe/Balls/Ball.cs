@@ -24,10 +24,10 @@ public class Ball : MonoBehaviour
     {
         ballTransform = GetComponent<Transform>();
     }
-    public void SetInfoBall(string _numberBall)
+    public void SetInfoBall(int _numberBall)
     {
-        numberBall = _numberBall;
-        textNumber.text = _numberBall;
+        numberBall = _numberBall.ToString("D2");
+        textNumber.text = _numberBall.ToString("D2");
         imageBall.enabled = true;
         ChangeColorBgLine();
     

@@ -32,14 +32,12 @@ public class UiGlobeManager : MonoBehaviour
 
     void Start()
     {
-
         InitializeVariables();
     }
 
     private void InitializeVariables()
     {
         globeController = FindObjectOfType<GlobeManager>();
-     
         StartCoroutine(ActiveRaffle());
         UpdateOrder();
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class BigBall : MonoBehaviour
 {
@@ -24,18 +25,20 @@ public class BigBall : MonoBehaviour
     {
         SetBgBallWithLogo();
     }
-    public void SetInfoInBigBall(string _numberBall, bool isAnim = true)
+    public void SetInfoInBigBall(int _numberBall, bool isAnim = true)
     {
         if (isAnim)
         {
             animBall.SetTrigger("isShow");
         }
         imageBall.sprite = bgBall;
-        numberBall = _numberBall;
-        textNumber.text = _numberBall;
+        numberBall = _numberBall.ToString("D2");
+        textNumber.text = _numberBall.ToString("D2");
         imageBall.enabled = true;
         ChangeColorBgLine();
-  
+        
+        //GameManager.instance.globeScriptable.indexBalls++;
+
     }
 
     public void SetBgBallWithLogo()

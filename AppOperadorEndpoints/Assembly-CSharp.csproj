@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\Globe\GlobeDrawScriptable.cs" />
     <Compile Include="Assets\Scripts\Ticket\TicketInfos.cs" />
     <Compile Include="Assets\Scripts\Lottery\LotteryResultScriptable.cs" />
+    <Compile Include="Assets\Scripts\Ticket\CardGridTicket.cs" />
     <Compile Include="Assets\Scripts\Settings\Edition\EditionInfoCard.cs" />
     <Compile Include="Assets\Scripts\Ticket\TicketController.cs" />
     <Compile Include="Assets\Scripts\Globe\BallsDrawnController.cs" />
@@ -94,9 +95,8 @@
     <Compile Include="Assets\Scripts\Settings\RecoveryScriptable.cs" />
     <Compile Include="Assets\Scripts\Settings\Edition\EditionSettingsScriptable.cs" />
     <Compile Include="Assets\Scripts\Settings\UiInfosRaffle.cs" />
-    <Compile Include="Assets\Scripts\Spin\SpinManager.cs" />
     <Compile Include="Assets\Scripts\Ticket\CellCardTicket.cs" />
-    <Compile Include="Assets\Scripts\Ticket\CardGridTicket.cs" />
+    <Compile Include="Assets\Scripts\Spin\SpinManager.cs" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

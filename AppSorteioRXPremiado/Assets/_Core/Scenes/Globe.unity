@@ -656,6 +656,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1357573824}
   - component: {fileID: 1357573823}
+  - component: {fileID: 1357573825}
   m_Layer: 0
   m_Name: BallController
   m_TagString: Untagged
@@ -696,8 +697,6 @@ MonoBehaviour:
   ballCountSpawn: 0
   isLoop: 0
   timeBetweenBalls: 2
-  ballCount: 5
-  lastIndexBallsRaffle: 
 --- !u!4 &1357573824
 Transform:
   m_ObjectHideFlags: 0
@@ -712,6 +711,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1357573825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357573822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39279591a478df04da8296418d90834b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballCount: 5
+  lastIndexBallsRaffle: 
 --- !u!224 &1362742824 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8175046397264313669, guid: 7e247de90f897a045ab0ca1cda36ab51,
