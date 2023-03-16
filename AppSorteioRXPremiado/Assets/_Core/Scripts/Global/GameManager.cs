@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
     }
     public void ConnectServer()
     {
-        NetworkManager.instance.Connect();
+        //Codigo de Conexão com o Server
     }
     public void SetCamActiveInCanvas(Camera main)
     {
@@ -73,7 +73,6 @@ public class GameManager : MonoBehaviour
     {
         globeScriptable.ResetRaffle();
         SceneManager.LoadScene(currentSceneName);
-
     }
     public void CallChangeSceneRaffle(string sceneName)
     {
@@ -98,44 +97,12 @@ public class GameManager : MonoBehaviour
             }
             yield return new WaitForSeconds(0.5f);
             sceneIndex = SceneManager.GetActiveScene().buildIndex;
-
-
-
-            SendMessageToServerConfirmChange(true, sceneIndex);
         }
     }
-    #region SendMessages
-    public void SendMessageToServerVisibilityScene(bool _state)
-    {
-        Message message = Message.Create(MessageSendMode.unreliable, ClientToServerId.messageCheckVisibilityScreen);
-        message.AddBool(_state);
-
-        NetworkManager.Client.Send(message);
-        NetworkManager.Client2.Send(message);
-    }
-    public void SendMessageToServerGetActiveScene(int index)
-    {
-        Message message = Message.Create(MessageSendMode.unreliable, ClientToServerId.messageGetActiveScene);
-        message.AddInt(index);
-        NetworkManager.Client.Send(message);
-        NetworkManager.Client2.Send(message);
-    }
-    public void SendMessageToServerConfirmChange(bool _state, int _scene)
-    {
-        Message message = Message.Create(MessageSendMode.unreliable, ClientToServerId.messageChangeScene);
-        message.AddBool(_state);
-        message.AddInt(_scene);
-        NetworkManager.Client.Send(message);
-        NetworkManager.Client2.Send(message);
-    }
-
     public int GetSceneIndex()
     {
         return sceneIndex;
     }
-
-    #endregion
-
     private void Update()
     {
         if (Input.GetKey(KeyCode.LeftControl))

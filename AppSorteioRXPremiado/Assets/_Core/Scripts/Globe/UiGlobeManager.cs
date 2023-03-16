@@ -12,7 +12,7 @@ public class UiGlobeManager : MonoBehaviour
 
     DateTime dateValue;
     [Header("COMPONENTS SCRIPTS")]
-    [SerializeField] private GlobeController globeController;
+    [SerializeField] private GlobeManager globeController;
     [SerializeField] private PrizeImageController prizeImageController;
 
     [SerializeField] private GameObject confets;
@@ -38,7 +38,7 @@ public class UiGlobeManager : MonoBehaviour
 
     private void InitializeVariables()
     {
-        globeController = FindObjectOfType<GlobeController>();
+        globeController = FindObjectOfType<GlobeManager>();
      
         StartCoroutine(ActiveRaffle());
         UpdateOrder();
