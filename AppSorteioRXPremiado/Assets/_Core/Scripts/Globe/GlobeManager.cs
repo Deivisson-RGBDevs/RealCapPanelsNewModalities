@@ -46,15 +46,24 @@ public class GlobeManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        BallController.OnBallRaffled += VerifyWinner;
         BallController.OnBallDrawn += PermissionCallNewBallBall;
+        BallController.OnBallRevoked += DecreaseIndexBall;
         GameManager.OnNewBallRecieve += VerifyBalls;
     }
     private void OnDisable()
     {
         GameManager.OnNewBallRecieve -= VerifyBalls;
         BallController.OnBallDrawn -= PermissionCallNewBallBall;
-        BallController.OnBallRaffled -= SetUpdateInfoScreen;
+        BallController.OnBallRevoked -= DecreaseIndexBall;
+    }
+    public void PermissionCallNewBallBall()
+    {
+        canRafleeBall = true;
+        GameManager.instance.globeScriptable.indexBalls++;
+    }
+    public void DecreaseIndexBall()
+    {
+        GameManager.instance.globeScriptable.indexBalls--;
     }
     public void PopulateInfosGlobe(string _editionName, string _editionNumber, string _date, int _order, string _description, float _value)
     {
@@ -66,59 +75,66 @@ public class GlobeManager : MonoBehaviour
         GameManager.instance.globeScriptable.value = _value;
     }
 
-    public void PermissionCallNewBallBall()
-    {
-        canRafleeBall = true;
-        GameManager.instance.globeScriptable.indexBalls++;
-    }
     public void UpdateScreenRaffle(string[] _ballsRaffled, int _forOneBall, int _winnersCount, float _prizeValue)
     {
-        if (GameManager.instance.globeScriptable.ballsDrawn.Count < _ballsRaffled.Length)
-        {
-            VerifyBalls();
-            GameManager.instance.globeScriptable.ballsDrawn.Clear();
-            //GameManager.instance.globeScriptable.ballsDrawn.AddRange(_ballsRaffled.ToList());
+        //if (GameManager.instance.globeScriptable.ballsDrawn.Count < _ballsRaffled.Length)
+        //{
+        //    VerifyBalls();
+        //    GameManager.instance.globeScriptable.ballsDrawn.Clear();
+        //    //GameManager.instance.globeScriptable.ballsDrawn.AddRange(_ballsRaffled.ToList());
 
-        }
-        else if (GameManager.instance.globeScriptable.ballsDrawn.Count > _ballsRaffled.Length)
-        {
-            ballController.SetRevokedBall(_ballsRaffled);
-            UpdateInfosScreen(_ballsRaffled.Length, _forOneBall);
-        }
+        //}
+        //else if (GameManager.instance.globeScriptable.ballsDrawn.Count > _ballsRaffled.Length)
+        //{
+        //    UpdateInfosScreen(_ballsRaffled.Length, _forOneBall);
+        //}
 
-        if (_forOneBall > 0)
-        {
-            lastBallRaffle.PlayAnimationHeart(true);
-        }
-        else
-        {
-            lastBallRaffle.PlayAnimationHeart(false);
-        }
-        TicketScreen.instance.SetLastBallGlobeRaffle(_ballsRaffled[_ballsRaffled.Length - 1]);
+        //if (_forOneBall > 0)
+        //{
+        //    lastBallRaffle.PlayAnimationHeart(true);
+        //}
+        //else
+        //{
+        //    lastBallRaffle.PlayAnimationHeart(false);
+        //}
+        //TicketScreen.instance.SetLastBallGlobeRaffle(_ballsRaffled[_ballsRaffled.Length - 1]);
 
-        GameManager.instance.globeScriptable.Winners = _winnersCount;
-        GameManager.instance.globeScriptable.prizeValue = _prizeValue;
+        //GameManager.instance.globeScriptable.Winners = _winnersCount;
+        //GameManager.instance.globeScriptable.prizeValue = _prizeValue;
 
-        GameManager.instance.globeScriptable.ballRaffledCount = _ballsRaffled.Length;
-        GameManager.instance.globeScriptable.possiblesWinnersCount = _forOneBall;
+        //GameManager.instance.globeScriptable.ballRaffledCount = _ballsRaffled.Length;
+        //GameManager.instance.globeScriptable.possiblesWinnersCount = _forOneBall;
     }
     public void VerifyBalls()
     {
         if (GameManager.instance.globeScriptable.indexBalls < GameManager.instance.globeScriptable.ballsDrawn.Count)
+        {
             if (timeToSpawn <= 0.1f)
             {
                 if (canRafleeBall == true)
                 {
                     if (GameManager.instance.globeScriptable.ballsDrawn.Count <= 60)
                     {
-                        StartCoroutine(ballController.ShowBigBall(GameManager.instance.globeScriptable.ballsDrawn[GameManager.instance.globeScriptable.indexBalls]));
+                        StartCoroutine(ballController.ShowBallDrawn(GameManager.instance.globeScriptable.ballsDrawn[GameManager.instance.globeScriptable.indexBalls]));
                         timeToSpawn = 1f;
                         canRafleeBall = false;
                     }
                 }
             }
+        }
+        else if (GameManager.instance.globeScriptable.indexBalls > GameManager.instance.globeScriptable.ballsDrawn.Count)
+        {
+            if (GameManager.instance.globeScriptable.ballsDrawn.Count > 0)
+            {
+                ballController.UpdateScreenAfterRevoked(GameManager.instance.globeScriptable.ballsDrawn[GameManager.instance.globeScriptable.ballsDrawn.Count - 1]);
+            }
+            else
+                ballController.UpdateScreenAfterRevoked(0);
+        }
+
         Invoke("VerifyBalls", 0.5f);
     }
+
     private void VerifyWinner()
     {
         if (GameManager.instance.globeScriptable.Winners > 0)
@@ -140,6 +156,14 @@ public class GlobeManager : MonoBehaviour
     {
         totalBallsCount.SetInfoTotalBall(_totalNumberBalls.ToString());
         lastBallRaffle.SetTicketForOneBallInfo(_forOneBalls.ToString());
+    }
+
+    public void CallWinnerScreen()
+    {
+        if (GameManager.instance.globeScriptable.Winners > 0)
+        {
+            WinnersScreen.instance.SetWinnersScreenVisibility(true);
+        }
     }
     private void FixedUpdate()
     {

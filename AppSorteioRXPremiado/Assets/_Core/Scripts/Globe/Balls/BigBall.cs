@@ -36,9 +36,6 @@ public class BigBall : MonoBehaviour
         textNumber.text = _numberBall.ToString("D2");
         imageBall.enabled = true;
         ChangeColorBgLine();
-        
-        //GameManager.instance.globeScriptable.indexBalls++;
-
     }
 
     public void SetBgBallWithLogo()
@@ -63,7 +60,6 @@ public class BigBall : MonoBehaviour
             textNumber.color = secondColor;
         }
     }
-
     public void SetBallWinner()
     {
         imageBall.color = Color.yellow;

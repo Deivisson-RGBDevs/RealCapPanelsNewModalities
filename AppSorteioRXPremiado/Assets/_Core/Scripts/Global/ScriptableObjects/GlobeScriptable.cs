@@ -32,7 +32,9 @@ public class GlobeScriptable : ScriptableObject
     {
         ballsDrawn.Add(_ball);
     }
-
-
+    public void RemoveBall(int _ball)
+    {
+        ballsDrawn.Remove(_ball);
+    }
 }
 

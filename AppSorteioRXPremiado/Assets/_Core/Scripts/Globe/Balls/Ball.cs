@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using DG.Tweening;
@@ -10,7 +8,7 @@ public class Ball : MonoBehaviour
     public TextMeshProUGUI textNumber;
     public Image imageBall;
 
-    public string numberBall;
+    public int numberBall;
 
     public Vector3 nextPos;
     private bool canMove = false;
@@ -26,7 +24,7 @@ public class Ball : MonoBehaviour
     }
     public void SetInfoBall(int _numberBall)
     {
-        numberBall = _numberBall.ToString("D2");
+        numberBall = _numberBall;
         textNumber.text = _numberBall.ToString("D2");
         imageBall.enabled = true;
         ChangeColorBgLine();
@@ -45,7 +43,7 @@ public class Ball : MonoBehaviour
 
     private void ChangeColorBgLine()
     {
-        int number = int.Parse(numberBall);
+        int number = numberBall;
         if (number <= 30)
         {
             bgLineBall.color = firstColor;
@@ -58,9 +56,9 @@ public class Ball : MonoBehaviour
         }
     }
 
-    public void HideBall()
+    public void DestroyBall()
     {
-        Destroy(this.gameObject, 0.1f);
+        Destroy(gameObject, 0.1f);
     }
     public void MoveBallAtFinalPos(Vector3 pos)
     {
@@ -85,7 +83,6 @@ public class Ball : MonoBehaviour
     }
     public void SetSize(float size = 1.4f, float _delay = 0.5f)
     {
-        //RotateLoop(360, 0.5f, delay: _delay, 1);
         ballTransform.DOScale(size, 0.5f).SetDelay(_delay);
     }
     public void RotateLoop(float rotZ, float rotSpeed = 0.5f, float delay = 0f, int loop = 2)

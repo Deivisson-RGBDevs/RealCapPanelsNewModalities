@@ -25,7 +25,6 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-
     public static event Action OnNewBallRecieve;
     public GlobeScriptable globeScriptable;
     public LuckySpinScriptable luckySpinScriptable;
@@ -121,6 +120,15 @@ public class GameManager : MonoBehaviour
                 print(number.ToString("00"));
                 globeScriptable.AddNewBall(number);
                 OnNewBallRecieve?.Invoke();
+            }
+        }
+        else if (Input.GetKeyDown(KeyCode.A))
+        {
+            if (globeScriptable.ballsDrawn.Count > 0)
+            {
+                globeScriptable.RemoveBall(globeScriptable.ballsDrawn[globeScriptable.ballsDrawn.Count - 1]);
+                OnNewBallRecieve?.Invoke();
+                
             }
         }
     }

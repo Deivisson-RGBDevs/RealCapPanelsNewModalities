@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using System.Linq;
 using DG.Tweening;
 using System;
@@ -9,6 +8,7 @@ using System;
 public class BallController : MonoBehaviour
 {
     public static event Action OnBallDrawn;
+    public static event Action OnBallRevoked;
 
     public Transform parentBack;
     public Transform parentFront;
@@ -27,17 +27,15 @@ public class BallController : MonoBehaviour
     public bool isLoop = false;
     public float timeBetweenBalls = 2f;
 
-
-    public static event Action OnBallRaffled;
-
     private void Start()
     {
         animeGlobe = FindObjectOfType<ballAnimGlobeController>();
     }
-    public IEnumerator ShowBigBall(int _number)
+
+    #region ShowBalls
+    public IEnumerator ShowBallDrawn(int _number)
     {
         numberBall = _number;
-        print(_number);
         animeGlobe.SetCurrentBall(numberBall);
         while (animeGlobe.isFinishMovement == false)
         {
@@ -58,6 +56,41 @@ public class BallController : MonoBehaviour
             StartCoroutine(SpawnerBallLoop());
         }
     }
+
+    public void UpdateScreenAfterRevoked(int _number)
+    {
+        if (_number != 0)
+            bigBall.SetInfoInBigBall(_number, false);
+        else
+            bigBall.SetBgBallWithLogo();
+        
+        OnBallRevoked?.Invoke();
+        
+        if (GameManager.instance.globeScriptable.ballsDrawn.Count >= 5)
+        {
+            for (int i = 0; i < BallsSelected.Count; i++)
+            {
+                BallsSelected[i].SetInfoBall(GameManager.instance.globeScriptable.ballsDrawn[GameManager.instance.globeScriptable.ballsDrawn.Count - (BallsSelected.Count - i)]);
+            }
+        }
+        else if (GameManager.instance.globeScriptable.ballsDrawn.Count < 5)
+        {
+            int index = BallsSelected.Count - 1;
+            Destroy(BallsSelected[index].gameObject, 0.3f);
+            BallsSelected.Remove(BallsSelected[index]);
+            ballCountSpawn--;
+
+            isLoop = false;
+            
+            if(BallsSelected.Count==0)
+            {
+                GameManager.instance.globeScriptable.indexBalls = 0;
+            }
+        }
+    }
+    #endregion
+
+    #region MovementBall
     public IEnumerator SpawnerBall()
     {
         Ball inst = Instantiate(ball, spawnerPointBallsStart[0].position, Quaternion.identity);
@@ -130,89 +163,8 @@ public class BallController : MonoBehaviour
             BallsSelected[i].RotateLoop(rotZ: 360, rotSpeed: 1f, loop: 1);
         }
     }
-    public void CallWinnerScreen()
-    {
-        if (GameManager.instance.globeScriptable.Winners > 0)
-        {
-            WinnersScreen.instance.SetWinnersScreenVisibility(true);
-        }
-    }
-    public void SetRevokedBall(string[] _numbers)
-    {
-        GetLastIndexBallsRaffleAfterRevoked(_numbers.Length, _numbers.ToList());
-    }
-    private void GetLastIndexBallsRaffleAfterRevoked(int count, List<string> _numbers)
-    {
-        //lastIndexBallsRaffle.Clear();
-        //ballCount = 5;
-        //for (int i = ballCount; i > 0; i--)
-        //{
-        //    if ((count - ballCount) >= 0)
-        //    {
-        //        int index = count - ballCount;
-        //        lastIndexBallsRaffle.Add(index);
-        //    }
-        //    ballCount--;
-        //}
-        //RestoreBallsAfterRevoked(_numbers);
-        //GameManager.instance.globeScriptable.indexBalls--;
-    }
-    ////Essa função mostra na tela em até um máximo das 5 ultimas bolas sorteadas.
-    public void RestoreBallsAfterRevoked(List<string> _numbers)
-    {
-        List<string> _ballsRaflled = new List<string>();
-        //_ballsRaflled.AddRange(GameManager.instance.globeScriptable.ballsDrawn);
-        animeGlobe.ResetBall(int.Parse(_ballsRaflled[_ballsRaflled.Count - 1]));
+    #endregion
 
-        if (_ballsRaflled.Count <= 5)
-        {
-            for (int i = 0; i < BallsSelected.Count; i++)
-            {
-                if (BallsSelected[i].numberBall == _ballsRaflled[_ballsRaflled.Count - 1])
-                {
-                    Destroy(BallsSelected[i].gameObject, 0.3f);
-                    BallsSelected.Remove(BallsSelected[i]);
-                    ballCountSpawn--;
-                }
-            }
-            isLoop = false;
-        }
-        else
-        {
-            //for (int i = 0; i < lastIndexBallsRaffle.Count; i++)
-            //{
-            //    BallsSelected[i].SetInfoBall(_ballsRaflled[lastIndexBallsRaffle[i]]);
-            //}
-        }
-
-        if (_ballsRaflled.Count > 0)
-        {
-            //bigBall.SetInfoInBigBall(_ballsRaflled[lastIndexBallsRaffle[lastIndexBallsRaffle.Count - 1]], false);
-        }
-        else
-        {
-            bigBall.SetBgBallWithLogo();
-        }
-        GameManager.instance.globeScriptable.ballsDrawn.Clear();
-        //GameManager.instance.globeScriptable.ballsDrawn.AddRange(_numbers.ToList());
-    }
-    public void GetLastIndexBallsRaffle(int count, List<string> _numbers)
-    {
-        //lastIndexBallsRaffle.Clear();
-        //ballCount = 5;
-        //for (int i = ballCount; i > 0; i--)
-        //{
-        //    if ((count - ballCount) >= 0)
-        //    {
-        //        int index = count - ballCount;
-        //        lastIndexBallsRaffle.Add(index);
-        //    }
-        //    ballCount--;
-        //}
-        //StartCoroutine(RestoreBalls(lastIndexBallsRaffle, _numbers));
-    }
-    ////Essa função mostra na tela em até um máximo das 5 ultimas bolas sorteadas.
-  
     public void SetBallWinner()
     {
         if (GameManager.instance.globeScriptable.Winners > 0)
