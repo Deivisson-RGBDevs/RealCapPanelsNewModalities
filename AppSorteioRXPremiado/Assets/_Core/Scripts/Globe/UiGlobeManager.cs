@@ -1,18 +1,13 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
 using DG.Tweening;
 using UnityEngine.UI;
-using System.Linq;
 
 public class UiGlobeManager : MonoBehaviour
 {
-
-    DateTime dateValue;
     [Header("COMPONENTS SCRIPTS")]
-    [SerializeField] private GlobeManager globeController;
     [SerializeField] private PrizeImageController prizeImageController;
 
     [SerializeField] private GameObject confets;
@@ -37,15 +32,12 @@ public class UiGlobeManager : MonoBehaviour
 
     private void InitializeVariables()
     {
-        globeController = FindObjectOfType<GlobeManager>();
         StartCoroutine(ActiveRaffle());
         UpdateOrder();
     }
 
-    public void SetPopulateInfosGlobe(string _editionName, string _editionNumber, string _date, int _order, string _description, float _value)
+    public void ShowInfosGlobe(string _editionName, string _editionNumber, string _date, int _order, string _description, float _value)
     {
-        globeController.PopulateInfosGlobe(_editionName, _editionNumber, _date, _order, _description, _value);
-
         txtRoundRaffle.text = $"{GameManager.instance.globeScriptable.order}º Sorteio";
         txtEditionInfo.text = $"EDIÇÃO N° {GameManager.instance.globeScriptable.editionNumber}";
 
@@ -58,14 +50,8 @@ public class UiGlobeManager : MonoBehaviour
     public void UpdateOrder()
     {
         txtRoundRaffle.text = $"{GameManager.instance.globeScriptable.order}º Sorteio";
-
-    }
-    public void SetGlobeRaffle(string[] _ballsRaffled, int _forOneBall, int _winnersCount, float _prizeValue)
-    {
-        globeController.UpdateScreenRaffle(_ballsRaffled, _forOneBall, _winnersCount, _prizeValue);
     }
     
-
     public IEnumerator ActiveRaffle()
     {
         yield return new WaitForSeconds(1f);
